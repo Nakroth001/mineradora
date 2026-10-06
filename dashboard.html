@@ -527,19 +527,30 @@ function minerar() {
 
             <div class="product-info">
                 <h3>${busca}</h3>
+
                 <p>Oportunidade encontrada pela Noryva</p>
 
-                <p>💰 Custo: R$ 39,90</p>
-                <p>🏷️ Venda sugerida: R$ 89,90</p>
-                <p>📈 Margem estimada: 55%</p>
-                <p>🔥 Score Noryva: 87/100</p>
+                <p>💰 Custo: <strong>R$ 39,90</strong></p>
+                <p>🏷️ Venda sugerida: <strong>R$ 89,90</strong></p>
+                <p>📈 Margem estimada: <strong>55%</strong></p>
+                <p>🔥 Score Noryva: <strong>87/100</strong></p>
 
-                <button class="opportunity">
+                <button class="opportunity" onclick="verOportunidade('${busca}')">
                     Ver oportunidade →
                 </button>
             </div>
         </div>
     `;
+}
+
+function verOportunidade(produto) {
+    alert(
+        "Oportunidade encontrada!\\n\\n" +
+        "Produto: " + produto + "\\n" +
+        "Custo: R$ 39,90\\n" +
+        "Venda sugerida: R$ 89,90\\n" +
+        "Score Noryva: 87/100"
+    );
 }
 </script>
     
