@@ -321,7 +321,7 @@ body{
         MINERAR
     </button>
 
-</div>>
+</div>
 
         <div class="filters">
 
@@ -522,20 +522,17 @@ function minerar() {
     const resultados = document.getElementById("resultados");
 
     resultados.innerHTML = `
-        <div class="product-card">
+        <div class="card">
+            <div class="product-image">🔎</div>
+
             <div class="product-info">
                 <h3>${busca}</h3>
-                <p>Produto encontrado pela Noryva</p>
+                <p>Oportunidade encontrada pela Noryva</p>
 
-                <div class="product-data">
-                    <span>Custo: R$ 39,90</span>
-                    <span>Venda: R$ 89,90</span>
-                    <span>Margem: 55%</span>
-                </div>
-
-                <div class="score">
-                    🔥 Score Noryva: <strong>87/100</strong>
-                </div>
+                <p>💰 Custo: R$ 39,90</p>
+                <p>🏷️ Venda sugerida: R$ 89,90</p>
+                <p>📈 Margem estimada: 55%</p>
+                <p>🔥 Score Noryva: 87/100</p>
 
                 <button class="opportunity">
                     Ver oportunidade →
