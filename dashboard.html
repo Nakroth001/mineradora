@@ -368,6 +368,8 @@ body{
 
     </div>
 
+    <div id="resultados"></div>
+    
     <div class="products">
 
         <div class="card">
@@ -517,9 +519,31 @@ function minerar() {
         return;
     }
 
-    alert("Minerando oportunidades para: " + busca);
+    const resultados = document.getElementById("resultados");
+
+    resultados.innerHTML = `
+        <div class="product-card">
+            <div class="product-info">
+                <h3>${busca}</h3>
+                <p>Produto encontrado pela Noryva</p>
+
+                <div class="product-data">
+                    <span>Custo: R$ 39,90</span>
+                    <span>Venda: R$ 89,90</span>
+                    <span>Margem: 55%</span>
+                </div>
+
+                <div class="score">
+                    🔥 Score Noryva: <strong>87/100</strong>
+                </div>
+
+                <button class="opportunity">
+                    Ver oportunidade →
+                </button>
+            </div>
+        </div>
+    `;
 }
-    
 </script>
     
 </body>
