@@ -1,193 +1,561 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Oferta Especial</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
+<title>Mineradora — Encontre produtos vencedores</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#070707;
+    color:#fff;
+}
+
+header{
+    width:100%;
+    padding:22px 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #1d1d1d;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.logo span{
+    color:#f5b400;
+}
+
+header a{
+    color:#fff;
+    text-decoration:none;
+    border:1px solid #333;
+    padding:10px 18px;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.hero{
+    min-height:650px;
+    padding:90px 7% 70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+    background:
+    radial-gradient(circle at 80% 30%,rgba(245,180,0,.14),transparent 30%);
+}
+
+.hero-text{
+    max-width:650px;
+}
+
+.badge{
+    display:inline-block;
+    background:#17130a;
+    border:1px solid #604900;
+    color:#f5b400;
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    margin-bottom:22px;
+}
+
+h1{
+    font-size:58px;
+    line-height:1.05;
+    margin-bottom:25px;
+}
+
+h1 span{
+    color:#f5b400;
+}
+
+.hero p{
+    color:#aaa;
+    font-size:19px;
+    line-height:1.6;
+    max-width:590px;
+}
+
+.buttons{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    display:inline-block;
+    padding:16px 25px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.primary{
+    background:#f5b400;
+    color:#000;
+}
+
+.secondary{
+    border:1px solid #333;
+    color:#fff;
+}
+
+.dashboard{
+    width:440px;
+    background:#0f0f0f;
+    border:1px solid #292929;
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
+}
+
+.dash-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:20px;
+    color:#aaa;
+    font-size:13px;
+}
+
+.product{
+    background:#151515;
+    border:1px solid #262626;
+    padding:17px;
+    border-radius:12px;
+    margin-bottom:12px;
+}
+
+.product-top{
+    display:flex;
+    justify-content:space-between;
+}
+
+.product-name{
+    font-weight:bold;
+}
+
+.score{
+    color:#31d158;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.product-info{
+    display:flex;
+    justify-content:space-between;
+    margin-top:12px;
+    color:#888;
+    font-size:12px;
+}
+
+section{
+    padding:85px 7%;
+}
+
+.section-title{
+    text-align:center;
+    max-width:700px;
+    margin:auto;
+}
+
+.section-title h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.section-title p{
+    color:#888;
+    line-height:1.6;
+}
+
+.features{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.feature{
+    background:#0e0e0e;
+    border:1px solid #222;
+    padding:30px;
+    border-radius:15px;
+}
+
+.icon{
+    font-size:30px;
+    margin-bottom:18px;
+}
+
+.feature h3{
+    margin-bottom:12px;
+}
+
+.feature p{
+    color:#888;
+    line-height:1.5;
+    font-size:14px;
+}
+
+.pricing{
+    background:#0b0b0b;
+}
+
+.plans{
+    margin:50px auto 0;
+    max-width:1000px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.plan{
+    background:#101010;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:30px;
+}
+
+.plan.highlight{
+    border:1px solid #f5b400;
+    transform:scale(1.03);
+}
+
+.plan h3{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:36px;
+    font-weight:bold;
+    margin:20px 0;
+}
+
+.price small{
+    font-size:14px;
+    color:#777;
+}
+
+.plan ul{
+    list-style:none;
+    margin-bottom:25px;
+}
+
+.plan li{
+    margin:13px 0;
+    color:#aaa;
+}
+
+.plan a{
+    display:block;
+    text-align:center;
+    padding:14px;
+    border-radius:9px;
+    text-decoration:none;
+    background:#222;
+    color:#fff;
+    font-weight:bold;
+}
+
+.plan.highlight a{
+    background:#f5b400;
+    color:#000;
+}
+
+footer{
+    text-align:center;
+    padding:35px;
+    border-top:1px solid #1d1d1d;
+    color:#666;
+    font-size:13px;
+}
+
+@media(max-width:900px){
+
+    .hero{
+        flex-direction:column;
+        padding-top:60px;
     }
 
-    body {
-      background: #f5f5f5;
-      color: #222;
+    h1{
+        font-size:43px;
     }
 
-    .topo {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 14px;
-      font-size: 14px;
-      font-weight: bold;
+    .dashboard{
+        width:100%;
+        max-width:500px;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
+    .features,
+    .plans{
+        grid-template-columns:1fr;
     }
 
-    .card {
-      background: white;
-      border-radius: 18px;
-      padding: 35px 25px;
-      text-align: center;
-      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    .plan.highlight{
+        transform:none;
+    }
+}
+
+@media(max-width:500px){
+
+    header{
+        padding:18px 5%;
     }
 
-    h1 {
-      font-size: 38px;
-      margin-bottom: 15px;
+    header a{
+        display:none;
     }
 
-    .destaque {
-      color: #e63946;
+    .hero,
+    section{
+        padding-left:5%;
+        padding-right:5%;
     }
 
-    .subtitulo {
-      font-size: 19px;
-      color: #666;
-      margin-bottom: 25px;
-      line-height: 1.5;
+    h1{
+        font-size:38px;
     }
 
-    .produto {
-      background: #eee;
-      border-radius: 15px;
-      padding: 50px 20px;
-      margin: 25px 0;
-      font-size: 22px;
-      font-weight: bold;
+    .hero p{
+        font-size:16px;
     }
-
-    .preco-antigo {
-      color: #999;
-      text-decoration: line-through;
-      font-size: 18px;
-    }
-
-    .preco {
-      font-size: 42px;
-      font-weight: bold;
-      color: #111;
-      margin: 8px 0 20px;
-    }
-
-    .botao {
-      display: block;
-      background: #19a84a;
-      color: white;
-      text-decoration: none;
-      padding: 18px;
-      border-radius: 10px;
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 20px;
-      transition: 0.2s;
-    }
-
-    .botao:hover {
-      background: #14883b;
-      transform: scale(1.02);
-    }
-
-    .beneficios {
-      text-align: left;
-      max-width: 500px;
-      margin: 30px auto;
-    }
-
-    .beneficios p {
-      margin: 12px 0;
-      font-size: 17px;
-    }
-
-    .urgencia {
-      color: #e63946;
-      font-weight: bold;
-      margin-top: 20px;
-    }
-
-    footer {
-      text-align: center;
-      color: #888;
-      font-size: 13px;
-      margin: 30px 0;
-    }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 30px;
-      }
-
-      .preco {
-        font-size: 36px;
-      }
-
-      .container {
-        margin: 10px auto;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <div class="topo">
-    🔥 OFERTA ESPECIAL — CONDIÇÃO POR TEMPO LIMITADO
-  </div>
+<header>
+    <div class="logo">MINERA<span>DORA</span></div>
+    <a href="#planos">Ver planos</a>
+</header>
 
-  <div class="container">
-    <div class="card">
+<section class="hero">
 
-      <h1>
-        Tenha acesso ao <span class="destaque">produto que pode mudar seu resultado</span>
-      </h1>
+    <div class="hero-text">
 
-      <p class="subtitulo">
-        Uma solução simples, prática e direta para quem quer começar agora.
-      </p>
+        <div class="badge">⚡ Inteligência para encontrar oportunidades</div>
 
-      <div class="produto">
-        🚀 SEU PRODUTO AQUI
-      </div>
+        <h1>
+            Pare de procurar produtos.
+            <span>Comece a minerar.</span>
+        </h1>
 
-      <div class="preco-antigo">
-        De R$ 197,00
-      </div>
+        <p>
+            A Mineradora reúne informações de produtos em alta,
+            fornecedores, preços, concorrência e potencial de lucro
+            para você encontrar oportunidades antes de perder tempo
+            procurando manualmente.
+        </p>
 
-      <div class="preco">
-        R$ 47,00
-      </div>
+        <div class="buttons">
+            <a href="#planos" class="btn primary">
+                Começar agora →
+            </a>
 
-      <div class="beneficios">
-        <p>✅ Acesso imediato</p>
-        <p>✅ Conteúdo completo</p>
-        <p>✅ Fácil de usar</p>
-        <p>✅ Acesso pelo celular</p>
-        <p>✅ Compra segura</p>
-      </div>
-
-      <a href="https://SEU-CHECKOUT-AQUI.com" class="botao">
-        QUERO GARANTIR O MEU AGORA
-      </a>
-
-      <p class="urgencia">
-        ⚠️ Essa condição pode sair do ar a qualquer momento.
-      </p>
+            <a href="#como-funciona" class="btn secondary">
+                Como funciona
+            </a>
+        </div>
 
     </div>
-  </div>
 
-  <footer>
-    © 2026 — Todos os direitos reservados.
-  </footer>
+    <div class="dashboard">
+
+        <div class="dash-top">
+            <span>Produtos encontrados</span>
+            <span>Atualizado agora</span>
+        </div>
+
+        <div class="product">
+            <div class="product-top">
+                <span class="product-name">Produto em alta #01</span>
+                <span class="score">94/100</span>
+            </div>
+
+            <div class="product-info">
+                <span>Custo: R$ 39,90</span>
+                <span>Venda: R$ 119,90</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="product-top">
+                <span class="product-name">Produto em alta #02</span>
+                <span class="score">89/100</span>
+            </div>
+
+            <div class="product-info">
+                <span>Custo: R$ 27,50</span>
+                <span>Venda: R$ 89,90</span>
+            </div>
+        </div>
+
+        <div class="product">
+            <div class="product-top">
+                <span class="product-name">Produto em alta #03</span>
+                <span class="score">86/100</span>
+            </div>
+
+            <div class="product-info">
+                <span>Custo: R$ 44,90</span>
+                <span>Venda: R$ 129,90</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section id="como-funciona">
+
+    <div class="section-title">
+
+        <h2>Uma central para suas pesquisas</h2>
+
+        <p>
+            Em vez de abrir dezenas de sites e planilhas,
+            concentre as principais informações em um único lugar.
+        </p>
+
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="icon">🔥</div>
+            <h3>Produtos em alta</h3>
+            <p>
+                Descubra produtos que estão ganhando atenção
+                e identifique novas oportunidades.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">🏭</div>
+            <h3>Fornecedores</h3>
+            <p>
+                Encontre informações de fornecedores e compare
+                custos para avaliar possíveis margens.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">📊</div>
+            <h3>Análise de potencial</h3>
+            <p>
+                Compare preço, concorrência e outros indicadores
+                antes de decidir onde investir seu dinheiro.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="pricing" id="planos">
+
+    <div class="section-title">
+
+        <h2>Escolha seu acesso</h2>
+
+        <p>
+            Comece com o plano que combina com seu momento.
+        </p>
+
+    </div>
+
+    <div class="plans">
+
+        <div class="plan">
+
+            <h3>Básico</h3>
+
+            <p>Para começar a pesquisar.</p>
+
+            <div class="price">
+                R$ 49,99
+                <small>/mês</small>
+            </div>
+
+            <ul>
+                <li>✓ Pesquisa de produtos</li>
+                <li>✓ Informações básicas</li>
+                <li>✓ Análise inicial</li>
+                <li>✓ Acesso à plataforma</li>
+            </ul>
+
+            <a href="#">Começar</a>
+
+        </div>
+
+        <div class="plan highlight">
+
+            <h3>Pro</h3>
+
+            <p>Para quem quer pesquisar mais.</p>
+
+            <div class="price">
+                R$ 85
+                <small>/mês</small>
+            </div>
+
+            <ul>
+                <li>✓ Tudo do Básico</li>
+                <li>✓ Dados completos</li>
+                <li>✓ Mais informações de fornecedores</li>
+                <li>✓ Análises avançadas</li>
+            </ul>
+
+            <a href="#">Quero o Pro</a>
+
+        </div>
+
+        <div class="plan">
+
+            <h3>Ouro</h3>
+
+            <p>Para quem quer ir além.</p>
+
+            <div class="price">
+                R$ 119,99
+                <small>/mês</small>
+            </div>
+
+            <ul>
+                <li>✓ Tudo do Pro</li>
+                <li>✓ Imagens dos produtos</li>
+                <li>✓ Vídeos e criativos</li>
+                <li>✓ Material para anúncios</li>
+            </ul>
+
+            <a href="#">Quero o Ouro</a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 Mineradora — Todos os direitos reservados.
+</footer>
 
 </body>
 </html>
