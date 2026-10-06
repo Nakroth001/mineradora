@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noryva — Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#080808;
+    color:#fff;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:230px;
+    height:100vh;
+    background:#0d0d0d;
+    border-right:1px solid #222;
+    padding:25px 18px;
+}
+
+.logo{
+    font-size:23px;
+    font-weight:900;
+    letter-spacing:2px;
+    margin-bottom:45px;
+}
+
+.logo span{
+    color:#f5b400;
+}
+
+.menu a{
+    display:block;
+    color:#999;
+    text-decoration:none;
+    padding:13px 14px;
+    border-radius:9px;
+    margin-bottom:7px;
+}
+
+.menu a:hover,
+.menu .active{
+    background:#19150a;
+    color:#f5b400;
+}
+
+.main{
+    margin-left:230px;
+    padding:35px 45px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.top h1{
+    font-size:30px;
+}
+
+.account{
+    background:#141414;
+    border:1px solid #292929;
+    padding:10px 15px;
+    border-radius:9px;
+    color:#aaa;
+}
+
+.search-box{
+    background:#101010;
+    border:1px solid #292929;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:30px;
+}
+
+.search{
+    display:flex;
+    gap:10px;
+}
+
+.search input{
+    flex:1;
+    background:#080808;
+    border:1px solid #333;
+    color:#fff;
+    padding:15px;
+    border-radius:9px;
+    outline:none;
+    font-size:15px;
+}
+
+.search button{
+    background:#f5b400;
+    color:#000;
+    border:0;
+    padding:0 25px;
+    border-radius:9px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.filters{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+    flex-wrap:wrap;
+}
+
+.filters select{
+    background:#151515;
+    color:#aaa;
+    border:1px solid #292929;
+    padding:10px;
+    border-radius:8px;
+}
+
+.section-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+}
+
+.section-title span{
+    color:#777;
+    font-size:13px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+    background:#101010;
+    border:1px solid #252525;
+    border-radius:14px;
+    padding:20px;
+}
+
+.product-image{
+    height:150px;
+    background:#181818;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:42px;
+    margin-bottom:17px;
+}
+
+.card h3{
+    margin-bottom:8px;
+}
+
+.category{
+    color:#777;
+    font-size:12px;
+}
+
+.score{
+    margin-top:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.score strong{
+    color:#35d05f;
+}
+
+.info{
+    border-top:1px solid #252525;
+    margin-top:15px;
+    padding-top:15px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:9px;
+    color:#888;
+    font-size:13px;
+}
+
+.row b{
+    color:#fff;
+}
+
+.opportunity{
+    display:block;
+    text-align:center;
+    background:#f5b400;
+    color:#000;
+    text-decoration:none;
+    padding:12px;
+    border-radius:8px;
+    margin-top:17px;
+    font-weight:bold;
+}
+
+@media(max-width:1000px){
+    .products{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        border-right:0;
+        border-bottom:1px solid #222;
+    }
+
+    .menu{
+        display:flex;
+        gap:5px;
+        overflow:auto;
+    }
+
+    .menu a{
+        white-space:nowrap;
+    }
+
+    .main{
+        margin-left:0;
+        padding:25px 15px;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .top{
+        gap:15px;
+        align-items:flex-start;
+    }
+
+    .top h1{
+        font-size:24px;
+    }
+
+    .search{
+        flex-direction:column;
+    }
+
+    .search button{
+        padding:14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+        NORY<span>VA</span>
+    </div>
+
+    <div class="menu">
+
+        <a href="#" class="active">🔎 Descobrir</a>
+
+        <a href="#">🔥 Em alta</a>
+
+        <a href="#">⭐ Favoritos</a>
+
+        <a href="#">📊 Análises</a>
+
+        <a href="#">🏭 Fornecedores</a>
+
+        <a href="#">🎥 Criativos</a>
+
+    </div>
+
+</aside>
+
+<main class="main">
+
+    <div class="top">
+
+        <h1>Descobrir produtos</h1>
+
+        <div class="account">
+            Minha conta
+        </div>
+
+    </div>
+
+    <div class="search-box">
+
+        <div class="search">
+
+            <input
+                type="text"
+                placeholder="Digite o nome de um produto..."
+            >
+
+            <button>
+                MINERAR
+            </button>
+
+        </div>
+
+        <div class="filters">
+
+            <select>
+                <option>Categoria</option>
+                <option>Casa</option>
+                <option>Beleza</option>
+                <option>Tecnologia</option>
+                <option>Fitness</option>
+                <option>Pet</option>
+            </select>
+
+            <select>
+                <option>Preço</option>
+                <option>Até R$50</option>
+                <option>R$50 — R$100</option>
+                <option>R$100 — R$200</option>
+                <option>Acima de R$200</option>
+            </select>
+
+            <select>
+                <option>Margem</option>
+                <option>20%+</option>
+                <option>40%+</option>
+                <option>60%+</option>
+            </select>
+
+            <select>
+                <option>Plataforma</option>
+                <option>Mercado Livre</option>
+                <option>Shopee</option>
+                <option>TikTok Shop</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <div class="section-title">
+
+        <h2>🔥 Oportunidades encontradas</h2>
+
+        <span>Dados demonstrativos</span>
+
+    </div>
+
+    <div class="products">
+
+        <div class="card">
+
+            <div class="product-image">
+                🧹
+            </div>
+
+            <span class="category">
+                CASA
+            </span>
+
+            <h3>
+                Produto Exemplo #01
+            </h3>
+
+            <div class="score">
+                <span>Score Noryva</span>
+                <strong>94/100</strong>
+            </div>
+
+            <div class="info">
+
+                <div class="row">
+                    <span>Custo</span>
+                    <b>R$ 39,90</b>
+                </div>
+
+                <div class="row">
+                    <span>Venda sugerida</span>
+                    <b>R$ 119,90</b>
+                </div>
+
+                <div class="row">
+                    <span>Margem estimada</span>
+                    <b>66%</b>
+                </div>
+
+            </div>
+
+            <a href="#" class="opportunity">
+                Ver oportunidade
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image">
+                💡
+            </div>
+
+            <span class="category">
+                TECNOLOGIA
+            </span>
+
+            <h3>
+                Produto Exemplo #02
+            </h3>
+
+            <div class="score">
+                <span>Score Noryva</span>
+                <strong>89/100</strong>
+            </div>
+
+            <div class="info">
+
+                <div class="row">
+                    <span>Custo</span>
+                    <b>R$ 27,50</b>
+                </div>
+
+                <div class="row">
+                    <span>Venda sugerida</span>
+                    <b>R$ 89,90</b>
+                </div>
+
+                <div class="row">
+                    <span>Margem estimada</span>
+                    <b>69%</b>
+                </div>
+
+            </div>
+
+            <a href="#" class="opportunity">
+                Ver oportunidade
+            </a>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="product-image">
+                🐶
+            </div>
+
+            <span class="category">
+                PET
+            </span>
+
+            <h3>
+                Produto Exemplo #03
+            </h3>
+
+            <div class="score">
+                <span>Score Noryva</span>
+                <strong>86/100</strong>
+            </div>
+
+            <div class="info">
+
+                <div class="row">
+                    <span>Custo</span>
+                    <b>R$ 44,90</b>
+                </div>
+
+                <div class="row">
+                    <span>Venda sugerida</span>
+                    <b>R$ 129,90</b>
+                </div>
+
+                <div class="row">
+                    <span>Margem estimada</span>
+                    <b>65%</b>
+                </div>
+
+            </div>
+
+            <a href="#" class="opportunity">
+                Ver oportunidade
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
