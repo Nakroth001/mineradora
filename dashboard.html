@@ -309,18 +309,19 @@ body{
 
     <div class="search-box">
 
-        <div class="search">
+      <div class="search">
 
-            <input
-                type="text"
-                placeholder="Digite o nome de um produto..."
-            >
+    <input
+        id="productSearch"
+        type="text"
+        placeholder="Digite o nome de um produto..."
+    >
 
-            <button>
-                MINERAR
-            </button>
+    <button onclick="minerar()">
+        MINERAR
+    </button>
 
-        </div>
+</div>>
 
         <div class="filters">
 
@@ -506,6 +507,20 @@ body{
     </div>
 
 </main>
+    
+<script>
+function minerar() {
+    const busca = document.getElementById("productSearch").value.trim();
 
+    if (!busca) {
+        alert("Digite um produto para minerar.");
+        return;
+    }
+
+    alert("Minerando oportunidades para: " + busca);
+}
+    
+</script>
+    
 </body>
 </html>
