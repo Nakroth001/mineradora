@@ -152,10 +152,12 @@ export default async function handler(req, res) {
       await assinaturaResponse.json();
 
     if (!assinaturaResponse.ok) {
-      return res.status(assinaturaResponse.status).json({
-        error: "O Asaas recusou a criação da assinatura",
-        details: assinatura
-      });
+     return res.status(assinaturaResponse.status).json({
+  error:
+    assinatura.errors?.map(e => e.description).join(" | ") ||
+    assinatura.message ||
+    "O Asaas recusou a criação da assinatura"
+});
     }
 
     return res.status(200).json({
