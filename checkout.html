@@ -15,21 +15,24 @@
 
     body {
       min-height: 100vh;
-      background: #050507;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(124,58,237,.10), transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(168,85,247,.08), transparent 30%),
+        #050507;
       color: white;
       display: flex;
       justify-content: center;
       padding: 30px 15px;
-      position: relative;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* CÉU ESTRELADO */
+    /* ESTRELAS */
     .stars {
       position: fixed;
       inset: 0;
-      pointer-events: none;
       z-index: 0;
+      pointer-events: none;
       opacity: .35;
 
       background-image:
@@ -48,39 +51,37 @@
         150px 40px;
     }
 
-    /* BRILHOS ROXOS */
-    body::before,
-    body::after {
-      content: "";
+    /* BRILHOS */
+    .glow {
       position: fixed;
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: rgba(168, 85, 247, 0.12);
-      filter: blur(80px);
+      background: rgba(168,85,247,.12);
+      filter: blur(90px);
       pointer-events: none;
       z-index: 0;
-      animation: floatGlow 7s ease-in-out infinite alternate;
+      animation: glowMove 8s ease-in-out infinite alternate;
     }
 
-    body::before {
-      top: -80px;
-      left: -80px;
+    .glow.one {
+      top: -100px;
+      left: -100px;
     }
 
-    body::after {
+    .glow.two {
+      right: -100px;
       bottom: -100px;
-      right: -80px;
       animation-delay: 2s;
     }
 
-    @keyframes floatGlow {
+    @keyframes glowMove {
       from {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0,0) scale(1);
       }
 
       to {
-        transform: translate(50px, 30px) scale(1.2);
+        transform: translate(50px,30px) scale(1.2);
       }
     }
 
@@ -90,17 +91,33 @@
       width: 90px;
       height: 2px;
       border-radius: 999px;
+
       background: linear-gradient(
         90deg,
         transparent,
-        rgba(192,132,252,.15),
-        rgba(216,180,254,.95)
+        rgba(192,132,252,.2),
+        rgba(216,180,254,1)
       );
+
       pointer-events: none;
       z-index: 1;
       opacity: 0;
       transform: rotate(-35deg);
+
       animation: shooting 7s linear infinite;
+    }
+
+    .shooting-star::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background: #e9d5ff;
+      box-shadow: 0 0 12px #c084fc;
     }
 
     .star-one {
@@ -113,7 +130,7 @@
       top: 40%;
       left: 70%;
       width: 70px;
-      animation-delay: 3.8s;
+      animation-delay: 3.5s;
     }
 
     .star-three {
@@ -125,4 +142,439 @@
 
     @keyframes shooting {
       0% {
-        transform: translate(0, 0)
+        transform: translate(0,0) rotate(-35deg);
+        opacity: 0;
+      }
+
+      7% {
+        opacity: .9;
+      }
+
+      20% {
+        transform: translate(-380px,240px) rotate(-35deg);
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* CHECKOUT */
+    .checkout {
+      width: 100%;
+      max-width: 900px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 32px;
+      font-weight: 800;
+      color: #a855f7;
+      margin-bottom: 30px;
+      text-shadow: 0 0 25px rgba(168,85,247,.35);
+    }
+
+    .box {
+      background: rgba(11,11,16,.94);
+      border: 1px solid #6d28d9;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow:
+        0 0 35px rgba(124,58,237,.12),
+        0 20px 70px rgba(0,0,0,.35);
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #999;
+      margin-bottom: 25px;
+    }
+
+    .plan {
+      background: #111118;
+      border: 1px solid #7e22ce;
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 25px;
+    }
+
+    .plan-name {
+      color: #c084fc;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+
+    .price small {
+      font-size: 14px;
+      color: #999;
+      font-weight: normal;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #292933;
+      background: #08080c;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #a855f7;
+      box-shadow: 0 0 0 2px rgba(168,85,247,.08);
+    }
+
+    .methods {
+      display: flex;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .method {
+      flex: 1;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #292933;
+      background: #101016;
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      transition: .2s;
+    }
+
+    .method:hover {
+      border-color: #7e22ce;
+    }
+
+    .method.active {
+      border-color: #a855f7;
+      background: #1a1025;
+      box-shadow: 0 0 15px rgba(168,85,247,.08);
+    }
+
+    .pay-box {
+      margin-top: 15px;
+    }
+
+    .pix-info {
+      background: #0d0d13;
+      border: 1px solid #3b1b5f;
+      border-radius: 12px;
+      padding: 18px;
+      color: #aaa;
+      line-height: 1.5;
+    }
+
+    .button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 16px;
+      border: none;
+      border-radius: 11px;
+      background: #9333ea;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .button:hover {
+      background: #a855f7;
+      transform: translateY(-1px);
+    }
+
+    .secure {
+      text-align: center;
+      color: #777;
+      font-size: 12px;
+      margin-top: 18px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 12px;
+      }
+
+      .logo {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      .box {
+        padding: 18px;
+        border-radius: 15px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .price {
+        font-size: 26px;
+      }
+
+      .methods {
+        flex-direction: column;
+      }
+
+      .shooting-star {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .glow,
+      .shooting-star {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars"></div>
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <div class="shooting-star star-one"></div>
+  <div class="shooting-star star-two"></div>
+  <div class="shooting-star star-three"></div>
+
+  <main class="checkout">
+
+    <div class="logo">NORYVA</div>
+
+    <div class="box">
+
+      <section id="payment">
+
+        <h1>Finalizar assinatura</h1>
+
+        <p class="subtitle">
+          Tenha acesso completo à plataforma Noryva.
+        </p>
+
+        <div class="plan">
+
+          <div class="plan-name" id="planName">
+            Noryva Pro
+          </div>
+
+          <div class="price">
+            R$ <span id="planPrice">85,00</span>
+            <small>/mês</small>
+          </div>
+
+        </div>
+
+        <label for="name">Nome completo</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Seu nome completo"
+        >
+
+        <label for="cpf">CPF</label>
+        <input
+          id="cpf"
+          type="text"
+          placeholder="000.000.000-00"
+        >
+
+        <label for="email">E-mail</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="seu@email.com"
+        >
+
+        <label for="phone">Telefone</label>
+        <input
+          id="phone"
+          type="tel"
+          placeholder="(00) 00000-0000"
+        >
+
+        <div class="methods">
+
+          <button
+            class="method active"
+            id="cardBtn"
+            type="button"
+          >
+            💳 Cartão
+          </button>
+
+          <button
+            class="method"
+            id="pixBtn"
+            type="button"
+          >
+            📱 Pix
+          </button>
+
+        </div>
+
+        <div class="pay-box" id="cardBox">
+
+          <label>Número do cartão</label>
+          <input
+            type="text"
+            inputmode="numeric"
+            placeholder="0000 0000 0000 0000"
+          >
+
+          <label>Nome no cartão</label>
+          <input
+            type="text"
+            placeholder="NOME COMO ESTÁ NO CARTÃO"
+          >
+
+          <label>Validade</label>
+          <input
+            type="text"
+            inputmode="numeric"
+            placeholder="MM/AA"
+          >
+
+          <label>CVV</label>
+          <input
+            type="password"
+            inputmode="numeric"
+            placeholder="000"
+          >
+
+        </div>
+
+        <div
+          class="pay-box"
+          id="pixBox"
+          style="display:none;"
+        >
+
+          <div class="pix-info">
+            Ao continuar, o QR Code Pix será gerado aqui
+            para você realizar o pagamento.
+          </div>
+
+        </div>
+
+        <button
+          class="button"
+          id="payButton"
+          type="button"
+        >
+          Assinar agora
+        </button>
+
+        <div class="secure">
+          🔒 Pagamento processado com segurança.
+        </div>
+
+      </section>
+
+    </div>
+
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const plano = params.get("plano") || "pro";
+
+    const planos = {
+      basico: {
+        nome: "Noryva Básico",
+        preco: "49,99"
+      },
+
+      pro: {
+        nome: "Noryva Pro",
+        preco: "85,00"
+      },
+
+      ouro: {
+        nome: "Noryva Ouro",
+        preco: "119,99"
+      }
+    };
+
+    const produto = planos[plano] || planos.pro;
+
+    document.getElementById("planName").textContent =
+      produto.nome;
+
+    document.getElementById("planPrice").textContent =
+      produto.preco;
+
+    const cardBtn =
+      document.getElementById("cardBtn");
+
+    const pixBtn =
+      document.getElementById("pixBtn");
+
+    const cardBox =
+      document.getElementById("cardBox");
+
+    const pixBox =
+      document.getElementById("pixBox");
+
+    cardBtn.addEventListener("click", function () {
+
+      cardBtn.classList.add("active");
+      pixBtn.classList.remove("active");
+
+      cardBox.style.display = "block";
+      pixBox.style.display = "none";
+
+    });
+
+    pixBtn.addEventListener("click", function () {
+
+      pixBtn.classList.add("active");
+      cardBtn.classList.remove("active");
+
+      cardBox.style.display = "none";
+      pixBox.style.display = "block";
+
+    });
+
+    document.getElementById("payButton")
+      .addEventListener("click", function () {
+
+        alert(
+          "Checkout visual funcionando. O processamento do pagamento será conectado na próxima etapa."
+        );
+
+      });
+  </script>
+
+</body>
+</html>
