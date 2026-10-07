@@ -634,9 +634,46 @@
           </h1>
 
           <p style="
-            color:#aaa;
-            line-height:1.6;
-            margin
+  color:#aaa;
+  line-height:1.6;
+  margin-bottom:25px;
+">
+  Sua assinatura foi enviada para processamento.
+  O pagamento será confirmado pelo sistema de pagamentos.
+</p>
+
+<a
+  href="dashboard.html"
+  style="
+    display:block;
+    width:100%;
+    padding:16px;
+    border-radius:11px;
+    background:#9333ea;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+  "
+>
+  Acessar Noryva
+</a>
+
+</div>
+`;
+
+    } catch (error) {
+
+      alert(error.message);
+
+      payButton.disabled = false;
+      payButton.textContent = "Assinar agora";
+    }
+
+  });
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
