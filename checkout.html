@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout — Noryva</title>
+  <title>Noryva — Checkout</title>
 
   <style>
     * {
@@ -16,672 +16,228 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 15% 15%, rgba(124,58,237,.10), transparent 30%),
-        radial-gradient(circle at 85% 85%, rgba(168,85,247,.08), transparent 30%),
+        radial-gradient(circle at 20% 10%, rgba(120, 40, 255, .18), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(100, 30, 220, .14), transparent 30%),
         #050507;
-      color: white;
-      display: flex;
-      justify-content: center;
-      padding: 30px 15px;
+      color: #fff;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* ESTRELAS */
     .stars {
       position: fixed;
       inset: 0;
+      pointer-events: none;
+      overflow: hidden;
       z-index: 0;
-      pointer-events: none;
-      opacity: .35;
-
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(192,132,252,.7) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1.5px);
-
-      background-size:
-        140px 140px,
-        190px 190px,
-        240px 240px;
-
-      background-position:
-        20px 30px,
-        80px 100px,
-        150px 40px;
     }
 
-    /* BRILHOS */
-    .glow {
-      position: fixed;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: rgba(168,85,247,.12);
-      filter: blur(90px);
-      pointer-events: none;
-      z-index: 0;
-      animation: glowMove 8s ease-in-out infinite alternate;
-    }
-
-    .glow.one {
-      top: -100px;
-      left: -100px;
-    }
-
-    .glow.two {
-      right: -100px;
-      bottom: -100px;
-      animation-delay: 2s;
-    }
-
-    @keyframes glowMove {
-      from {
-        transform: translate(0,0) scale(1);
-      }
-
-      to {
-        transform: translate(50px,30px) scale(1.2);
-      }
-    }
-
-    /* ESTRELAS CADENTES */
-    .shooting-star {
-      position: fixed;
-      width: 90px;
-      height: 2px;
-      border-radius: 999px;
-
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(192,132,252,.2),
-        rgba(216,180,254,1)
-      );
-
-      pointer-events: none;
-      z-index: 1;
-      opacity: 0;
-      transform: rotate(-35deg);
-
-      animation: shooting 7s linear infinite;
-    }
-
-    .shooting-star::after {
-      content: "";
+    .star {
       position: absolute;
-      right: 0;
-      top: 50%;
-      width: 5px;
-      height: 5px;
-      transform: translateY(-50%);
+      width: 2px;
+      height: 2px;
+      background: #fff;
       border-radius: 50%;
-      background: #e9d5ff;
-      box-shadow: 0 0 12px #c084fc;
+      opacity: .6;
+      animation: twinkle 3s infinite ease-in-out;
     }
 
-    .star-one {
-      top: 15%;
-      left: 85%;
-      animation-delay: 1s;
+    @keyframes twinkle {
+      0%,100% { opacity: .15; }
+      50% { opacity: .9; }
     }
 
-    .star-two {
-      top: 40%;
-      left: 70%;
-      width: 70px;
-      animation-delay: 3.5s;
-    }
-
-    .star-three {
-      top: 65%;
-      left: 90%;
-      width: 80px;
-      animation-delay: 5.5s;
-    }
-
-    @keyframes shooting {
-      0% {
-        transform: translate(0,0) rotate(-35deg);
-        opacity: 0;
-      }
-
-      7% {
-        opacity: .9;
-      }
-
-      20% {
-        transform: translate(-380px,240px) rotate(-35deg);
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
-
-    /* CHECKOUT */
     .checkout {
-      width: 100%;
-      max-width: 900px;
       position: relative;
-      z-index: 10;
+      z-index: 1;
+      width: 100%;
+      max-width: 540px;
+      margin: auto;
+      padding: 35px 18px 25px;
     }
 
     .logo {
       text-align: center;
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
-      color: #a855f7;
-      margin-bottom: 30px;
-      text-shadow: 0 0 25px rgba(168,85,247,.35);
+      letter-spacing: -1px;
+      margin-bottom: 25px;
+    }
+
+    .logo span {
+      color: #9b5cff;
+    }
+
+    .steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 25px;
+      gap: 10px;
+    }
+
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #666;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .step.active {
+      color: #fff;
+    }
+
+    .circle {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #17131f;
+      border: 1px solid #392450;
+    }
+
+    .step.active .circle {
+      background: #7c3cff;
+      border-color: #9b5cff;
+      box-shadow: 0 0 18px rgba(124,60,255,.45);
+    }
+
+    .line {
+      width: 55px;
+      height: 1px;
+      background: #30243c;
     }
 
     .box {
-      background: rgba(11,11,16,.94);
-      border: 1px solid #6d28d9;
-      border-radius: 18px;
+      background: rgba(12, 10, 16, .94);
+      border: 1px solid #291b38;
+      border-radius: 20px;
       padding: 25px;
       box-shadow:
-        0 0 35px rgba(124,58,237,.12),
-        0 20px 70px rgba(0,0,0,.35);
-      backdrop-filter: blur(8px);
-    }
-
-    h1 {
-      font-size: 25px;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      color: #999;
-      margin-bottom: 25px;
+        0 20px 70px rgba(0,0,0,.45),
+        0 0 35px rgba(120,40,255,.07);
     }
 
     .plan {
-      background: #111118;
-      border: 1px solid #7e22ce;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 25px;
+      background: #100c16;
+      border: 1px solid #302040;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .plan-name {
-      color: #c084fc;
+    .plan small {
+      color: #999;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .plan strong {
       font-size: 18px;
-      font-weight: bold;
     }
 
     .price {
-      font-size: 30px;
-      font-weight: bold;
-      margin-top: 6px;
+      color: #b47cff;
+      font-weight: 800;
+      font-size: 18px;
     }
 
-    .price small {
+    h2 {
+      font-size: 22px;
+      margin-bottom: 7px;
+    }
+
+    .subtitle {
+      color: #888;
       font-size: 14px;
-      color: #999;
-      font-weight: normal;
+      margin-bottom: 22px;
+      line-height: 1.5;
     }
 
     label {
       display: block;
+      font-size: 13px;
+      color: #bbb;
       margin: 15px 0 7px;
-      color: #ccc;
-      font-size: 14px;
     }
 
     input {
       width: 100%;
-      padding: 14px;
+      height: 48px;
       border-radius: 10px;
-      border: 1px solid #292933;
-      background: #08080c;
-      color: white;
+      border: 1px solid #30243c;
+      background: #09080c;
+      color: #fff;
+      padding: 0 14px;
       outline: none;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     input:focus {
-      border-color: #a855f7;
-      box-shadow: 0 0 0 2px rgba(168,85,247,.08);
+      border-color: #874cff;
+      box-shadow: 0 0 0 3px rgba(135,76,255,.10);
     }
 
-    .methods {
-      display: flex;
-      gap: 10px;
-      margin: 22px 0;
-    }
-
-    .method {
-      flex: 1;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #292933;
-      background: #101016;
-      color: white;
-      cursor: pointer;
-      font-size: 15px;
-      transition: .2s;
-    }
-
-    .method:hover {
-      border-color: #7e22ce;
-    }
-
-    .method.active {
-      border-color: #a855f7;
-      background: #1a1025;
-      box-shadow: 0 0 15px rgba(168,85,247,.08);
-    }
-
-    .pay-box {
-      margin-top: 15px;
-    }
-
-    .pix-info {
-      background: #0d0d13;
-      border: 1px solid #3b1b5f;
-      border-radius: 12px;
-      padding: 18px;
-      color: #aaa;
-      line-height: 1.5;
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
     }
 
     .button {
       width: 100%;
-      margin-top: 25px;
-      padding: 16px;
-      border: none;
+      height: 52px;
+      border: 0;
       border-radius: 11px;
-      background: #9333ea;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
+      margin-top: 22px;
+      background: linear-gradient(135deg, #7b32ff, #a05cff);
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
       cursor: pointer;
-      transition: .2s;
+      box-shadow: 0 10px 30px rgba(124,60,255,.25);
     }
 
     .button:hover {
-      background: #a855f7;
-      transform: translateY(-1px);
+      filter: brightness(1.08);
     }
 
-    .secure {
+    .back {
+      width: 100%;
+      margin-top: 12px;
+      height: 45px;
+      border: 1px solid #30243c;
+      background: transparent;
+      color: #aaa;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .payment-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .payment-option {
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #30243c;
+      background: #0b0910;
+      color: #aaa;
+      cursor: pointer;
       text-align: center;
-      color: #777;
-      font-size: 12px;
-      margin-top: 18px;
+      font-weight: 700;
     }
 
-    /* MOBILE */
-    @media (max-width: 600px) {
-      body {
-        padding: 20px 12px;
-      }
-
-      .logo {
-        font-size: 28px;
-        margin-bottom: 20px;
-      }
-
-      .box {
-        padding: 18px;
-        border-radius: 15px;
-      }
-
-      h1 {
-        font-size: 22px;
-      }
-
-      .price {
-        font-size: 26px;
-      }
-
-      .methods {
-        flex-direction: column;
-      }
-
-      .shooting-star {
-        display: none;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .glow,
-      .shooting-star {
-        animation: none;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="stars"></div>
-
-  <div class="glow one"></div>
-  <div class="glow two"></div>
-
-  <div class="shooting-star star-one"></div>
-  <div class="shooting-star star-two"></div>
-  <div class="shooting-star star-three"></div>
-
-  <main class="checkout">
-
-    <div class="logo">NORYVA</div>
-
-    <div class="box">
-
-      <section id="payment">
-
-        <h1>Finalizar assinatura</h1>
-
-        <p class="subtitle">
-          Tenha acesso completo à plataforma Noryva.
-        </p>
-
-        <div class="plan">
-
-          <div class="plan-name" id="planName">
-            Noryva Pro
-          </div>
-
-          <div class="price">
-            R$ <span id="planPrice">85,00</span>
-            <small>/mês</small>
-          </div>
-
-        </div>
-
-        <label for="name">Nome completo</label>
-        <input
-          id="name"
-          type="text"
-          placeholder="Seu nome completo"
-        >
-
-        <label for="cpf">CPF</label>
-        <input
-          id="cpf"
-          type="text"
-          placeholder="000.000.000-00"
-        >
-
-        <label for="email">E-mail</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="seu@email.com"
-        >
-
-        <label for="phone">Telefone</label>
-        <input
-          id="phone"
-          <label for="cep">CEP</label>
-<input
-  id="cep"
-  type="text"
-  inputmode="numeric"
-  placeholder="00000-000"
->
-          type="tel"
-          placeholder="(00) 00000-0000"
-        >
-
-        <div class="methods">
-
-          <button
-            class="method active"
-            id="cardBtn"
-            type="button"
-          >
-            💳 Cartão
-          </button>
-
-          <button
-            class="method"
-            id="pixBtn"
-            type="button"
-          >
-            📱 Pix
-          </button>
-
-        </div>
-
-        <div class="pay-box" id="cardBox">
-
-          <label>Número do cartão</label>
-          <input
-            type="text"
-            inputmode="numeric"
-            placeholder="0000 0000 0000 0000"
-          >
-
-          <label>Nome no cartão</label>
-          <input
-            type="text"
-            placeholder="NOME COMO ESTÁ NO CARTÃO"
-          >
-
-          <label>Validade</label>
-          <input
-            type="text"
-            inputmode="numeric"
-            placeholder="MM/AA"
-          >
-
-          <label>CVV</label>
-          <input
-            type="password"
-            inputmode="numeric"
-            placeholder="000"
-          >
-
-        </div>
-
-        <div
-          class="pay-box"
-          id="pixBox"
-          style="display:none;"
-        >
-
-          <div class="pix-info">
-            Ao continuar, o QR Code Pix será gerado aqui
-            para você realizar o pagamento.
-          </div>
-
-        </div>
-
-        <button
-          class="button"
-          id="payButton"
-          type="button"
-        >
-          Assinar agora
-        </button>
-
-        <div class="secure">
-          🔒 Pagamento processado com segurança.
-        </div>
-
-      </section>
-
-    </div>
-
-  </main>
-
-  <script>
-  const params = new URLSearchParams(window.location.search);
-  const plano = params.get("plano") || "pro";
-
-  const planos = {
-    basico: {
-      nome: "Noryva Básico",
-      preco: "49,99"
-    },
-    pro: {
-      nome: "Noryva Pro",
-      preco: "85,00"
-    },
-    ouro: {
-      nome: "Noryva Ouro",
-      preco: "119,99"
-    }
-  };
-
-  const produto = planos[plano] || planos.pro;
-
-  document.getElementById("planName").textContent = produto.nome;
-  document.getElementById("planPrice").textContent = produto.preco;
-
-  const cardBtn = document.getElementById("cardBtn");
-  const pixBtn = document.getElementById("pixBtn");
-  const cardBox = document.getElementById("cardBox");
-  const pixBox = document.getElementById("pixBox");
-  const payButton = document.getElementById("payButton");
-
-  cardBtn.addEventListener("click", function () {
-    cardBtn.classList.add("active");
-    pixBtn.classList.remove("active");
-
-    cardBox.style.display = "block";
-    pixBox.style.display = "none";
-  });
-
-  pixBtn.addEventListener("click", function () {
-    pixBtn.classList.add("active");
-    cardBtn.classList.remove("active");
-
-    cardBox.style.display = "none";
-    pixBox.style.display = "block";
-  });
-
-  payButton.addEventListener("click", async function () {
-
-    if (payButton.disabled) return;
-
-    const nome = document.getElementById("name").value.trim();
-    const cpf = document.getElementById("cpf").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const telefone = document.getElementById("phone").value.trim();
-const cep = document.getElementById("cep").value.trim();
-    const cardInputs = document.querySelectorAll("#cardBox input");
-
-    const numeroCartao = cardInputs[0].value.trim();
-    const nomeCartao = cardInputs[1].value.trim();
-    const validade = cardInputs[2].value.trim();
-    const cvv = cardInputs[3].value.trim();
-
-    const [validadeMes, validadeAno] = validade.split("/");
-
-    if (!nome || !cpf || !email || !telefone) {
-      alert("Preencha todos os seus dados.");
-      return;
-    }
-
-    if (!numeroCartao || !nomeCartao || !validadeMes || !validadeAno || !cvv) {
-      alert("Preencha todos os dados do cartão.");
-      return;
-    }
-
-    payButton.disabled = true;
-    payButton.textContent = "Processando...";
-
-    try {
-
-      const response = await fetch("/api/create-subscription", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          plano,
-          nome,
-          cpf,
-          email,
-          telefone,
-          cep,
-          numeroCartao,
-          nomeCartao,
-          validadeMes,
-          validadeAno,
-          cvv
-        })
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.error || "Não foi possível processar a assinatura."
-        );
-      }
-
-      document.getElementById("payment").innerHTML = `
-        <div style="
-          text-align:center;
-          padding:40px 10px;
-        ">
-          <div style="
-            width:80px;
-            height:80px;
-            margin:0 auto 20px;
-            border-radius:50%;
-            background:#7e22ce;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:40px;
-          ">
-            ✓
-          </div>
-
-          <h1 style="margin-bottom:12px;">
-            Assinatura enviada! 🎉
-          </h1>
-
-          <p style="
-  color:#aaa;
-  line-height:1.6;
-  margin-bottom:25px;
-">
-  Sua assinatura foi enviada para processamento.
-  O pagamento será confirmado pelo sistema de pagamentos.
-</p>
-
-<a
-  href="dashboard.html"
-  style="
-    display:block;
-    width:100%;
-    padding:16px;
-    border-radius:11px;
-    background:#9333ea;
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-  "
->
-  Acessar Noryva
-</a>
-
-</div>
-`;
-
-    } catch (error) {
-
-      alert(error.message);
-
-      payButton.disabled = false;
-      payButton.textContent = "Assinar agora";
-    }
-
-  });
-</script>
-
-</body>
-</html>
-
-</body>
-</html>
+    .payment-option.active {
+      color: #fff;
+      border-color: #8b4dff;
+      background: rgba(124
