@@ -512,6 +512,7 @@ body{
 </main>
     
 <script>
+<script>
 function minerar() {
     const busca = document.getElementById("productSearch").value.trim();
 
@@ -528,9 +529,7 @@ function minerar() {
 
             <div class="product-info">
                 <h3>${busca}</h3>
-
                 <p>Oportunidade encontrada pela Noryva</p>
-
                 <p>💰 Custo: <strong>R$ 39,90</strong></p>
                 <p>🏷️ Venda sugerida: <strong>R$ 89,90</strong></p>
                 <p>📈 Margem estimada: <strong>55%</strong></p>
@@ -546,14 +545,14 @@ function minerar() {
 
 function verOportunidade(produto) {
     alert(
-        "Oportunidade encontrada!\\n\\n" +
-        "Produto: " + produto + "\\n" +
-        "Custo: R$ 39,90\\n" +
-        "Venda sugerida: R$ 89,90\\n" +
+        "Oportunidade encontrada!\n\n" +
+        "Produto: " + produto + "\n" +
+        "Custo: R$ 39,90\n" +
+        "Venda sugerida: R$ 89,90\n" +
         "Score Noryva: 87/100"
     );
 }
-   <script>
+
 function mostrarSecao(secao) {
     const titulo = document.querySelector(".top h1");
     const produtos = document.getElementById("produtos");
@@ -561,35 +560,17 @@ function mostrarSecao(secao) {
     if (secao === "descobrir") {
         titulo.textContent = "Descobrir produtos";
         produtos.style.display = "grid";
-    }
-
-    if (secao === "alta") {
-        titulo.textContent = "🔥 Produtos em alta";
+    } else {
         produtos.style.display = "none";
-    }
 
-    if (secao === "favoritos") {
-        titulo.textContent = "⭐ Meus favoritos";
-        produtos.style.display = "none";
-    }
-
-    if (secao === "analises") {
-        titulo.textContent = "📊 Análises";
-        produtos.style.display = "none";
-    }
-
-    if (secao === "fornecedores") {
-        titulo.textContent = "🏭 Fornecedores";
-        produtos.style.display = "none";
-    }
-
-    if (secao === "criativos") {
-        titulo.textContent = "🎥 Criativos";
-        produtos.style.display = "none";
+        if (secao === "alta") titulo.textContent = "🔥 Produtos em alta";
+        if (secao === "favoritos") titulo.textContent = "⭐ Meus favoritos";
+        if (secao === "analises") titulo.textContent = "📊 Análises";
+        if (secao === "fornecedores") titulo.textContent = "🏭 Fornecedores";
+        if (secao === "criativos") titulo.textContent = "🎥 Criativos";
     }
 }
 </script>
-</script>
-    
+
 </body>
 </html>
