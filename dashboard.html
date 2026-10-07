@@ -267,10 +267,71 @@ body{
         padding:14px;
     }
 }
+ .mobile-menu-btn,
+.mobile-menu {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .mobile-menu-btn {
+        display: block;
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 1000;
+        background: #181818;
+        color: white;
+        border: 1px solid #333;
+        border-radius: 10px;
+        font-size: 26px;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+    }
+
+    .mobile-menu {
+        position: fixed;
+        top: 65px;
+        right: 15px;
+        z-index: 999;
+        background: #181818;
+        border: 1px solid #333;
+        border-radius: 12px;
+        padding: 8px;
+        width: 210px;
+    }
+
+    .mobile-menu div {
+        padding: 13px;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+
+    .mobile-menu div:active {
+        background: #292929;
+    }
+
+    .mobile-menu.active {
+        display: block;
+    }
+}
 </style>
 </head>
 
 <body>
+ <button class="mobile-menu-btn" onclick="toggleMobileMenu()">⋮</button>
+
+<div class="mobile-menu" id="mobileMenu">
+    <div onclick="mostrarSecao('descobrir'); toggleMobileMenu()">🔎 Descobrir</div>
+    <div onclick="mostrarSecao('em-alta'); toggleMobileMenu()">🔥 Em alta</div>
+    <div onclick="mostrarSecao('favoritos'); toggleMobileMenu()">❤️ Favoritos</div>
+    <div onclick="mostrarSecao('analises'); toggleMobileMenu()">📊 Análises</div>
+    <div onclick="mostrarSecao('fornecedores'); toggleMobileMenu()">🏭 Fornecedores</div>
+    <div onclick="mostrarSecao('criativos'); toggleMobileMenu()">🎬 Criativos</div>
+    <div onclick="abrirConta(); toggleMobileMenu()">👤 Minha conta</div>
+</div>
 
 <aside class="sidebar">
 
@@ -1926,6 +1987,9 @@ async function verificarLogin() {
 }
 
 verificarLogin();
+ function toggleMobileMenu() {
+    document.getElementById("mobileMenu").classList.toggle("active");
+}
 </script>
 
 </body>
