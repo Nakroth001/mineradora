@@ -568,34 +568,63 @@ function mostrarSecao(secao) {
     produtos.style.display = "none";
 
     if (secao === "alta") {
-        titulo.textContent = "🔥 Produtos em alta";
-
-        resultados.innerHTML = `
-            <div class="card">
-                <div class="product-image">🔥</div>
-                <div class="product-info">
-                    <h3>Produto em alta</h3>
-                    <p>Exemplo de oportunidade encontrada pela Noryva</p>
-                    <p>💰 Custo: <strong>R$ 39,90</strong></p>
-                    <p>🏷️ Venda sugerida: <strong>R$ 89,90</strong></p>
-                    <p>📈 Margem estimada: <strong>55%</strong></p>
-                    <p>🔥 Score Noryva: <strong>87/100</strong></p>
-                </div>
-            </div>
-        `;
-    }
-
-   if (secao === "favoritos") {
-    titulo.textContent = "⭐ Meus favoritos";
+    titulo.textContent = "🔥 Produtos em alta";
 
     resultados.innerHTML = `
-        <div class="card">
-            <div class="product-image">⭐</div>
-            <div class="product-info">
-                <h3>Seus produtos favoritos</h3>
-                <p>Aqui ficarão os produtos que você salvar.</p>
-                <p>⭐ Você ainda não possui produtos favoritos.</p>
+        <div style="margin-bottom:25px;">
+            <p style="color:#999;">Produtos com maior potencial detectado pela Noryva</p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:20px;">
+
+            <div class="card">
+                <div class="product-image" style="font-size:60px;">📱</div>
+                <div class="product-info">
+                    <span style="color:#f5b400;font-weight:bold;">🔥 #1 EM ALTA</span>
+                    <h3>Smartphone</h3>
+                    <p style="color:#999;">Alta procura</p>
+
+                    <p>💰 Custo: <strong>R$ 39,90</strong></p>
+                    <p>🏷️ Venda: <strong>R$ 89,90</strong></p>
+                    <p>📈 Margem: <strong>55%</strong></p>
+                    <p>🏆 Score: <strong>87/100</strong></p>
+
+                    <button class="opportunity">Ver oportunidade →</button>
+                </div>
             </div>
+
+            <div class="card">
+                <div class="product-image" style="font-size:60px;">🎧</div>
+                <div class="product-info">
+                    <span style="color:#f5b400;font-weight:bold;">🔥 #2 EM ALTA</span>
+                    <h3>Fone Bluetooth</h3>
+                    <p style="color:#999;">Tendência crescente</p>
+
+                    <p>💰 Custo: <strong>R$ 24,90</strong></p>
+                    <p>🏷️ Venda: <strong>R$ 69,90</strong></p>
+                    <p>📈 Margem: <strong>64%</strong></p>
+                    <p>🏆 Score: <strong>82/100</strong></p>
+
+                    <button class="opportunity">Ver oportunidade →</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="product-image" style="font-size:60px;">⌚</div>
+                <div class="product-info">
+                    <span style="color:#f5b400;font-weight:bold;">🔥 #3 EM ALTA</span>
+                    <h3>Smartwatch</h3>
+                    <p style="color:#999;">Demanda em crescimento</p>
+
+                    <p>💰 Custo: <strong>R$ 49,90</strong></p>
+                    <p>🏷️ Venda: <strong>R$ 119,90</strong></p>
+                    <p>📈 Margem: <strong>58%</strong></p>
+                    <p>🏆 Score: <strong>79/100</strong></p>
+
+                    <button class="opportunity">Ver oportunidade →</button>
+                </div>
+            </div>
+
         </div>
     `;
 }
