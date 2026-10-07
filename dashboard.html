@@ -371,7 +371,7 @@ body{
 
     <div id="resultados"></div>
     
-    <div class="products">
+    <div class="products" id="produtos">
 
         <div class="card">
 
@@ -553,33 +553,42 @@ function verOportunidade(produto) {
         "Score Noryva: 87/100"
     );
 }
-    function mostrarSecao(secao) {
+   <script>
+function mostrarSecao(secao) {
     const titulo = document.querySelector(".top h1");
+    const produtos = document.getElementById("produtos");
 
     if (secao === "descobrir") {
         titulo.textContent = "Descobrir produtos";
+        produtos.style.display = "grid";
     }
 
     if (secao === "alta") {
         titulo.textContent = "🔥 Produtos em alta";
+        produtos.style.display = "none";
     }
 
     if (secao === "favoritos") {
         titulo.textContent = "⭐ Meus favoritos";
+        produtos.style.display = "none";
     }
 
     if (secao === "analises") {
         titulo.textContent = "📊 Análises";
+        produtos.style.display = "none";
     }
 
     if (secao === "fornecedores") {
         titulo.textContent = "🏭 Fornecedores";
+        produtos.style.display = "none";
     }
 
     if (secao === "criativos") {
         titulo.textContent = "🎥 Criativos";
+        produtos.style.display = "none";
     }
 }
+</script>
 </script>
     
 </body>
