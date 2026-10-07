@@ -62,4 +62,182 @@
     }
 
     .plan-name {
-      color: #c
+      color: #c084fc;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .price {
+      font-size: 30px;
+      font-weight: bold;
+      margin-top: 6px;
+    }
+
+    .price small {
+      font-size: 14px;
+      color: #999;
+      font-weight: normal;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      color: #ccc;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #292933;
+      background: #08080c;
+      color: white;
+      outline: none;
+      font-size: 15px;
+    }
+
+    input:focus {
+      border-color: #a855f7;
+    }
+
+    .methods {
+      display: flex;
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .method {
+      flex: 1;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #292933;
+      background: #101016;
+      color: white;
+      cursor: pointer;
+    }
+
+    .method.active {
+      border-color: #a855f7;
+      background: #1a1025;
+    }
+
+    .pay-box {
+      margin-top: 15px;
+    }
+
+    .button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 16px;
+      border: none;
+      border-radius: 11px;
+      background: #9333ea;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background: #a855f7;
+    }
+
+    .secure {
+      text-align: center;
+      color: #777;
+      font-size: 12px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .box {
+        padding: 18px;
+      }
+
+      .methods {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="checkout">
+
+    <div class="logo">NORYVA</div>
+
+    <div class="box">
+
+      <section id="payment">
+
+        <h1>Finalizar assinatura</h1>
+
+        <p class="subtitle">
+          Tenha acesso completo à plataforma Noryva.
+        </p>
+
+        <div class="plan">
+          <div class="plan-name" id="planName">
+            Noryva Pro
+          </div>
+
+          <div class="price">
+            R$ <span id="planPrice">85,00</span>
+            <small>/mês</small>
+          </div>
+        </div>
+
+        <label>Nome completo</label>
+        <input
+          id="name"
+          type="text"
+          placeholder="Seu nome completo"
+        >
+
+        <label>CPF</label>
+        <input
+          id="cpf"
+          type="text"
+          placeholder="000.000.000-00"
+        >
+
+        <label>E-mail</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="seu@email.com"
+        >
+
+        <label>Telefone</label>
+        <input
+          id="phone"
+          type="tel"
+          placeholder="(00) 00000-0000"
+        >
+
+        <div class="methods">
+
+          <button
+            class="method active"
+            id="cardBtn"
+            type="button"
+          >
+            💳 Cartão
+          </button>
+
+          <button
+            class="method"
+            id="pixBtn"
+            type="button"
+          >
+            📱 Pix
+          </button>
+
+        </div>
+
+        <div class="pay-box" id="cardBox">
+
+          <label>Número do cartão</label>
+          <input
