@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noryva — Entrar</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+body{
+    margin:0;
+    background:#080808;
+    color:#fff;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.box{
+    width:90%;
+    max-width:400px;
+    background:#111;
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:30px;
+    box-sizing:border-box;
+}
+
+.logo{
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.logo span{
+    color:#f5b400;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px;
+    margin-bottom:12px;
+    background:#080808;
+    border:1px solid #333;
+    border-radius:8px;
+    color:#fff;
+    outline:none;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:8px;
+    background:#f5b400;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.toggle{
+    text-align:center;
+    margin-top:20px;
+    color:#aaa;
+    cursor:pointer;
+}
+
+.toggle span{
+    color:#f5b400;
+}
+
+#mensagem{
+    text-align:center;
+    margin-top:15px;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <div class="logo">
+        NORY<span>VA</span>
+    </div>
+
+    <h2 id="titulo">Entrar</h2>
+
+    <input id="email" type="email" placeholder="Seu e-mail">
+
+    <input id="senha" type="password" placeholder="Sua senha">
+
+    <button onclick="entrarOuCadastrar()" id="botao">
+        Entrar
+    </button>
+
+    <div class="toggle" onclick="alternarModo()">
+        Ainda não tem conta?
+        <span id="toggleTexto">Criar conta</span>
+    </div>
+
+    <div id="mensagem"></div>
+
+</div>
+
+<script>
+
+const SUPABASE_URL = "https://qprzyjyohpoygvijnpwm.supabase.co/rest/v1/";
+const SUPABASE_KEY = "sb_publishable_sM_1BUVin0SWPvrOxZgH8g_IVaWKyXj";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+let modoCadastro = false;
+
+function alternarModo(){
+
+    modoCadastro = !modoCadastro;
+
+    document.getElementById("titulo").textContent =
+        modoCadastro ? "Criar conta" : "Entrar";
+
+    document.getElementById("botao").textContent =
+        modoCadastro ? "Criar conta" : "Entrar";
+
+    document.getElementById("toggleTexto").textContent =
+        modoCadastro ? "Já tenho uma conta" : "Criar conta";
+
+    document.querySelector(".toggle").childNodes[0].textContent =
+        modoCadastro ? "Já tem uma conta? " : "Ainda não tem conta? ";
+
+    document.getElementById("mensagem").textContent = "";
+}
+
+async function entrarOuCadastrar(){
+
+    const email = document.getElementById("email").value.trim();
+    const senha = document.getElementById("senha").value;
+
+    const mensagem = document.getElementById("mensagem");
+
+    if(!email || !senha){
+        mensagem.textContent = "Preencha e-mail e senha.";
+        return;
+    }
+
+    mensagem.textContent = "Aguarde...";
+
+    if(modoCadastro){
+
+        const { error } = await supabaseClient.auth.signUp({
+            email: email,
+            password: senha
+        });
+
+        if(error){
+            mensagem.textContent = error.message;
+            return;
+        }
+
+        mensagem.textContent =
+            "Conta criada! Verifique seu e-mail para confirmar.";
+
+    }else{
+
+        const { error } =
+            await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: senha
+            });
+
+        if(error){
+            mensagem.textContent = error.message;
+            return;
+        }
+
+        window.location.href = "dashboard.html";
+    }
+}
+
+</script>
+
+</body>
+</html>
