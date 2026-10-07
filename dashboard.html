@@ -599,7 +599,23 @@ function mostrarSecao(secao) {
         </div>
     `;
 }
-    if (secao === "analises") titulo.textContent = "📊 Análises";
+   if (secao === "analises") {
+    titulo.textContent = "📊 Análises";
+
+    resultados.innerHTML = `
+        <div class="card">
+            <div class="product-image">📊</div>
+            <div class="product-info">
+                <h3>Análises de produtos</h3>
+                <p>Aqui você poderá acompanhar o desempenho das oportunidades.</p>
+                <p>🔥 Produtos em alta</p>
+                <p>📈 Tendência de demanda</p>
+                <p>💰 Potencial de lucro</p>
+                <p>🏆 Ranking de oportunidades</p>
+            </div>
+        </div>
+    `;
+}
     if (secao === "fornecedores") titulo.textContent = "🏭 Fornecedores";
     if (secao === "criativos") titulo.textContent = "🎥 Criativos";
 }
