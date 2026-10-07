@@ -930,109 +930,232 @@ function mostrarSecao(secao) {
 
     if (secao === "analises") {
 
-        titulo.textContent = "📊 Análises";
+       titulo.textContent = "📊 Análises";
 
         resultados.innerHTML = `
             <div style="
                 display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+                grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
                 gap:18px;
                 margin-bottom:25px;
             ">
 
                 <div class="card">
-                    <div class="product-info">
-                        <span style="color:#999;">
-                            PRODUTOS ANALISADOS
-                        </span>
+                    <span style="color:#888;font-size:12px;">
+                        PRODUTOS ANALISADOS
+                    </span>
 
-                        <h2 style="font-size:32px;margin-top:10px;">
-                            128
-                        </h2>
+                    <h2 style="font-size:32px;margin-top:10px;">
+                        128
+                    </h2>
 
-                        <p style="color:#35c759;">
-                            ↑ 18% este mês
-                        </p>
-                    </div>
+                    <p style="color:#35d05f;margin-top:5px;">
+                        ↑ 18% este mês
+                    </p>
                 </div>
 
                 <div class="card">
-                    <div class="product-info">
-                        <span style="color:#999;">
-                            MELHOR MARGEM
-                        </span>
+                    <span style="color:#888;font-size:12px;">
+                        MARGEM MÉDIA
+                    </span>
 
-                        <h2 style="font-size:32px;margin-top:10px;">
-                            64%
-                        </h2>
+                    <h2 style="font-size:32px;margin-top:10px;">
+                        57%
+                    </h2>
 
-                        <p>Potencial encontrado</p>
-                    </div>
+                    <p style="color:#35d05f;margin-top:5px;">
+                        ↑ 8% este mês
+                    </p>
                 </div>
 
                 <div class="card">
-                    <div class="product-info">
-                        <span style="color:#999;">
-                            MAIOR SCORE
-                        </span>
+                    <span style="color:#888;font-size:12px;">
+                        MAIOR SCORE
+                    </span>
 
-                        <h2 style="font-size:32px;margin-top:10px;">
-                            94/100
-                        </h2>
+                    <h2 style="font-size:32px;margin-top:10px;">
+                        94/100
+                    </h2>
 
-                        <p style="color:#f5b400;">
-                            🔥 Excelente
-                        </p>
-                    </div>
+                    <p style="color:#f5b400;margin-top:5px;">
+                        🔥 Alto potencial
+                    </p>
+                </div>
+
+                <div class="card">
+                    <span style="color:#888;font-size:12px;">
+                        POTENCIAL DE LUCRO
+                    </span>
+
+                    <h2 style="font-size:32px;margin-top:10px;">
+                        R$ 4,8K
+                    </h2>
+
+                    <p style="color:#35d05f;margin-top:5px;">
+                        Estimativa
+                    </p>
                 </div>
 
             </div>
 
-            <div class="card">
 
-                <div class="product-info">
+            <div class="card" style="margin-bottom:20px;">
 
-                    <h3>📈 Desempenho das oportunidades</h3>
+                <h3 style="margin-bottom:20px;">
+                    📈 Indicadores do mercado
+                </h3>
 
-                    <p style="color:#888;margin-top:10px;">
-                        A Noryva poderá mostrar aqui tendências,
-                        demanda, concorrência e potencial de lucro.
-                    </p>
+                <div style="margin-bottom:22px;">
 
                     <div style="
-                        margin-top:25px;
-                        padding:20px;
-                        border-radius:12px;
-                        background:#151515;
+                        display:flex;
+                        justify-content:space-between;
+                        margin-bottom:8px;
                     ">
-
-                        <div style="
-                            display:flex;
-                            justify-content:space-between;
-                            margin-bottom:12px;
-                        ">
-                            <span>Demanda</span>
-
-                            <strong style="color:#35c759;">
-                                Alta
-                            </strong>
-                        </div>
-
-                        <div style="
-                            height:8px;
-                            background:#292929;
-                            border-radius:10px;
-                        ">
-                            <div style="
-                                width:82%;
-                                height:100%;
-                                background:#35c759;
-                                border-radius:10px;
-                            "></div>
-                        </div>
-
+                        <span>Demanda</span>
+                        <strong style="color:#35d05f;">
+                            Alta
+                        </strong>
                     </div>
 
+                    <div style="
+                        height:9px;
+                        background:#292929;
+                        border-radius:10px;
+                    ">
+                        <div style="
+                            width:84%;
+                            height:100%;
+                            background:#35d05f;
+                            border-radius:10px;
+                        "></div>
+                    </div>
+
+                </div>
+
+
+                <div style="margin-bottom:22px;">
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        margin-bottom:8px;
+                    ">
+                        <span>Potencial de lucro</span>
+                        <strong style="color:#f5b400;">
+                            Muito alto
+                        </strong>
+                    </div>
+
+                    <div style="
+                        height:9px;
+                        background:#292929;
+                        border-radius:10px;
+                    ">
+                        <div style="
+                            width:91%;
+                            height:100%;
+                            background:#f5b400;
+                            border-radius:10px;
+                        "></div>
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        margin-bottom:8px;
+                    ">
+                        <span>Concorrência</span>
+                        <strong style="color:#f5b400;">
+                            Média
+                        </strong>
+                    </div>
+
+                    <div style="
+                        height:9px;
+                        background:#292929;
+                        border-radius:10px;
+                    ">
+                        <div style="
+                            width:56%;
+                            height:100%;
+                            background:#f5b400;
+                            border-radius:10px;
+                        "></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3 style="margin-bottom:18px;">
+                    🏆 Produtos com maior potencial
+                </h3>
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    padding:15px 0;
+                    border-bottom:1px solid #252525;
+                ">
+                    <div>
+                        <strong>🧹 Produto Exemplo #01</strong>
+                        <p style="color:#777;font-size:12px;margin-top:4px;">
+                            Casa
+                        </p>
+                    </div>
+
+                    <strong style="color:#35d05f;">
+                        94/100
+                    </strong>
+                </div>
+
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    padding:15px 0;
+                    border-bottom:1px solid #252525;
+                ">
+                    <div>
+                        <strong>💡 Produto Exemplo #02</strong>
+                        <p style="color:#777;font-size:12px;margin-top:4px;">
+                            Tecnologia
+                        </p>
+                    </div>
+
+                    <strong style="color:#35d05f;">
+                        89/100
+                    </strong>
+                </div>
+
+
+                <div style="
+                    display:flex;
+                    justify-content:space-between;
+                    align-items:center;
+                    padding:15px 0;
+                ">
+                    <div>
+                        <strong>🐶 Produto Exemplo #03</strong>
+                        <p style="color:#777;font-size:12px;margin-top:4px;">
+                            Pet
+                        </p>
+                    </div>
+
+                    <strong style="color:#35d05f;">
+                        86/100
+                    </strong>
                 </div>
 
             </div>
