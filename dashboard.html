@@ -573,83 +573,209 @@ function mostrarSecao(secao) {
 
         resultados.innerHTML = `
             <div style="margin-bottom:25px;">
-                <p style="color:#999;">
-                    Produtos com maior potencial detectado pela Noryva
+                <h2 style="font-size:22px;margin-bottom:8px;">
+                    Produtos em alta agora
+                </h2>
+
+                <p style="color:#888;">
+                    Oportunidades com sinais de alta demanda e potencial de venda.
                 </p>
             </div>
 
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+                gap:20px;
+            ">
 
                 <div class="card">
-                    <div class="product-image" style="font-size:60px;">📱</div>
-
-                    <div class="product-info">
-                        <span style="color:#f5b400;font-weight:bold;">
-                            🔥 #1 EM ALTA
+                    <div class="product-image" style="
+                        height:180px;
+                        font-size:70px;
+                        position:relative;
+                    ">
+                        📱
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            left:12px;
+                            background:#f5b400;
+                            color:#000;
+                            padding:6px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            #1 EM ALTA
                         </span>
-
-                        <h3>Smartphone</h3>
-                        <p style="color:#999;">Alta procura</p>
-
-                        <p>💰 Custo: <strong>R$ 39,90</strong></p>
-                        <p>🏷️ Venda: <strong>R$ 89,90</strong></p>
-                        <p>📈 Margem: <strong>55%</strong></p>
-                        <p>🏆 Score: <strong>87/100</strong></p>
-
-                        <button class="opportunity">
-                            Ver oportunidade →
-                        </button>
                     </div>
+
+                    <span class="category">TECNOLOGIA</span>
+
+                    <h3 style="margin-top:8px;">
+                        Smartphone
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        🔥 Procura crescente
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Custo</span>
+                            <b>R$ 39,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Venda sugerida</span>
+                            <b>R$ 89,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Margem estimada</span>
+                            <b>55%</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Score Noryva</span>
+                            <b style="color:#35d05f;">87/100</b>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver oportunidade →
+                    </button>
                 </div>
 
+
                 <div class="card">
-                    <div class="product-image" style="font-size:60px;">🎧</div>
-
-                    <div class="product-info">
-                        <span style="color:#f5b400;font-weight:bold;">
-                            🔥 #2 EM ALTA
+                    <div class="product-image" style="
+                        height:180px;
+                        font-size:70px;
+                        position:relative;
+                    ">
+                        🎧
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            left:12px;
+                            background:#f5b400;
+                            color:#000;
+                            padding:6px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            #2 EM ALTA
                         </span>
-
-                        <h3>Fone Bluetooth</h3>
-                        <p style="color:#999;">Tendência crescente</p>
-
-                        <p>💰 Custo: <strong>R$ 24,90</strong></p>
-                        <p>🏷️ Venda: <strong>R$ 69,90</strong></p>
-                        <p>📈 Margem: <strong>64%</strong></p>
-                        <p>🏆 Score: <strong>82/100</strong></p>
-
-                        <button class="opportunity">
-                            Ver oportunidade →
-                        </button>
                     </div>
+
+                    <span class="category">ELETRÔNICOS</span>
+
+                    <h3 style="margin-top:8px;">
+                        Fone Bluetooth
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        📈 Tendência crescente
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Custo</span>
+                            <b>R$ 24,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Venda sugerida</span>
+                            <b>R$ 69,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Margem estimada</span>
+                            <b>64%</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Score Noryva</span>
+                            <b style="color:#35d05f;">82/100</b>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver oportunidade →
+                    </button>
                 </div>
 
+
                 <div class="card">
-                    <div class="product-image" style="font-size:60px;">⌚</div>
-
-                    <div class="product-info">
-                        <span style="color:#f5b400;font-weight:bold;">
-                            🔥 #3 EM ALTA
+                    <div class="product-image" style="
+                        height:180px;
+                        font-size:70px;
+                        position:relative;
+                    ">
+                        ⌚
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            left:12px;
+                            background:#f5b400;
+                            color:#000;
+                            padding:6px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            #3 EM ALTA
                         </span>
-
-                        <h3>Smartwatch</h3>
-                        <p style="color:#999;">Demanda em crescimento</p>
-
-                        <p>💰 Custo: <strong>R$ 49,90</strong></p>
-                        <p>🏷️ Venda: <strong>R$ 119,90</strong></p>
-                        <p>📈 Margem: <strong>58%</strong></p>
-                        <p>🏆 Score: <strong>79/100</strong></p>
-
-                        <button class="opportunity">
-                            Ver oportunidade →
-                        </button>
                     </div>
+
+                    <span class="category">TECNOLOGIA</span>
+
+                    <h3 style="margin-top:8px;">
+                        Smartwatch
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        🚀 Demanda em crescimento
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Custo</span>
+                            <b>R$ 49,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Venda sugerida</span>
+                            <b>R$ 119,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Margem estimada</span>
+                            <b>58%</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Score Noryva</span>
+                            <b style="color:#35d05f;">79/100</b>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver oportunidade →
+                    </button>
                 </div>
 
             </div>
         `;
     }
-
     if (secao === "favoritos") {
 
         titulo.textContent = "⭐ Meus favoritos";
