@@ -555,19 +555,40 @@ function verOportunidade(produto) {
 function mostrarSecao(secao) {
     const titulo = document.querySelector(".top h1");
     const produtos = document.getElementById("produtos");
+    const resultados = document.getElementById("resultados");
+
+    resultados.innerHTML = "";
 
     if (secao === "descobrir") {
         titulo.textContent = "Descobrir produtos";
         produtos.style.display = "grid";
-    } else {
-        produtos.style.display = "none";
-
-        if (secao === "alta") titulo.textContent = "🔥 Produtos em alta";
-        if (secao === "favoritos") titulo.textContent = "⭐ Meus favoritos";
-        if (secao === "analises") titulo.textContent = "📊 Análises";
-        if (secao === "fornecedores") titulo.textContent = "🏭 Fornecedores";
-        if (secao === "criativos") titulo.textContent = "🎥 Criativos";
+        return;
     }
+
+    produtos.style.display = "none";
+
+    if (secao === "alta") {
+        titulo.textContent = "🔥 Produtos em alta";
+
+        resultados.innerHTML = `
+            <div class="card">
+                <div class="product-image">🔥</div>
+                <div class="product-info">
+                    <h3>Produto em alta</h3>
+                    <p>Exemplo de oportunidade encontrada pela Noryva</p>
+                    <p>💰 Custo: <strong>R$ 39,90</strong></p>
+                    <p>🏷️ Venda sugerida: <strong>R$ 89,90</strong></p>
+                    <p>📈 Margem estimada: <strong>55%</strong></p>
+                    <p>🔥 Score Noryva: <strong>87/100</strong></p>
+                </div>
+            </div>
+        `;
+    }
+
+    if (secao === "favoritos") titulo.textContent = "⭐ Meus favoritos";
+    if (secao === "analises") titulo.textContent = "📊 Análises";
+    if (secao === "fornecedores") titulo.textContent = "🏭 Fornecedores";
+    if (secao === "criativos") titulo.textContent = "🎥 Criativos";
 }
 </script>
 
