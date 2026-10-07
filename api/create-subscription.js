@@ -12,6 +12,7 @@ export default async function handler(req, res) {
       cpf,
       email,
       telefone,
+      cep,
       numeroCartao,
       nomeCartao,
       validadeMes,
