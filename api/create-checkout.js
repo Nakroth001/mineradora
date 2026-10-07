@@ -34,16 +34,14 @@ export default async function handler(req, res) {
         "access_token": process.env.ASAAS_API_KEY
       },
       body: JSON.stringify({
-        billingTypes: ["PIX", "CREDIT_CARD"],
+        billingTypes: ["CREDIT_CARD", "PIX"],
         chargeTypes: ["RECURRENT"],
         minutesToExpire: 60,
 
-        externalReference: `noryva-${plano}`,
-
         callback: {
-          successUrl: "https://SEU-SITE.vercel.app/sucesso.html",
-          cancelUrl: "https://SEU-SITE.vercel.app/",
-          expiredUrl: "https://SEU-SITE.vercel.app/"
+          successUrl: "https://mineradora-g6o0zmpuw-noryva1.vercel.app/",
+          cancelUrl: "https://mineradora-g6o0zmpuw-noryva1.vercel.app/",
+          expiredUrl: "https://mineradora-g6o0zmpuw-noryva1.vercel.app/"
         },
 
         items: [
@@ -67,7 +65,10 @@ export default async function handler(req, res) {
       return res.status(response.status).json(data);
     }
 
-    return res.status(200).json(data);
+    return res.status(200).json({
+      checkoutUrl: data.link,
+      checkoutId: data.id
+    });
 
   } catch (error) {
     return res.status(500).json({
