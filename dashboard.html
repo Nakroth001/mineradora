@@ -616,7 +616,22 @@ function mostrarSecao(secao) {
         </div>
     `;
 }
-    if (secao === "fornecedores") titulo.textContent = "🏭 Fornecedores";
+   if (secao === "fornecedores") {
+    titulo.textContent = "🏭 Fornecedores";
+
+    resultados.innerHTML = `
+        <div class="card">
+            <div class="product-image">🏭</div>
+            <div class="product-info">
+                <h3>Fornecedores</h3>
+                <p>Aqui você encontrará fornecedores relacionados aos produtos encontrados.</p>
+                <p>📦 Produtos disponíveis</p>
+                <p>💰 Preços de custo</p>
+                <p>⭐ Avaliação do fornecedor</p>
+            </div>
+        </div>
+    `;
+}
     if (secao === "criativos") titulo.textContent = "🎥 Criativos";
 }
 </script>
