@@ -149,7 +149,45 @@
       font-size: 12px;
       margin-top: 18px;
     }
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(168, 85, 247, 0.12);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: floatGlow 7s ease-in-out infinite alternate;
+}
 
+body::before {
+  top: -80px;
+  left: -80px;
+}
+
+body::after {
+  bottom: -100px;
+  right: -80px;
+  animation-delay: 2s;
+}
+
+.checkout {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes floatGlow {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(50px, 30px) scale(1.2);
+  }
+}
     @media (max-width: 600px) {
       .box {
         padding: 18px;
