@@ -124,4 +124,578 @@
       background: #100c16;
       border: 1px solid #302040;
       border-radius: 12px;
-      padding:
+      padding: 14px;
+      }
+
+    .plan small {
+      color: #999;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .plan strong {
+      font-size: 18px;
+    }
+
+    .price {
+      color: #b47cff;
+      font-weight: 800;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-bottom: 7px;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #bbb;
+      margin: 15px 0 7px;
+    }
+
+    input {
+      width: 100%;
+      height: 48px;
+      border-radius: 10px;
+      border: 1px solid #30243c;
+      background: #09080c;
+      color: #fff;
+      padding: 0 14px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input:focus {
+      border-color: #874cff;
+      box-shadow: 0 0 0 3px rgba(135,76,255,.10);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .button {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 11px;
+      margin-top: 22px;
+      background: linear-gradient(135deg,#7b32ff,#a05cff);
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(124,60,255,.25);
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+    }
+
+    .back {
+      width: 100%;
+      margin-top: 12px;
+      height: 45px;
+      border: 1px solid #30243c;
+      background: transparent;
+      color: #aaa;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .payment-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .payment-option {
+      padding: 15px;
+      border-radius: 12px;
+      border: 1px solid #30243c;
+      background: #0b0910;
+      color: #aaa;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .payment-option.active {
+      color: #fff;
+      border-color: #8b4dff;
+      background: rgba(124,60,255,.12);
+    }
+
+    .pix {
+      text-align: center;
+      border: 1px dashed #49325f;
+      border-radius: 14px;
+      padding: 30px 15px;
+      color: #aaa;
+    }
+
+    .pix-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .security {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #0b0910;
+      border: 1px solid #21182b;
+      color: #8e8e8e;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 25px 5px 10px;
+      color: #666;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    .footer a {
+      color: #888;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 500px) {
+      .checkout {
+        padding: 25px 12px 20px;
+      }
+
+      .box {
+        padding: 20px 16px;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .line {
+        width: 35px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars">
+    <span class="star" style="left:8%;top:15%;"></span>
+    <span class="star" style="left:18%;top:42%;"></span>
+    <span class="star" style="left:30%;top:8%;"></span>
+    <span class="star" style="left:48%;top:25%;"></span>
+    <span class="star" style="left:65%;top:12%;"></span>
+    <span class="star" style="left:80%;top:35%;"></span>
+    <span class="star" style="left:91%;top:18%;"></span>
+  </div>
+
+  <main class="checkout">
+
+    <div class="logo">
+      Nory<span>va</span>
+    </div>
+
+    <div class="steps">
+      <div class="step active" id="step1Indicator">
+        <div class="circle">1</div>
+        Dados
+      </div>
+
+      <div class="line"></div>
+
+      <div class="step" id="step2Indicator">
+        <div class="circle">2</div>
+        Pagamento
+      </div>
+    </div>
+
+    <div class="box">
+
+      <div class="plan">
+        <div>
+          <small>Plano escolhido</small>
+          <strong id="planName">Noryva</strong>
+        </div>
+
+        <div class="price" id="planPrice">
+          R$ 0,00
+        </div>
+      </div>
+
+      <section id="step1">
+
+        <h2>Seus dados</h2>
+
+        <p class="subtitle">
+          Informe seus dados para continuar com sua assinatura.
+        </p>
+
+        <label>Nome completo</label>
+        <input id="name" type="text" placeholder="Seu nome completo">
+
+        <label>E-mail</label>
+        <input id="email" type="email" placeholder="voce@email.com">
+
+        <label>Telefone</label>
+        <input id="phone" type="tel" placeholder="(00) 00000-0000">
+
+        <label>CEP</label>
+        <input id="cep" type="text" placeholder="00000-000">
+
+        <label>Endereço</label>
+        <input id="address" type="text" placeholder="Rua, avenida...">
+
+        <div class="row">
+          <div>
+            <label>Número</label>
+            <input id="addressNumber" type="text" placeholder="123">
+          </div>
+
+          <div>
+            <label>Complemento</label>
+            <input id="complement" type="text" placeholder="Opcional">
+          </div>
+        </div>
+
+        <button class="button" id="continueButton" type="button">
+          Continuar para pagamento →
+        </button>
+
+      </section>
+
+      <section id="step2" class="hidden">
+
+        <h2>Pagamento</h2>
+
+        <p class="subtitle">
+          Escolha como deseja pagar sua assinatura.
+        </p>
+
+        <div class="payment-options">
+
+          <button class="payment-option active" id="cardBtn" type="button">
+            💳 Cartão
+          </button>
+
+          <button class="payment-option" id="pixBtn" type="button">
+            PIX
+          </button>
+
+        </div>
+
+        <div id="cardBox">
+
+          <label>CPF do titular</label>
+          <input id="cpf" type="text" placeholder="000.000.000-00">
+
+          <label>Nome no cartão</label>
+          <input id="cardName" type="text" placeholder="Nome no cartão">
+
+          <label>Número do cartão</label>
+          <input id="cardNumber" type="text" placeholder="0000 0000 0000 0000">
+
+          <div class="row">
+
+            <div>
+              <label>Validade</label>
+              <input id="expiry" type="text" placeholder="MM/AA">
+            </div>
+
+            <div>
+              <label>CVV</label>
+              <input id="cvv" type="password" placeholder="•••">
+            </div>
+
+          </div>
+
+          <button class="button" id="payButton" type="button">
+            Assinar agora
+          </button>
+
+        </div>
+
+        <div id="pixBox" class="pix hidden">
+
+          <div class="pix-icon">◈</div>
+
+          <strong style="color:#fff;">
+            Pagamento via PIX
+          </strong>
+
+          <p style="margin-top:10px;">
+            Gere seu pagamento PIX de forma rápida e segura.
+          </p>
+
+          <button class="button" type="button">
+            Gerar PIX
+          </button>
+
+        </div>
+
+        <button class="back" id="backButton" type="button">
+          ← Voltar
+        </button>
+
+        <div class="security">
+          🔒 Seus dados são transmitidos com segurança.
+        </div>
+
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      🔒 Compra segura
+      <br><br>
+      <a href="#">Política de Privacidade</a>
+      •
+      <a href="#">Termos de Uso</a>
+      •
+      <a href="#">Política de Reembolso</a>
+      <br><br>
+      © 2026 Noryva. Todos os direitos reservados.
+    </footer>
+
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const plano = params.get("plano") || "basico";
+
+    const planos = {
+      basico: {
+        nome: "Noryva Básico",
+        valor: "R$ 49,99/mês"
+      },
+      pro: {
+        nome: "Noryva Pro",
+        valor: "R$ 85,00/mês"
+      },
+      ouro: {
+        nome: "Noryva Ouro",
+        valor: "R$ 119,99/mês"
+      }
+    };
+
+    const produto = planos[plano] || planos.basico;
+
+    document.getElementById("planName").textContent = produto.nome;
+    document.getElementById("planPrice").textContent = produto.valor;
+
+    const step1 = document.getElementById("step1");
+    const step2 = document.getElementById("step2");
+
+    document.getElementById("continueButton").onclick = function () {
+
+      const campos = [
+        "name",
+        "email",
+        "phone",
+        "cep",
+        "address",
+        "addressNumber"
+      ];
+
+      for (const id of campos) {
+        if (!document.getElementById(id).value.trim()) {
+          alert("Preencha todos os campos obrigatórios.");
+          return;
+        }
+      }
+
+      step1.classList.add("hidden");
+      step2.classList.remove("hidden");
+
+      document.getElementById("step1Indicator").classList.remove("active");
+      document.getElementById("step2Indicator").classList.add("active");
+
+      window.scrollTo(0, 0);
+    };
+
+    document.getElementById("backButton").onclick = function () {
+      step2.classList.add("hidden");
+      step1.classList.remove("hidden");
+
+      document.getElementById("step2Indicator").classList.remove("active");
+      document.getElementById("step1Indicator").classList.add("active");
+
+      window.scrollTo(0, 0);
+    };
+
+    document.getElementById("cardBtn").onclick = function () {
+      this.classList.add("active");
+      document.getElementById("pixBtn").classList.remove("active");
+
+      document.getElementById("cardBox").classList.remove("hidden");
+      document.getElementById("pixBox").classList.add("hidden");
+    };
+
+    document.getElementById("pixBtn").onclick = function () {
+      this.classList.add("active");
+      document.getElementById("cardBtn").classList.remove("active");
+
+      document.getElementById("pixBox").classList.remove("hidden");
+      document.getElementById("cardBox").classList.add("hidden");
+    };
+
+    document.getElementById("payButton").onclick = async function () {
+
+      const button = this;
+
+      const validade =
+        document.getElementById("expiry").value.trim();
+
+      const partes = validade.split("/");
+
+      if (
+        !document.getElementById("cpf").value.trim() ||
+        !document.getElementById("cardName").value.trim() ||
+        !document.getElementById("cardNumber").value.trim() ||
+        !validade ||
+        !document.getElementById("cvv").value.trim()
+      ) {
+        alert("Preencha todos os dados do pagamento.");
+        return;
+      }
+
+      if (partes.length !== 2) {
+        alert("Use a validade no formato MM/AA.");
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Processando...";
+
+      try {
+
+        const response = await fetch(
+          "/api/create-subscription",
+          {
+            method: "POST",
+
+            headers: {
+              "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+
+              plano,
+
+              nome: document.getElementById("name").value.trim(),
+
+              email: document.getElementById("email").value.trim(),
+
+              telefone: document.getElementById("phone").value.trim(),
+
+              cep: document.getElementById("cep").value.trim(),
+
+              endereco: document.getElementById("address").value.trim(),
+
+              numeroEndereco:
+                document.getElementById("addressNumber").value.trim(),
+
+              cpf:
+                document.getElementById("cpf").value.trim(),
+
+              numeroCartao:
+                document.getElementById("cardNumber").value.trim(),
+
+              nomeCartao:
+                document.getElementById("cardName").value.trim(),
+
+              validadeMes: partes[0],
+
+              validadeAno: partes[1],
+
+              cvv:
+                document.getElementById("cvv").value.trim()
+
+            })
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(
+            data.error || "Erro ao processar pagamento."
+          );
+        }
+
+        document.querySelector(".box").innerHTML = `
+          <div style="
+            text-align:center;
+            padding:45px 10px;
+          ">
+
+            <div style="
+              font-size:55px;
+              margin-bottom:20px;
+            ">
+              ✓
+            </div>
+
+            <h2>Assinatura criada! 🎉</h2>
+
+            <p style="
+              color:#999;
+              margin-top:15px;
+              line-height:1.6;
+            ">
+              Seu pagamento foi enviado para processamento.
+            </p>
+
+            <a
+              href="dashboard.html"
+              class="button"
+              style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                text-decoration:none;
+              "
+            >
+              Acessar Noryva
+            </a>
+
+          </div>
+        `;
+
+      } catch (error) {
+
+        alert(error.message);
+
+        button.disabled = false;
+        button.textContent = "Assinar agora";
+      }
+    };
+  </script>
+
+</body>
+</html>
