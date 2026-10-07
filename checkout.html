@@ -505,76 +505,138 @@
   </main>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(window.location.search);
+  const plano = params.get("plano") || "pro";
 
-    const plano = params.get("plano") || "pro";
+  const planos = {
+    basico: {
+      nome: "Noryva Básico",
+      preco: "49,99"
+    },
+    pro: {
+      nome: "Noryva Pro",
+      preco: "85,00"
+    },
+    ouro: {
+      nome: "Noryva Ouro",
+      preco: "119,99"
+    }
+  };
 
-    const planos = {
-      basico: {
-        nome: "Noryva Básico",
-        preco: "49,99"
-      },
+  const produto = planos[plano] || planos.pro;
 
-      pro: {
-        nome: "Noryva Pro",
-        preco: "85,00"
-      },
+  document.getElementById("planName").textContent = produto.nome;
+  document.getElementById("planPrice").textContent = produto.preco;
 
-      ouro: {
-        nome: "Noryva Ouro",
-        preco: "119,99"
-      }
-    };
+  const cardBtn = document.getElementById("cardBtn");
+  const pixBtn = document.getElementById("pixBtn");
+  const cardBox = document.getElementById("cardBox");
+  const pixBox = document.getElementById("pixBox");
+  const payButton = document.getElementById("payButton");
 
-    const produto = planos[plano] || planos.pro;
+  cardBtn.addEventListener("click", function () {
+    cardBtn.classList.add("active");
+    pixBtn.classList.remove("active");
 
-    document.getElementById("planName").textContent =
-      produto.nome;
+    cardBox.style.display = "block";
+    pixBox.style.display = "none";
+  });
 
-    document.getElementById("planPrice").textContent =
-      produto.preco;
+  pixBtn.addEventListener("click", function () {
+    pixBtn.classList.add("active");
+    cardBtn.classList.remove("active");
 
-    const cardBtn =
-      document.getElementById("cardBtn");
+    cardBox.style.display = "none";
+    pixBox.style.display = "block";
+  });
 
-    const pixBtn =
-      document.getElementById("pixBtn");
+  payButton.addEventListener("click", async function () {
 
-    const cardBox =
-      document.getElementById("cardBox");
+    if (payButton.disabled) return;
 
-    const pixBox =
-      document.getElementById("pixBox");
+    const nome = document.getElementById("name").value.trim();
+    const cpf = document.getElementById("cpf").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const telefone = document.getElementById("phone").value.trim();
 
-    cardBtn.addEventListener("click", function () {
+    const cardInputs = document.querySelectorAll("#cardBox input");
 
-      cardBtn.classList.add("active");
-      pixBtn.classList.remove("active");
+    const numeroCartao = cardInputs[0].value.trim();
+    const nomeCartao = cardInputs[1].value.trim();
+    const validade = cardInputs[2].value.trim();
+    const cvv = cardInputs[3].value.trim();
 
-      cardBox.style.display = "block";
-      pixBox.style.display = "none";
+    const [validadeMes, validadeAno] = validade.split("/");
 
-    });
+    if (!nome || !cpf || !email || !telefone) {
+      alert("Preencha todos os seus dados.");
+      return;
+    }
 
-    pixBtn.addEventListener("click", function () {
+    if (!numeroCartao || !nomeCartao || !validadeMes || !validadeAno || !cvv) {
+      alert("Preencha todos os dados do cartão.");
+      return;
+    }
 
-      pixBtn.classList.add("active");
-      cardBtn.classList.remove("active");
+    payButton.disabled = true;
+    payButton.textContent = "Processando...";
 
-      cardBox.style.display = "none";
-      pixBox.style.display = "block";
+    try {
 
-    });
-
-    document.getElementById("payButton")
-      .addEventListener("click", function () {
-
-        alert(
-          "Checkout visual funcionando. O processamento do pagamento será conectado na próxima etapa."
-        );
-
+      const response = await fetch("/api/create-subscription", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          plano,
+          nome,
+          cpf,
+          email,
+          telefone,
+          numeroCartao,
+          nomeCartao,
+          validadeMes,
+          validadeAno,
+          cvv
+        })
       });
-  </script>
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.error || "Não foi possível processar a assinatura."
+        );
+      }
+
+      document.getElementById("payment").innerHTML = `
+        <div style="
+          text-align:center;
+          padding:40px 10px;
+        ">
+          <div style="
+            width:80px;
+            height:80px;
+            margin:0 auto 20px;
+            border-radius:50%;
+            background:#7e22ce;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:40px;
+          ">
+            ✓
+          </div>
+
+          <h1 style="margin-bottom:12px;">
+            Assinatura enviada! 🎉
+          </h1>
+
+          <p style="
+            color:#aaa;
+            line-height:1.6;
+            margin
 
 </body>
 </html>
