@@ -1879,6 +1879,121 @@ function mostrarSecao(secao) {
         </div>
     `;
 }
+    function abrirConta() {
+
+    const resultados = document.getElementById("resultados");
+    const produtos = document.getElementById("produtos");
+    const titulo = document.querySelector(".top h1");
+
+    produtos.style.display = "none";
+    titulo.textContent = "👤 Minha conta";
+
+    resultados.innerHTML = `
+        <div style="margin-bottom:25px;">
+            <h2 style="font-size:26px;">
+                Minha conta
+            </h2>
+
+            <p style="color:#888;margin-top:7px;">
+                Gerencie seu perfil e acompanhe seu plano Noryva.
+            </p>
+        </div>
+
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:18px;
+            margin-bottom:20px;
+        ">
+
+            <div class="card">
+                <span style="color:#888;font-size:12px;">
+                    PLANO ATUAL
+                </span>
+
+                <h2 style="
+                    margin-top:10px;
+                    color:#f5b400;
+                ">
+                    PRO
+                </h2>
+
+                <p style="color:#888;margin-top:5px;">
+                    R$ 85/mês
+                </p>
+            </div>
+
+            <div class="card">
+                <span style="color:#888;font-size:12px;">
+                    PRODUTOS ANALISADOS
+                </span>
+
+                <h2 style="margin-top:10px;">
+                    128
+                </h2>
+
+                <p style="color:#35d05f;margin-top:5px;">
+                    Este mês
+                </p>
+            </div>
+
+            <div class="card">
+                <span style="color:#888;font-size:12px;">
+                    FAVORITOS
+                </span>
+
+                <h2 style="margin-top:10px;">
+                    24
+                </h2>
+
+                <p style="color:#888;margin-top:5px;">
+                    Produtos salvos
+                </p>
+            </div>
+
+        </div>
+
+        <div class="card" style="margin-bottom:20px;">
+
+            <h3 style="margin-bottom:20px;">
+                👤 Informações da conta
+            </h3>
+
+            <div class="row">
+                <span>Nome</span>
+                <b>Usuário Noryva</b>
+            </div>
+
+            <div class="row">
+                <span>E-mail</span>
+                <b>usuario@email.com</b>
+            </div>
+
+            <div class="row">
+                <span>Plano</span>
+                <b style="color:#f5b400;">Pro</b>
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h3 style="margin-bottom:18px;">
+                💳 Assinatura
+            </h3>
+
+            <p style="color:#888;line-height:1.6;">
+                Seu plano Pro dá acesso às ferramentas de pesquisa,
+                análise de produtos, fornecedores e tendências.
+            </p>
+
+            <button class="opportunity" style="margin-top:20px;">
+                Gerenciar assinatura →
+            </button>
+
+        </div>
+    `;
+}
 </script>
 
 </body>
