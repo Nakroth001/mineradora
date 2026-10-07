@@ -1164,78 +1164,264 @@ function mostrarSecao(secao) {
 
     if (secao === "fornecedores") {
 
-        titulo.textContent = "🏭 Fornecedores";
+       titulo.textContent = "🏭 Fornecedores";
 
         resultados.innerHTML = `
             <div style="margin-bottom:25px;">
-                <p style="color:#999;">
-                    Encontre fornecedores relacionados aos produtos encontrados.
+                <h2 style="font-size:22px;margin-bottom:8px;">
+                    Encontre seus fornecedores
+                </h2>
+
+                <p style="color:#888;">
+                    Fornecedores relacionados aos produtos encontrados pela Noryva.
                 </p>
             </div>
 
             <div style="
                 display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+                grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
                 gap:20px;
             ">
 
                 <div class="card">
 
-                    <div class="product-image" style="font-size:50px;">
-                        🏭
-                    </div>
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-bottom:18px;
+                    ">
 
-                    <div class="product-info">
+                        <div style="
+                            width:55px;
+                            height:55px;
+                            background:#19150a;
+                            border-radius:12px;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:28px;
+                        ">
+                            🏭
+                        </div>
 
-                        <span style="color:#35c759;">
-                            ● FORNECEDOR VERIFICADO
+                        <span style="
+                            background:#102718;
+                            color:#35d05f;
+                            padding:7px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            ✓ VERIFICADO
                         </span>
 
-                        <h3>Fornecedor Exemplo</h3>
+                    </div>
 
-                        <p style="color:#999;">
-                            Eletrônicos e acessórios
-                        </p>
+                    <h3>Fornecedor Exemplo</h3>
 
-                        <p>⭐ Avaliação: <strong>4,8/5</strong></p>
-                        <p>📦 Produtos: <strong>1.240+</strong></p>
-                        <p>🚚 Envio: <strong>Disponível</strong></p>
+                    <p style="
+                        color:#888;
+                        margin-top:6px;
+                    ">
+                        Eletrônicos e acessórios
+                    </p>
 
-                        <button class="opportunity">
-                            Ver fornecedor →
-                        </button>
+                    <div style="
+                        display:flex;
+                        gap:6px;
+                        align-items:center;
+                        margin-top:15px;
+                    ">
+                        <span style="color:#f5b400;">★★★★★</span>
+                        <strong>4,8</strong>
+                        <span style="color:#777;">(328 avaliações)</span>
+                    </div>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Produtos</span>
+                            <b>1.240+</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Pedido mínimo</span>
+                            <b>R$ 100</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Envio</span>
+                            <b style="color:#35d05f;">Disponível</b>
+                        </div>
 
                     </div>
+
+                    <button class="opportunity">
+                        Ver fornecedor →
+                    </button>
 
                 </div>
 
+
                 <div class="card">
 
-                    <div class="product-image" style="font-size:50px;">
-                        📦
-                    </div>
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-bottom:18px;
+                    ">
 
-                    <div class="product-info">
+                        <div style="
+                            width:55px;
+                            height:55px;
+                            background:#19150a;
+                            border-radius:12px;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:28px;
+                        ">
+                            📦
+                        </div>
 
-                        <span style="color:#35c759;">
-                            ● FORNECEDOR VERIFICADO
+                        <span style="
+                            background:#102718;
+                            color:#35d05f;
+                            padding:7px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            ✓ VERIFICADO
                         </span>
 
-                        <h3>Fornecedor Exemplo 2</h3>
+                    </div>
 
-                        <p style="color:#999;">
-                            Casa, beleza e acessórios
-                        </p>
+                    <h3>Fornecedor Exemplo 2</h3>
 
-                        <p>⭐ Avaliação: <strong>4,7/5</strong></p>
-                        <p>📦 Produtos: <strong>860+</strong></p>
-                        <p>🚚 Envio: <strong>Disponível</strong></p>
+                    <p style="
+                        color:#888;
+                        margin-top:6px;
+                    ">
+                        Casa, beleza e acessórios
+                    </p>
 
-                        <button class="opportunity">
-                            Ver fornecedor →
-                        </button>
+                    <div style="
+                        display:flex;
+                        gap:6px;
+                        align-items:center;
+                        margin-top:15px;
+                    ">
+                        <span style="color:#f5b400;">★★★★★</span>
+                        <strong>4,7</strong>
+                        <span style="color:#777;">(214 avaliações)</span>
+                    </div>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Produtos</span>
+                            <b>860+</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Pedido mínimo</span>
+                            <b>R$ 80</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Envio</span>
+                            <b style="color:#35d05f;">Disponível</b>
+                        </div>
 
                     </div>
+
+                    <button class="opportunity">
+                        Ver fornecedor →
+                    </button>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        margin-bottom:18px;
+                    ">
+
+                        <div style="
+                            width:55px;
+                            height:55px;
+                            background:#19150a;
+                            border-radius:12px;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:28px;
+                        ">
+                            🚚
+                        </div>
+
+                        <span style="
+                            background:#102718;
+                            color:#35d05f;
+                            padding:7px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            ✓ VERIFICADO
+                        </span>
+
+                    </div>
+
+                    <h3>Fornecedor Exemplo 3</h3>
+
+                    <p style="
+                        color:#888;
+                        margin-top:6px;
+                    ">
+                        Casa, utilidades e ferramentas
+                    </p>
+
+                    <div style="
+                        display:flex;
+                        gap:6px;
+                        align-items:center;
+                        margin-top:15px;
+                    ">
+                        <span style="color:#f5b400;">★★★★★</span>
+                        <strong>4,6</strong>
+                        <span style="color:#777;">(187 avaliações)</span>
+                    </div>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Produtos</span>
+                            <b>640+</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Pedido mínimo</span>
+                            <b>R$ 120</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Envio</span>
+                            <b style="color:#35d05f;">Disponível</b>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver fornecedor →
+                    </button>
 
                 </div>
 
