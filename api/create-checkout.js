@@ -54,8 +54,9 @@ export default async function handler(req, res) {
         ],
 
         subscription: {
-          cycle: "MONTHLY"
-        }
+  cycle: "MONTHLY",
+  nextDueDate: new Date().toISOString().slice(0, 10)
+}
       })
     });
 
