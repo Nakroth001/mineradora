@@ -585,7 +585,20 @@ function mostrarSecao(secao) {
         `;
     }
 
-    if (secao === "favoritos") titulo.textContent = "⭐ Meus favoritos";
+   if (secao === "favoritos") {
+    titulo.textContent = "⭐ Meus favoritos";
+
+    resultados.innerHTML = `
+        <div class="card">
+            <div class="product-image">⭐</div>
+            <div class="product-info">
+                <h3>Seus produtos favoritos</h3>
+                <p>Aqui ficarão os produtos que você salvar.</p>
+                <p>⭐ Você ainda não possui produtos favoritos.</p>
+            </div>
+        </div>
+    `;
+}
     if (secao === "analises") titulo.textContent = "📊 Análises";
     if (secao === "fornecedores") titulo.textContent = "🏭 Fornecedores";
     if (secao === "criativos") titulo.textContent = "🎥 Criativos";
