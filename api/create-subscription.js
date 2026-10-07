@@ -137,12 +137,13 @@ export default async function handler(req, res) {
             ccv: cvv
           },
 
-          creditCardHolderInfo: {
-            name: nome,
-            email: email,
-            cpfCnpj: cpf.replace(/\D/g, ""),
-            phone: telefone.replace(/\D/g, "")
-          },
+         creditCardHolderInfo: {
+  name: nome,
+  email: email,
+  cpfCnpj: cpf.replace(/\D/g, ""),
+  phone: telefone.replace(/\D/g, ""),
+  postalCode: cep.replace(/\D/g, "")
+},
 
           remoteIp: ip
         })
