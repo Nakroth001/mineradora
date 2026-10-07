@@ -1909,7 +1909,23 @@ function mostrarSecao(secao) {
             </div>
         </div>
     `;
+}const SUPABASE_URL = "SEU_PROJECT_URL";
+const SUPABASE_KEY = "SUA_PUBLISHABLE_KEY";
+
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+async function verificarLogin() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+
+    if (!session) {
+        window.location.href = "auth.html";
+    }
 }
+
+verificarLogin();
 </script>
 
 </body>
