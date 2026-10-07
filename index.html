@@ -574,11 +574,10 @@ async function assinar(plano) {
   });
 
   const data = await response.json();
-
-  if (!response.ok || !data.checkoutUrl) {
-    alert(data.error || "Não foi possível iniciar o pagamento.");
+if (!response.ok || !data.checkoutUrl) {
+    alert("ERRO:\n\n" + JSON.stringify(data, null, 2));
     return;
-  }
+}
 
   window.location.href = data.checkoutUrl;
 }
