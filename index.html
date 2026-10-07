@@ -501,7 +501,7 @@ footer{
                 <li>✓ Acesso à plataforma</li>
             </ul>
 
-    <a href="https://www.asaas.com/000/c/5kcjwnxowcp8wnfz" target="_blank">Começar</a>
+    <a href="#" onclick="assinar('basico'); return false;">Começar</a>
 
         </div>
 
@@ -523,7 +523,7 @@ footer{
                 <li>✓ Análises avançadas</li>
             </ul>
 
-           <a href="https://www.asaas.com/000/c/xh3nmm0voy9fs7cu"_blank">Quero o Pro</a>
+          <a href="#" onclick="assinar('ouro'); return false;">Começar</a>
 
         </div>
 
@@ -553,7 +553,7 @@ footer{
                 <li>✓ Material para anúncios</li>
             </ul>
 
-            <a href="https://www.asaas.com/000/c/wv67t8kqwterbudh" target="_blank">Quero o Ouro</a>
+            <a href="#" onclick="assinar('ouro'); return false;">Começar</a>
 
         </div>
 
@@ -564,6 +564,25 @@ footer{
 <footer>
     © 2026 Mineradora — Todos os direitos reservados.
 </footer>
+<script>
+async function assinar(plano) {
+  const response = await fetch("/api/create-checkout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ plano })
+  });
 
+  const data = await response.json();
+
+  if (!response.ok || !data.checkoutUrl) {
+    alert(data.error || "Não foi possível iniciar o pagamento.");
+    return;
+  }
+
+  window.location.href = data.checkoutUrl;
+}
+</script>
 </body>
 </html>
