@@ -15,16 +15,13 @@
 
     body {
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(124,58,237,.08), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(168,85,247,.06), transparent 30%),
-        #050507;
+      background: #050507;
       color: white;
       display: flex;
       justify-content: center;
       padding: 30px 15px;
-      overflow-x: hidden;
       position: relative;
+      overflow-x: hidden;
     }
 
     /* CÉU ESTRELADO */
@@ -33,52 +30,57 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
+      opacity: .35;
+
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.75) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(192,132,252,.65) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,.45) 1px, transparent 1.5px);
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(192,132,252,.7) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1.5px);
+
       background-size:
         140px 140px,
         190px 190px,
         240px 240px;
+
       background-position:
         20px 30px,
         80px 100px,
         150px 40px;
-      opacity: .32;
     }
 
     /* BRILHOS ROXOS */
-    .glow {
+    body::before,
+    body::after {
+      content: "";
       position: fixed;
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: rgba(168,85,247,.10);
-      filter: blur(90px);
+      background: rgba(168, 85, 247, 0.12);
+      filter: blur(80px);
       pointer-events: none;
       z-index: 0;
-      animation: glowMove 8s ease-in-out infinite alternate;
+      animation: floatGlow 7s ease-in-out infinite alternate;
     }
 
-    .glow.one {
-      top: -100px;
-      left: -100px;
+    body::before {
+      top: -80px;
+      left: -80px;
     }
 
-    .glow.two {
+    body::after {
       bottom: -100px;
-      right: -100px;
+      right: -80px;
       animation-delay: 2s;
     }
 
-    @keyframes glowMove {
+    @keyframes floatGlow {
       from {
-        transform: translate(0,0) scale(1);
+        transform: translate(0, 0) scale(1);
       }
 
       to {
-        transform: translate(50px,30px) scale(1.2);
+        transform: translate(50px, 30px) scale(1.2);
       }
     }
 
@@ -103,13 +105,13 @@
 
     .star-one {
       top: 15%;
-      left: 80%;
+      left: 85%;
       animation-delay: 1s;
     }
 
     .star-two {
-      top: 38%;
-      left: 65%;
+      top: 40%;
+      left: 70%;
       width: 70px;
       animation-delay: 3.8s;
     }
@@ -123,29 +125,4 @@
 
     @keyframes shooting {
       0% {
-        transform: translate(0,0) rotate(-35deg);
-        opacity: 0;
-      }
-
-      7% {
-        opacity: .8;
-      }
-
-      20% {
-        transform: translate(-380px,240px) rotate(-35deg);
-        opacity: 0;
-      }
-
-      100% {
-        opacity: 0;
-      }
-    }
-
-    /* CONTEÚDO */
-    .checkout {
-      width: 100%;
-      max-width: 900px;
-      position: relative;
-      z-index: 10;
-      display: block;
-      visibility: visible
+        transform: translate(0, 0)
