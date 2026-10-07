@@ -13,6 +13,9 @@ export default async function handler(req, res) {
       email,
       telefone,
       cep,
+      endereco,
+      numeroEndereco,
+      complemento,
       numeroCartao,
       nomeCartao,
       validadeMes,
@@ -43,9 +46,17 @@ export default async function handler(req, res) {
       });
     }
 
-    if (!nome || !cpf || !email || !telefone) {
+    if (
+      !nome ||
+      !cpf ||
+      !email ||
+      !telefone ||
+      !cep ||
+      !endereco ||
+      !numeroEndereco
+    ) {
       return res.status(400).json({
-        error: "Preencha todos os dados pessoais"
+        error: "Preencha todos os dados obrigatórios"
       });
     }
 
@@ -67,7 +78,7 @@ export default async function handler(req, res) {
     };
 
     /*
-      1. Criar cliente no Asaas
+      1. Criar cliente
     */
 
     const clienteResponse = await fetch(
@@ -94,7 +105,7 @@ export default async function handler(req, res) {
     }
 
     /*
-      2. Criar assinatura mensal
+      2. Criar assinatura
     */
 
     const hoje = new Date();
@@ -102,17 +113,28 @@ export default async function handler(req, res) {
     const nextDueDate =
       hoje.toISOString().slice(0, 10);
 
+    const forwarded =
+      req.headers["x-forwarded-for"];
+
     const ip =
-      req.headers["x-forwarded-for"] ||
-      req.headers["x-real-ip"] ||
-      "";
+      forwarded
+        ? forwarded.split(",")[0].trim()
+        : req.headers["x-real-ip"] || "";
+
+    if (!ip) {
+      return res.status(400).json({
+        error: "Não foi possível identificar o IP do cliente"
+      });
+    }
 
     const assinaturaResponse = await fetch(
       "https://api.asaas.com/v3/subscriptions",
       {
         method: "POST",
         headers,
+
         body: JSON.stringify({
+
           customer: cliente.id,
 
           billingType: "CREDIT_CARD",
@@ -137,15 +159,18 @@ export default async function handler(req, res) {
             ccv: cvv
           },
 
-         creditCardHolderInfo: {
-  name: nome,
-  email: email,
-  cpfCnpj: cpf.replace(/\D/g, ""),
-  phone: telefone.replace(/\D/g, ""),
-  postalCode: cep.replace(/\D/g, "")
-},
+          creditCardHolderInfo: {
+            name: nome,
+            email: email,
+            cpfCnpj: cpf.replace(/\D/g, ""),
+            postalCode: cep.replace(/\D/g, ""),
+            addressNumber: numeroEndereco,
+            addressComplement: complemento || null,
+            phone: telefone.replace(/\D/g, "")
+          },
 
           remoteIp: ip
+
         })
       }
     );
@@ -154,28 +179,44 @@ export default async function handler(req, res) {
       await assinaturaResponse.json();
 
     if (!assinaturaResponse.ok) {
-     return res.status(assinaturaResponse.status).json({
-  error:
-    assinatura.errors?.map(e => e.description).join(" | ") ||
-    assinatura.message ||
-    "O Asaas recusou a criação da assinatura"
-});
+
+      return res.status(assinaturaResponse.status).json({
+        error:
+          assinatura.errors
+            ?.map(e => e.description)
+            .join(" | ") ||
+          assinatura.message ||
+          "O Asaas recusou a criação da assinatura"
+      });
+
     }
 
     return res.status(200).json({
+
       success: true,
-      subscriptionId: assinatura.id,
-      customerId: cliente.id,
+
+      subscriptionId:
+        assinatura.id,
+
+      customerId:
+        cliente.id,
+
       message:
         "Assinatura criada. O pagamento será confirmado pelo Asaas."
+
     });
 
   } catch (error) {
 
-    console.error("Erro na assinatura:", error.message);
+    console.error(
+      "Erro na assinatura:",
+      error.message
+    );
 
     return res.status(500).json({
-      error: "Erro interno ao processar assinatura"
+      error:
+        "Erro interno ao processar assinatura"
     });
+
   }
 }
