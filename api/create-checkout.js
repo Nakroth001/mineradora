@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         "access_token": process.env.ASAAS_API_KEY
       },
       body: JSON.stringify({
-        billingTypes: ["CREDIT_CARD", "PIX"],
+       billingTypes: ["CREDIT_CARD"],
         chargeTypes: ["RECURRENT"],
         minutesToExpire: 60,
 
