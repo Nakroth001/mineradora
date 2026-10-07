@@ -16,8 +16,8 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 20% 20%, rgba(124, 58, 237, .08), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, .06), transparent 30%),
+        radial-gradient(circle at 20% 20%, rgba(124,58,237,.08), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(168,85,247,.06), transparent 30%),
         #050507;
       color: white;
       display: flex;
@@ -27,39 +27,34 @@
       position: relative;
     }
 
-    /* ESTRELAS FIXAS */
-    body::before {
-      content: "";
+    /* CÉU ESTRELADO */
+    .stars {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(192,132,252,.7) 1px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1.5px);
-
+        radial-gradient(circle, rgba(255,255,255,.75) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(192,132,252,.65) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.45) 1px, transparent 1.5px);
       background-size:
         140px 140px,
         190px 190px,
         240px 240px;
-
       background-position:
         20px 30px,
         80px 100px,
         150px 40px;
-
-      opacity: .35;
+      opacity: .32;
     }
 
-    /* BRILHO ROXO */
+    /* BRILHOS ROXOS */
     .glow {
       position: fixed;
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: rgba(168, 85, 247, .10);
+      background: rgba(168,85,247,.10);
       filter: blur(90px);
       pointer-events: none;
       z-index: 0;
@@ -79,11 +74,11 @@
 
     @keyframes glowMove {
       from {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0,0) scale(1);
       }
 
       to {
-        transform: translate(50px, 30px) scale(1.2);
+        transform: translate(50px,30px) scale(1.2);
       }
     }
 
@@ -92,52 +87,52 @@
       position: fixed;
       width: 90px;
       height: 2px;
+      border-radius: 999px;
       background: linear-gradient(
         90deg,
         transparent,
         rgba(192,132,252,.15),
-        rgba(216,180,254,.9)
+        rgba(216,180,254,.95)
       );
-      border-radius: 999px;
-      transform: rotate(-35deg);
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
       opacity: 0;
-      animation: shooting 6s linear infinite;
+      transform: rotate(-35deg);
+      animation: shooting 7s linear infinite;
     }
 
-    .shooting-star:nth-of-type(2) {
-      top: 18%;
-      left: 75%;
+    .star-one {
+      top: 15%;
+      left: 80%;
       animation-delay: 1s;
     }
 
-    .shooting-star:nth-of-type(3) {
-      top: 42%;
-      left: 55%;
-      animation-delay: 3.5s;
+    .star-two {
+      top: 38%;
+      left: 65%;
       width: 70px;
+      animation-delay: 3.8s;
     }
 
-    .shooting-star:nth-of-type(4) {
-      top: 68%;
-      left: 85%;
-      animation-delay: 5s;
+    .star-three {
+      top: 65%;
+      left: 90%;
       width: 80px;
+      animation-delay: 5.5s;
     }
 
     @keyframes shooting {
       0% {
-        transform: translate(0, 0) rotate(-35deg);
+        transform: translate(0,0) rotate(-35deg);
         opacity: 0;
       }
 
-      8% {
-        opacity: .7;
+      7% {
+        opacity: .8;
       }
 
       20% {
-        transform: translate(-350px, 220px) rotate(-35deg);
+        transform: translate(-380px,240px) rotate(-35deg);
         opacity: 0;
       }
 
@@ -146,86 +141,11 @@
       }
     }
 
+    /* CONTEÚDO */
     .checkout {
       width: 100%;
       max-width: 900px;
       position: relative;
-      z-index: 2;
-    }
-
-    .logo {
-      text-align: center;
-      font-size: 32px;
-      font-weight: 800;
-      color: #a855f7;
-      margin-bottom: 30px;
-      text-shadow: 0 0 20px rgba(168,85,247,.35);
-    }
-
-    .box {
-      background: rgba(11,11,16,.94);
-      border: 1px solid #6d28d9;
-      border-radius: 18px;
-      padding: 25px;
-      box-shadow:
-        0 0 35px rgba(124,58,237,.12),
-        0 0 100px rgba(124,58,237,.04);
-      backdrop-filter: blur(8px);
-    }
-
-    h1 {
-      font-size: 25px;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      color: #999;
-      margin-bottom: 25px;
-    }
-
-    .plan {
-      background: #111118;
-      border: 1px solid #7e22ce;
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 25px;
-      box-shadow: 0 0 20px rgba(126,34,206,.08);
-    }
-
-    .plan-name {
-      color: #c084fc;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .price {
-      font-size: 30px;
-      font-weight: bold;
-      margin-top: 6px;
-    }
-
-    .price small {
-      font-size: 14px;
-      color: #999;
-      font-weight: normal;
-    }
-
-    label {
+      z-index: 10;
       display: block;
-      margin: 15px 0 7px;
-      color: #ccc;
-      font-size: 14px;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #292933;
-      background: #08080c;
-      color: white;
-      outline: none;
-      font-size: 15px;
-    }
-
-    input:focus {
+      visibility: visible
