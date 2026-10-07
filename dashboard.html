@@ -553,6 +553,7 @@ function verOportunidade(produto) {
 }
 <script>
 function mostrarSecao(secao) {
+
     const titulo = document.querySelector(".top h1");
     const produtos = document.getElementById("produtos");
     const resultados = document.getElementById("resultados");
@@ -567,56 +568,82 @@ function mostrarSecao(secao) {
 
     produtos.style.display = "none";
 
-    /* EM ALTA */
     if (secao === "alta") {
+
         titulo.textContent = "🔥 Produtos em alta";
 
         resultados.innerHTML = `
             <div style="margin-bottom:25px;">
-                <p style="color:#999;">Produtos com maior potencial detectado pela Noryva</p>
+                <p style="color:#999;">
+                    Produtos com maior potencial detectado pela Noryva
+                </p>
             </div>
 
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
 
                 <div class="card">
                     <div class="product-image" style="font-size:60px;">📱</div>
+
                     <div class="product-info">
-                        <span style="color:#f5b400;font-weight:bold;">🔥 #1 EM ALTA</span>
+                        <span style="color:#f5b400;font-weight:bold;">
+                            🔥 #1 EM ALTA
+                        </span>
+
                         <h3>Smartphone</h3>
                         <p style="color:#999;">Alta procura</p>
+
                         <p>💰 Custo: <strong>R$ 39,90</strong></p>
                         <p>🏷️ Venda: <strong>R$ 89,90</strong></p>
                         <p>📈 Margem: <strong>55%</strong></p>
                         <p>🏆 Score: <strong>87/100</strong></p>
-                        <button class="opportunity">Ver oportunidade →</button>
+
+                        <button class="opportunity">
+                            Ver oportunidade →
+                        </button>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="product-image" style="font-size:60px;">🎧</div>
+
                     <div class="product-info">
-                        <span style="color:#f5b400;font-weight:bold;">🔥 #2 EM ALTA</span>
+                        <span style="color:#f5b400;font-weight:bold;">
+                            🔥 #2 EM ALTA
+                        </span>
+
                         <h3>Fone Bluetooth</h3>
                         <p style="color:#999;">Tendência crescente</p>
+
                         <p>💰 Custo: <strong>R$ 24,90</strong></p>
                         <p>🏷️ Venda: <strong>R$ 69,90</strong></p>
                         <p>📈 Margem: <strong>64%</strong></p>
                         <p>🏆 Score: <strong>82/100</strong></p>
-                        <button class="opportunity">Ver oportunidade →</button>
+
+                        <button class="opportunity">
+                            Ver oportunidade →
+                        </button>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="product-image" style="font-size:60px;">⌚</div>
+
                     <div class="product-info">
-                        <span style="color:#f5b400;font-weight:bold;">🔥 #3 EM ALTA</span>
+                        <span style="color:#f5b400;font-weight:bold;">
+                            🔥 #3 EM ALTA
+                        </span>
+
                         <h3>Smartwatch</h3>
                         <p style="color:#999;">Demanda em crescimento</p>
+
                         <p>💰 Custo: <strong>R$ 49,90</strong></p>
                         <p>🏷️ Venda: <strong>R$ 119,90</strong></p>
                         <p>📈 Margem: <strong>58%</strong></p>
                         <p>🏆 Score: <strong>79/100</strong></p>
-                        <button class="opportunity">Ver oportunidade →</button>
+
+                        <button class="opportunity">
+                            Ver oportunidade →
+                        </button>
                     </div>
                 </div>
 
@@ -624,169 +651,344 @@ function mostrarSecao(secao) {
         `;
     }
 
-    /* FAVORITOS */
     if (secao === "favoritos") {
+
         titulo.textContent = "⭐ Meus favoritos";
 
         resultados.innerHTML = `
             <div style="padding:45px 20px;text-align:center;">
-                <div style="font-size:70px;margin-bottom:15px;">⭐</div>
-                <h2 style="margin-bottom:10px;">Seus favoritos</h2>
-                <p style="color:#888;max-width:500px;margin:auto;">
-                    Salve produtos interessantes durante sua pesquisa e encontre todos eles aqui.
+
+                <div style="font-size:70px;margin-bottom:15px;">
+                    ⭐
+                </div>
+
+                <h2>Seus favoritos</h2>
+
+                <p style="color:#888;margin-top:10px;">
+                    Salve produtos interessantes durante sua pesquisa
+                    e encontre todos eles aqui.
                 </p>
 
-                <div style="margin-top:25px;">
-                    <button class="opportunity" onclick="mostrarSecao('descobrir')">
-                        🔎 Descobrir produtos
-                    </button>
-                </div>
+                <button
+                    class="opportunity"
+                    onclick="mostrarSecao('descobrir')"
+                    style="max-width:220px;margin:25px auto 0;">
+                    🔎 Descobrir produtos
+                </button>
+
             </div>
         `;
     }
 
-    /* ANÁLISES */
     if (secao === "analises") {
+
         titulo.textContent = "📊 Análises";
 
         resultados.innerHTML = `
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-bottom:25px;">
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+                gap:18px;
+                margin-bottom:25px;
+            ">
 
                 <div class="card">
                     <div class="product-info">
-                        <span style="color:#999;">PRODUTOS ANALISADOS</span>
-                        <h2 style="font-size:32px;">128</h2>
-                        <p style="color:#35c759;">↑ 18% este mês</p>
+                        <span style="color:#999;">
+                            PRODUTOS ANALISADOS
+                        </span>
+
+                        <h2 style="font-size:32px;margin-top:10px;">
+                            128
+                        </h2>
+
+                        <p style="color:#35c759;">
+                            ↑ 18% este mês
+                        </p>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="product-info">
-                        <span style="color:#999;">MELHOR MARGEM</span>
-                        <h2 style="font-size:32px;">64%</h2>
+                        <span style="color:#999;">
+                            MELHOR MARGEM
+                        </span>
+
+                        <h2 style="font-size:32px;margin-top:10px;">
+                            64%
+                        </h2>
+
                         <p>Potencial encontrado</p>
                     </div>
                 </div>
 
                 <div class="card">
                     <div class="product-info">
-                        <span style="color:#999;">MAIOR SCORE</span>
-                        <h2 style="font-size:32px;">94/100</h2>
-                        <p style="color:#f5b400;">🔥 Excelente</p>
+                        <span style="color:#999;">
+                            MAIOR SCORE
+                        </span>
+
+                        <h2 style="font-size:32px;margin-top:10px;">
+                            94/100
+                        </h2>
+
+                        <p style="color:#f5b400;">
+                            🔥 Excelente
+                        </p>
                     </div>
                 </div>
 
             </div>
 
             <div class="card">
+
                 <div class="product-info">
+
                     <h3>📈 Desempenho das oportunidades</h3>
-                    <p style="color:#888;">
-                        A Noryva poderá mostrar aqui tendências, demanda,
-                        concorrência e potencial de lucro dos produtos.
+
+                    <p style="color:#888;margin-top:10px;">
+                        A Noryva poderá mostrar aqui tendências,
+                        demanda, concorrência e potencial de lucro.
                     </p>
 
-                    <div style="margin-top:25px;padding:20px;border-radius:12px;background:#151515;">
-                        <div style="display:flex;justify-content:space-between;margin-bottom:12px;">
+                    <div style="
+                        margin-top:25px;
+                        padding:20px;
+                        border-radius:12px;
+                        background:#151515;
+                    ">
+
+                        <div style="
+                            display:flex;
+                            justify-content:space-between;
+                            margin-bottom:12px;
+                        ">
                             <span>Demanda</span>
-                            <strong style="color:#35c759;">Alta</strong>
+
+                            <strong style="color:#35c759;">
+                                Alta
+                            </strong>
                         </div>
 
-                        <div style="height:8px;background:#292929;border-radius:10px;">
-                            <div style="width:82%;height:100%;background:#35c759;border-radius:10px;"></div>
+                        <div style="
+                            height:8px;
+                            background:#292929;
+                            border-radius:10px;
+                        ">
+                            <div style="
+                                width:82%;
+                                height:100%;
+                                background:#35c759;
+                                border-radius:10px;
+                            "></div>
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
         `;
     }
 
-    /* FORNECEDORES */
     if (secao === "fornecedores") {
+
         titulo.textContent = "🏭 Fornecedores";
 
         resultados.innerHTML = `
             <div style="margin-bottom:25px;">
-                <p style="color:#999;">Encontre fornecedores relacionados às oportunidades encontradas.</p>
+                <p style="color:#999;">
+                    Encontre fornecedores relacionados aos produtos encontrados.
+                </p>
             </div>
 
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;">
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+                gap:20px;
+            ">
 
                 <div class="card">
-                    <div class="product-image" style="font-size:50px;">🏭</div>
+
+                    <div class="product-image" style="font-size:50px;">
+                        🏭
+                    </div>
+
                     <div class="product-info">
-                        <span style="color:#35c759;">● FORNECEDOR VERIFICADO</span>
+
+                        <span style="color:#35c759;">
+                            ● FORNECEDOR VERIFICADO
+                        </span>
+
                         <h3>Fornecedor Exemplo</h3>
-                        <p style="color:#999;">Eletrônicos e acessórios</p>
+
+                        <p style="color:#999;">
+                            Eletrônicos e acessórios
+                        </p>
+
                         <p>⭐ Avaliação: <strong>4,8/5</strong></p>
                         <p>📦 Produtos: <strong>1.240+</strong></p>
                         <p>🚚 Envio: <strong>Disponível</strong></p>
-                        <button class="opportunity">Ver fornecedor →</button>
+
+                        <button class="opportunity">
+                            Ver fornecedor →
+                        </button>
+
                     </div>
+
                 </div>
 
                 <div class="card">
-                    <div class="product-image" style="font-size:50px;">📦</div>
+
+                    <div class="product-image" style="font-size:50px;">
+                        📦
+                    </div>
+
                     <div class="product-info">
-                        <span style="color:#35c759;">● FORNECEDOR VERIFICADO</span>
+
+                        <span style="color:#35c759;">
+                            ● FORNECEDOR VERIFICADO
+                        </span>
+
                         <h3>Fornecedor Exemplo 2</h3>
-                        <p style="color:#999;">Casa, beleza e acessórios</p>
+
+                        <p style="color:#999;">
+                            Casa, beleza e acessórios
+                        </p>
+
                         <p>⭐ Avaliação: <strong>4,7/5</strong></p>
                         <p>📦 Produtos: <strong>860+</strong></p>
                         <p>🚚 Envio: <strong>Disponível</strong></p>
-                        <button class="opportunity">Ver fornecedor →</button>
+
+                        <button class="opportunity">
+                            Ver fornecedor →
+                        </button>
+
                     </div>
+
                 </div>
 
             </div>
         `;
     }
 
-    /* CRIATIVOS */
     if (secao === "criativos") {
+
         titulo.textContent = "🎥 Criativos";
 
         resultados.innerHTML = `
             <div style="margin-bottom:25px;">
-                <p style="color:#999;">Conteúdos e ideias para divulgar os produtos encontrados.</p>
+                <p style="color:#999;">
+                    Conteúdos e ideias para divulgar os produtos encontrados.
+                </p>
             </div>
 
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+                gap:20px;
+            ">
 
                 <div class="card">
-                    <div style="height:150px;background:#151515;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:55px;">
+
+                    <div style="
+                        height:150px;
+                        background:#151515;
+                        border-radius:10px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:55px;
+                    ">
                         ▶️
                     </div>
+
                     <div class="product-info">
-                        <span style="color:#f5b400;">🔥 EM ALTA</span>
+
+                        <span style="color:#f5b400;">
+                            🔥 EM ALTA
+                        </span>
+
                         <h3>Vídeo de produto</h3>
-                        <p style="color:#888;">Criativo para redes sociais</p>
-                        <button class="opportunity">Ver criativo →</button>
+
+                        <p style="color:#888;">
+                            Criativo para redes sociais
+                        </p>
+
+                        <button class="opportunity">
+                            Ver criativo →
+                        </button>
+
                     </div>
+
                 </div>
 
                 <div class="card">
-                    <div style="height:150px;background:#151515;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:55px;">
+
+                    <div style="
+                        height:150px;
+                        background:#151515;
+                        border-radius:10px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:55px;
+                    ">
                         🎬
                     </div>
+
                     <div class="product-info">
-                        <span style="color:#f5b400;">TRENDING</span>
+
+                        <span style="color:#f5b400;">
+                            TRENDING
+                        </span>
+
                         <h3>Vídeo demonstrativo</h3>
-                        <p style="color:#888;">Formato para anúncios</p>
-                        <button class="opportunity">Ver criativo →</button>
+
+                        <p style="color:#888;">
+                            Formato para anúncios
+                        </p>
+
+                        <button class="opportunity">
+                            Ver criativo →
+                        </button>
+
                     </div>
+
                 </div>
 
                 <div class="card">
-                    <div style="height:150px;background:#151515;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:55px;">
+
+                    <div style="
+                        height:150px;
+                        background:#151515;
+                        border-radius:10px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:55px;
+                    ">
                         📱
                     </div>
+
                     <div class="product-info">
-                        <span style="color:#f5b400;">SOCIAL</span>
+
+                        <span style="color:#f5b400;">
+                            SOCIAL
+                        </span>
+
                         <h3>Conteúdo vertical</h3>
-                        <p style="color:#888;">Ideal para Reels e TikTok</p>
-                        <button class="opportunity">Ver criativo →</button>
+
+                        <p style="color:#888;">
+                            Ideal para Reels e TikTok
+                        </p>
+
+                        <button class="opportunity">
+                            Ver criativo →
+                        </button>
+
                     </div>
+
                 </div>
 
             </div>
