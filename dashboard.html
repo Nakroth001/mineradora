@@ -632,7 +632,22 @@ function mostrarSecao(secao) {
         </div>
     `;
 }
-    if (secao === "criativos") titulo.textContent = "🎥 Criativos";
+    if (secao === "criativos") {
+    titulo.textContent = "🎥 Criativos";
+
+    resultados.innerHTML = `
+        <div class="card">
+            <div class="product-image">🎥</div>
+            <div class="product-info">
+                <h3>Criativos</h3>
+                <p>Aqui você encontrará vídeos e conteúdos para divulgação dos produtos.</p>
+                <p>🎬 Vídeos de produtos</p>
+                <p>📱 Conteúdos para redes sociais</p>
+                <p>🔥 Criativos em alta</p>
+            </div>
+        </div>
+    `;
+}
 }
 </script>
 
