@@ -15,16 +15,142 @@
 
     body {
       min-height: 100vh;
-      background: #050507;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(124, 58, 237, .08), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(168, 85, 247, .06), transparent 30%),
+        #050507;
       color: white;
       display: flex;
       justify-content: center;
       padding: 30px 15px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ESTRELAS FIXAS */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.8) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(192,132,252,.7) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1.5px);
+
+      background-size:
+        140px 140px,
+        190px 190px,
+        240px 240px;
+
+      background-position:
+        20px 30px,
+        80px 100px,
+        150px 40px;
+
+      opacity: .35;
+    }
+
+    /* BRILHO ROXO */
+    .glow {
+      position: fixed;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(168, 85, 247, .10);
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+      animation: glowMove 8s ease-in-out infinite alternate;
+    }
+
+    .glow.one {
+      top: -100px;
+      left: -100px;
+    }
+
+    .glow.two {
+      bottom: -100px;
+      right: -100px;
+      animation-delay: 2s;
+    }
+
+    @keyframes glowMove {
+      from {
+        transform: translate(0, 0) scale(1);
+      }
+
+      to {
+        transform: translate(50px, 30px) scale(1.2);
+      }
+    }
+
+    /* ESTRELAS CADENTES */
+    .shooting-star {
+      position: fixed;
+      width: 90px;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(192,132,252,.15),
+        rgba(216,180,254,.9)
+      );
+      border-radius: 999px;
+      transform: rotate(-35deg);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      animation: shooting 6s linear infinite;
+    }
+
+    .shooting-star:nth-of-type(2) {
+      top: 18%;
+      left: 75%;
+      animation-delay: 1s;
+    }
+
+    .shooting-star:nth-of-type(3) {
+      top: 42%;
+      left: 55%;
+      animation-delay: 3.5s;
+      width: 70px;
+    }
+
+    .shooting-star:nth-of-type(4) {
+      top: 68%;
+      left: 85%;
+      animation-delay: 5s;
+      width: 80px;
+    }
+
+    @keyframes shooting {
+      0% {
+        transform: translate(0, 0) rotate(-35deg);
+        opacity: 0;
+      }
+
+      8% {
+        opacity: .7;
+      }
+
+      20% {
+        transform: translate(-350px, 220px) rotate(-35deg);
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 0;
+      }
     }
 
     .checkout {
       width: 100%;
       max-width: 900px;
+      position: relative;
+      z-index: 2;
     }
 
     .logo {
@@ -33,14 +159,18 @@
       font-weight: 800;
       color: #a855f7;
       margin-bottom: 30px;
+      text-shadow: 0 0 20px rgba(168,85,247,.35);
     }
 
     .box {
-      background: #0b0b10;
+      background: rgba(11,11,16,.94);
       border: 1px solid #6d28d9;
       border-radius: 18px;
       padding: 25px;
-      box-shadow: 0 0 35px rgba(124, 58, 237, .12);
+      box-shadow:
+        0 0 35px rgba(124,58,237,.12),
+        0 0 100px rgba(124,58,237,.04);
+      backdrop-filter: blur(8px);
     }
 
     h1 {
@@ -59,6 +189,7 @@
       border-radius: 14px;
       padding: 18px;
       margin-bottom: 25px;
+      box-shadow: 0 0 20px rgba(126,34,206,.08);
     }
 
     .plan-name {
@@ -98,184 +229,3 @@
     }
 
     input:focus {
-      border-color: #a855f7;
-    }
-
-    .methods {
-      display: flex;
-      gap: 10px;
-      margin: 22px 0;
-    }
-
-    .method {
-      flex: 1;
-      padding: 14px;
-      border-radius: 10px;
-      border: 1px solid #292933;
-      background: #101016;
-      color: white;
-      cursor: pointer;
-    }
-
-    .method.active {
-      border-color: #a855f7;
-      background: #1a1025;
-    }
-
-    .pay-box {
-      margin-top: 15px;
-    }
-
-    .button {
-      width: 100%;
-      margin-top: 25px;
-      padding: 16px;
-      border: none;
-      border-radius: 11px;
-      background: #9333ea;
-      color: white;
-      font-size: 17px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .button:hover {
-      background: #a855f7;
-    }
-
-    .secure {
-      text-align: center;
-      color: #777;
-      font-size: 12px;
-      margin-top: 18px;
-    }
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  width: 280px;
-  height: 280px;
-  border-radius: 50%;
-  background: rgba(168, 85, 247, 0.12);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 0;
-  animation: floatGlow 7s ease-in-out infinite alternate;
-}
-
-body::before {
-  top: -80px;
-  left: -80px;
-}
-
-body::after {
-  bottom: -100px;
-  right: -80px;
-  animation-delay: 2s;
-}
-
-.checkout {
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes floatGlow {
-  from {
-    transform: translate(0, 0) scale(1);
-  }
-
-  to {
-    transform: translate(50px, 30px) scale(1.2);
-  }
-}
-    @media (max-width: 600px) {
-      .box {
-        padding: 18px;
-      }
-
-      .methods {
-        flex-direction: column;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <main class="checkout">
-
-    <div class="logo">NORYVA</div>
-
-    <div class="box">
-
-      <section id="payment">
-
-        <h1>Finalizar assinatura</h1>
-
-        <p class="subtitle">
-          Tenha acesso completo à plataforma Noryva.
-        </p>
-
-        <div class="plan">
-          <div class="plan-name" id="planName">
-            Noryva Pro
-          </div>
-
-          <div class="price">
-            R$ <span id="planPrice">85,00</span>
-            <small>/mês</small>
-          </div>
-        </div>
-
-        <label>Nome completo</label>
-        <input
-          id="name"
-          type="text"
-          placeholder="Seu nome completo"
-        >
-
-        <label>CPF</label>
-        <input
-          id="cpf"
-          type="text"
-          placeholder="000.000.000-00"
-        >
-
-        <label>E-mail</label>
-        <input
-          id="email"
-          type="email"
-          placeholder="seu@email.com"
-        >
-
-        <label>Telefone</label>
-        <input
-          id="phone"
-          type="tel"
-          placeholder="(00) 00000-0000"
-        >
-
-        <div class="methods">
-
-          <button
-            class="method active"
-            id="cardBtn"
-            type="button"
-          >
-            💳 Cartão
-          </button>
-
-          <button
-            class="method"
-            id="pixBtn"
-            type="button"
-          >
-            📱 Pix
-          </button>
-
-        </div>
-
-        <div class="pay-box" id="cardBox">
-
-          <label>Número do cartão</label>
-          <input
