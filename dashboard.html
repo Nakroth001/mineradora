@@ -781,25 +781,148 @@ function mostrarSecao(secao) {
         titulo.textContent = "⭐ Meus favoritos";
 
         resultados.innerHTML = `
-            <div style="padding:45px 20px;text-align:center;">
+            <div style="margin-bottom:25px;">
+                <h2 style="font-size:22px;margin-bottom:8px;">
+                    Seus produtos salvos
+                </h2>
 
-                <div style="font-size:70px;margin-bottom:15px;">
-                    ⭐
+                <p style="color:#888;">
+                    Produtos que você marcou para acompanhar depois.
+                </p>
+            </div>
+
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+                gap:20px;
+            ">
+
+                <div class="card">
+
+                    <div class="product-image" style="
+                        height:180px;
+                        font-size:70px;
+                        position:relative;
+                    ">
+                        🎧
+
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            right:12px;
+                            background:#19150a;
+                            color:#f5b400;
+                            padding:7px 10px;
+                            border-radius:20px;
+                            font-size:16px;
+                        ">
+                            ⭐
+                        </span>
+                    </div>
+
+                    <span class="category">ELETRÔNICOS</span>
+
+                    <h3 style="margin-top:8px;">
+                        Fone Bluetooth
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        Tendência crescente
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Custo</span>
+                            <b>R$ 24,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Venda sugerida</span>
+                            <b>R$ 69,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Margem</span>
+                            <b>64%</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Score Noryva</span>
+                            <b style="color:#35d05f;">82/100</b>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver oportunidade →
+                    </button>
+
                 </div>
 
-                <h2>Seus favoritos</h2>
 
-                <p style="color:#888;margin-top:10px;">
-                    Salve produtos interessantes durante sua pesquisa
-                    e encontre todos eles aqui.
-                </p>
+                <div class="card">
 
-                <button
-                    class="opportunity"
-                    onclick="mostrarSecao('descobrir')"
-                    style="max-width:220px;margin:25px auto 0;">
-                    🔎 Descobrir produtos
-                </button>
+                    <div class="product-image" style="
+                        height:180px;
+                        font-size:70px;
+                        position:relative;
+                    ">
+                        ⌚
+
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            right:12px;
+                            background:#19150a;
+                            color:#f5b400;
+                            padding:7px 10px;
+                            border-radius:20px;
+                            font-size:16px;
+                        ">
+                            ⭐
+                        </span>
+                    </div>
+
+                    <span class="category">TECNOLOGIA</span>
+
+                    <h3 style="margin-top:8px;">
+                        Smartwatch
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        Demanda em crescimento
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Custo</span>
+                            <b>R$ 49,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Venda sugerida</span>
+                            <b>R$ 119,90</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Margem</span>
+                            <b>58%</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Score Noryva</span>
+                            <b style="color:#35d05f;">79/100</b>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver oportunidade →
+                    </button>
+
+                </div>
 
             </div>
         `;
