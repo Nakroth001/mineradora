@@ -693,12 +693,11 @@ function mostrarSecao(secao) {
     const resultados = document.getElementById("resultados");
 
     resultados.innerHTML = "";
-
-    if (secao === "descobrir") {
-        titulo.textContent = "Descobrir produtos";
-        produtos.style.display = "grid";
-        return;
-    }
+if (secao === "descobrir") {
+    titulo.textContent = "Descobrir produtos";
+    produtos.style.display = "none";
+    return;
+}
 
     produtos.style.display = "none";
 
