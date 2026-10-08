@@ -347,6 +347,54 @@ body{
         transform:translateX(35px);
     }
 }
+ .sidebar{
+    width:250px;
+    background:linear-gradient(180deg,#0d0d0d 0%,#090909 100%);
+    border-right:1px solid #242424;
+    padding:28px 16px;
+}
+
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:2px;
+    margin:4px 10px 42px;
+}
+
+.logo span{
+    color:#f5b400;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px 14px;
+    border-radius:10px;
+    color:#8f8f8f;
+    text-decoration:none;
+    transition:.2s ease;
+    font-size:14px;
+}
+
+.menu a:hover{
+    background:#171717;
+    color:#fff;
+    transform:translateX(2px);
+}
+
+.menu a.active{
+    background:linear-gradient(90deg,#1d1d1d,#151515);
+    color:#fff;
+    border:1px solid #292929;
+    box-shadow:inset 3px 0 0 #f5b400;
+}
 </style>
 </head>
 
