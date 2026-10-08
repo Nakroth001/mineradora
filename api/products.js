@@ -1,55 +1,35 @@
 export default async function handler(req, res) {
-  if (req.method !== "GET") {
-    return res.status(405).json({ error: "Método não permitido" });
-  }
+  const q = String(req.query.q || "").trim();
 
-  const keyword = String(req.query.q || "").trim();
-
-  if (!keyword) {
+  if (!q) {
     return res.status(400).json({
-      error: "Informe um produto para pesquisar"
+      error: "Informe um produto"
     });
   }
 
   try {
-    const login = process.env.DATAFORSEO_LOGIN;
-    const password = process.env.DATAFORSEO_PASSWORD;
+    const url =
+      "https://api.searlo.tech/api/v1/search/shopping?" +
+      new URLSearchParams({
+        q,
+        gl: "br",
+        hl: "pt",
+        limit: "10"
+      });
 
-    const auth = Buffer.from(`${login}:${password}`).toString("base64");
-
-    const response = await fetch(
-      "https://api.dataforseo.com/v3/merchant/google/products/task_post",
-      {
-        method: "POST",
-        headers: {
-          "Authorization": `Basic ${auth}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify([
-          {
-            language_code: "pt",
-            location_code: 2076,
-            keyword: keyword,
-            depth: 20
-          }
-        ])
+    const response = await fetch(url, {
+      headers: {
+        "x-api-key": process.env.SEARLO_API_KEY
       }
-    );
+    });
 
     const data = await response.json();
 
-    if (!response.ok) {
-      return res.status(response.status).json({
-        error: "DataForSEO recusou a pesquisa",
-        details: data
-      });
-    }
-
-    return res.status(200).json(data);
+    return res.status(response.status).json(data);
 
   } catch (error) {
     return res.status(500).json({
-      error: "Erro interno",
+      error: "Erro ao consultar produtos",
       details: error.message
     });
   }
