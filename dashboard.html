@@ -1333,6 +1333,300 @@ body{
     }
 
 }
+ /* ===== CRIATIVOS ===== */
+
+.creatives-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    margin-bottom:24px;
+}
+
+.creatives-kicker{
+    color:#f5b400;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.creatives-header h2{
+    font-size:28px;
+    margin-top:7px;
+}
+
+.creatives-header p{
+    color:#777;
+    margin-top:8px;
+    font-size:14px;
+}
+
+.creative-filters{
+    display:flex;
+    gap:5px;
+    background:#111;
+    border:1px solid #292929;
+    padding:5px;
+    border-radius:10px;
+}
+
+.creative-filters button{
+    border:0;
+    background:transparent;
+    color:#777;
+    padding:9px 12px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.creative-filter-active{
+    background:#f5b400 !important;
+    color:#000 !important;
+    font-weight:bold;
+}
+
+.creative-featured{
+    display:grid;
+    grid-template-columns:360px 1fr;
+    gap:28px;
+    background:linear-gradient(135deg,#151515,#0e0e0e);
+    border:1px solid #292929;
+    border-radius:17px;
+    padding:20px;
+    margin-bottom:32px;
+}
+
+.creative-preview{
+    height:260px;
+    border-radius:13px;
+    background:linear-gradient(135deg,#171717,#252525);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.creative-device{
+    font-size:90px;
+}
+
+.creative-badge{
+    position:absolute;
+    top:13px;
+    left:13px;
+    background:#f5b400;
+    color:#000;
+    padding:7px 10px;
+    border-radius:20px;
+    font-size:10px;
+    font-weight:900;
+}
+
+.creative-play{
+    position:absolute;
+    width:48px;
+    height:48px;
+    background:rgba(0,0,0,.7);
+    border:1px solid #555;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+}
+
+.creative-duration{
+    position:absolute;
+    bottom:12px;
+    right:12px;
+    background:#000;
+    padding:6px 9px;
+    border-radius:7px;
+    font-size:11px;
+}
+
+.creative-featured-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.creative-featured-info h2{
+    font-size:27px;
+    margin-top:8px;
+}
+
+.creative-featured-info p{
+    color:#777;
+    line-height:1.6;
+    margin-top:9px;
+    max-width:600px;
+}
+
+.creative-metrics{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:9px;
+    margin:22px 0;
+}
+
+.creative-metrics div{
+    background:#111;
+    border:1px solid #242424;
+    padding:12px;
+    border-radius:9px;
+}
+
+.creative-metrics span{
+    display:block;
+    color:#666;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.creative-metrics strong{
+    font-size:12px;
+}
+
+.creative-section-title{
+    margin-bottom:15px;
+}
+
+.creative-section-title h3{
+    font-size:18px;
+}
+
+.creative-section-title span{
+    color:#666;
+    font-size:11px;
+}
+
+.creative-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.creative-card{
+    background:linear-gradient(135deg,#151515,#0f0f0f);
+    border:1px solid #292929;
+    border-radius:15px;
+    overflow:hidden;
+    transition:.2s ease;
+}
+
+.creative-card:hover{
+    transform:translateY(-2px);
+    border-color:#3b3b3b;
+}
+
+.creative-thumb{
+    height:190px;
+    background:linear-gradient(135deg,#171717,#252525);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:70px;
+    position:relative;
+}
+
+.creative-thumb span{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background:#f5b400;
+    color:#000;
+    padding:6px 9px;
+    border-radius:18px;
+    font-size:9px;
+    font-weight:900;
+}
+
+.creative-thumb b{
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    background:#000;
+    padding:6px 8px;
+    border-radius:6px;
+    font-size:10px;
+}
+
+.creative-card-content{
+    padding:18px;
+}
+
+.creative-card-content h3{
+    margin-top:8px;
+    font-size:16px;
+}
+
+.creative-card-content p{
+    color:#777;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:6px;
+    min-height:36px;
+}
+
+.creative-meta{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:17px 0;
+    font-size:11px;
+}
+
+.creative-meta span{
+    color:#666;
+}
+
+.creative-meta strong{
+    font-size:10px;
+}
+
+@media(max-width:950px){
+
+    .creative-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .creative-featured{
+        grid-template-columns:280px 1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .creatives-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .creatives-header h2{
+        font-size:23px;
+    }
+
+    .creative-filters{
+        width:100%;
+        overflow-x:auto;
+    }
+
+    .creative-featured{
+        grid-template-columns:1fr;
+    }
+
+    .creative-preview{
+        height:210px;
+    }
+
+    .creative-grid{
+        grid-template-columns:1fr;
+    }
+
+}
 </style>
 </head>
 
@@ -2465,250 +2759,110 @@ if (secao === "descobrir") {
 }
     if (secao === "criativos") {
 
-        titulo.textContent = "🎥 Criativos";
+    titulo.textContent = "Criativos";
 
-        resultados.innerHTML = `
-            <div style="margin-bottom:25px;">
-                <h2 style="font-size:22px;margin-bottom:8px;">
-                    Biblioteca de criativos
-                </h2>
+    resultados.innerHTML = `
+        <div class="creatives-header">
 
-                <p style="color:#888;">
-                    Encontre ideias de anúncios e conteúdos para divulgar seus produtos.
+            <div>
+                <span class="creatives-kicker">NORYVA CREATIVE LAB</span>
+                <h2>Biblioteca de criativos</h2>
+                <p>
+                    Encontre formatos, ideias e referências para transformar produtos em anúncios.
                 </p>
             </div>
 
-            <div style="
-                display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-                gap:20px;
-            ">
+            <div class="creative-filters">
+                <button class="creative-filter-active">Todos</button>
+                <button>Vídeos</button>
+                <button>UGC</button>
+                <button>Ofertas</button>
+            </div>
 
-                <div class="card">
+        </div>
 
-                    <div style="
-                        height:180px;
-                        background:linear-gradient(135deg,#171717,#252525);
-                        border-radius:12px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:65px;
-                        position:relative;
-                        margin-bottom:16px;
-                    ">
-                        📱
 
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            left:12px;
-                            background:#f5b400;
-                            color:#000;
-                            padding:6px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            VÍDEO
-                        </span>
+        <div class="creative-featured">
 
-                        <span style="
-                            position:absolute;
-                            bottom:12px;
-                            right:12px;
-                            background:#000;
-                            padding:6px 9px;
-                            border-radius:8px;
-                            font-size:12px;
-                        ">
-                            ▶ 0:24
-                        </span>
+            <div class="creative-preview">
+                <span class="creative-badge">🔥 EM DESTAQUE</span>
+                <span class="creative-play">▶</span>
+
+                <div class="creative-device">
+                    🎧
+                </div>
+
+                <span class="creative-duration">0:18</span>
+            </div>
+
+            <div class="creative-featured-info">
+
+                <span class="category">ELETRÔNICOS</span>
+
+                <h2>Review estilo UGC</h2>
+
+                <p>
+                    Formato focado em demonstração e prova social,
+                    ideal para TikTok e Reels.
+                </p>
+
+                <div class="creative-metrics">
+
+                    <div>
+                        <span>Formato</span>
+                        <strong>9:16</strong>
                     </div>
 
-                    <span class="category">TECNOLOGIA</span>
-
-                    <h3 style="margin-top:8px;">
-                        Demonstração do produto
-                    </h3>
-
-                    <p style="color:#888;margin-top:6px;">
-                        Criativo para anúncio em vídeo
-                    </p>
-
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Formato</span>
-                            <b>9:16</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Plataforma</span>
-                            <b>Instagram / TikTok</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Potencial</span>
-                            <b style="color:#35d05f;">Alto</b>
-                        </div>
-
+                    <div>
+                        <span>Plataforma</span>
+                        <strong>TikTok</strong>
                     </div>
 
-                    <button class="produto exemplo #02">
-                        Ver criativo →
-                    </button>
+                    <div>
+                        <span>Potencial</span>
+                        <strong class="positive">Muito alto</strong>
+                    </div>
 
                 </div>
 
+                <button class="opportunity">
+                    Ver criativo →
+                </button>
 
-                <div class="card">
+            </div>
 
-                    <div style="
-                        height:180px;
-                        background:linear-gradient(135deg,#171717,#252525);
-                        border-radius:12px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:65px;
-                        position:relative;
-                        margin-bottom:16px;
-                    ">
-                        🎧
+        </div>
 
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            left:12px;
-                            background:#f5b400;
-                            color:#000;
-                            padding:6px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            UGC
-                        </span>
 
-                        <span style="
-                            position:absolute;
-                            bottom:12px;
-                            right:12px;
-                            background:#000;
-                            padding:6px 9px;
-                            border-radius:8px;
-                            font-size:12px;
-                        ">
-                            ▶ 0:18
-                        </span>
-                    </div>
+        <div class="creative-section-title">
+            <div>
+                <h3>Explorar criativos</h3>
+                <span>Ideias para diferentes estilos de anúncio</span>
+            </div>
+        </div>
 
-                    <span class="category">ELETRÔNICOS</span>
 
-                    <h3 style="margin-top:8px;">
-                        Review do produto
-                    </h3>
+        <div class="creative-grid">
 
-                    <p style="color:#888;margin-top:6px;">
-                        Estilo conteúdo de usuário
-                    </p>
+            <div class="creative-card">
 
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Formato</span>
-                            <b>9:16</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Plataforma</span>
-                            <b>TikTok / Reels</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Potencial</span>
-                            <b style="color:#35d05f;">Muito alto</b>
-                        </div>
-
-                    </div>
-
-                    <button class="produto exemplo #02">
-                        Ver criativo →
-                    </button>
-
+                <div class="creative-thumb">
+                    📱
+                    <span>VÍDEO</span>
+                    <b>0:24</b>
                 </div>
 
-
-                <div class="card">
-
-                    <div style="
-                        height:180px;
-                        background:linear-gradient(135deg,#171717,#252525);
-                        border-radius:12px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:65px;
-                        position:relative;
-                        margin-bottom:16px;
-                    ">
-                        ⌚
-
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            left:12px;
-                            background:#f5b400;
-                            color:#000;
-                            padding:6px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            OFERTA
-                        </span>
-
-                        <span style="
-                            position:absolute;
-                            bottom:12px;
-                            right:12px;
-                            background:#000;
-                            padding:6px 9px;
-                            border-radius:8px;
-                            font-size:12px;
-                        ">
-                            ▶ 0:31
-                        </span>
-                    </div>
+                <div class="creative-card-content">
 
                     <span class="category">TECNOLOGIA</span>
 
-                    <h3 style="margin-top:8px;">
-                        Oferta irresistível
-                    </h3>
+                    <h3>Demonstração do produto</h3>
 
-                    <p style="color:#888;margin-top:6px;">
-                        Criativo focado em conversão
-                    </p>
+                    <p>Criativo focado em mostrar o produto em uso.</p>
 
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Formato</span>
-                            <b>9:16</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Plataforma</span>
-                            <b>Meta Ads</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Potencial</span>
-                            <b style="color:#35d05f;">Alto</b>
-                        </div>
-
+                    <div class="creative-meta">
+                        <span>Instagram</span>
+                        <strong class="positive">Alto potencial</strong>
                     </div>
 
                     <button class="opportunity">
@@ -2718,8 +2872,69 @@ if (secao === "descobrir") {
                 </div>
 
             </div>
-        `;
-    }
+
+
+            <div class="creative-card">
+
+                <div class="creative-thumb">
+                    💡
+                    <span>OFERTA</span>
+                    <b>0:31</b>
+                </div>
+
+                <div class="creative-card-content">
+
+                    <span class="category">CASA</span>
+
+                    <h3>Oferta irresistível</h3>
+
+                    <p>Estrutura pensada para chamar atenção e converter.</p>
+
+                    <div class="creative-meta">
+                        <span>Meta Ads</span>
+                        <strong class="positive">Alto potencial</strong>
+                    </div>
+
+                    <button class="opportunity">
+                        Ver criativo →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="creative-card">
+
+                <div class="creative-thumb">
+                    ⌚
+                    <span>UGC</span>
+                    <b>0:21</b>
+                </div>
+
+                <div class="creative-card-content">
+
+                    <span class="category">TECNOLOGIA</span>
+
+                    <h3>Review rápido</h3>
+
+                    <p>Conteúdo curto com linguagem natural e prova social.</p>
+
+                    <div class="creative-meta">
+                        <span>TikTok / Reels</span>
+                        <strong class="positive">Muito alto</strong>
+                    </div>
+
+                    <button class="opportunity">
+                        Ver criativo →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
 }
     function abrirOportunidade(produto) {
 
