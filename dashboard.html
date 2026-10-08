@@ -832,6 +832,298 @@ body{
     }
 
 }
+ /* ===== ANALISES ===== */
+
+.analytics-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    margin-bottom:28px;
+}
+
+.analytics-kicker{
+    color:#f5b400;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.analytics-header h2{
+    font-size:28px;
+    margin-top:7px;
+}
+
+.analytics-header p{
+    color:#777;
+    margin-top:8px;
+    font-size:14px;
+}
+
+.analytics-period{
+    background:#111;
+    border:1px solid #292929;
+    color:#aaa;
+    padding:10px 14px;
+    border-radius:9px;
+    font-size:12px;
+}
+
+.analytics-stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+    margin-bottom:20px;
+}
+
+.analytics-stat{
+    background:linear-gradient(135deg,#151515,#0f0f0f);
+    border:1px solid #292929;
+    border-radius:14px;
+    padding:20px;
+}
+
+.analytics-stat span{
+    display:block;
+    color:#666;
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:.5px;
+}
+
+.analytics-stat strong{
+    display:block;
+    font-size:28px;
+    margin-top:10px;
+}
+
+.analytics-stat small{
+    display:block;
+    color:#777;
+    margin-top:7px;
+    font-size:11px;
+}
+
+.positive{
+    color:#35d05f !important;
+}
+
+.gold{
+    color:#f5b400 !important;
+}
+
+.analytics-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    gap:18px;
+    margin-bottom:18px;
+}
+
+.analytics-panel{
+    background:linear-gradient(135deg,#151515,#0f0f0f);
+    border:1px solid #292929;
+    border-radius:15px;
+    padding:21px;
+}
+
+.panel-heading{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.panel-heading h3{
+    font-size:17px;
+}
+
+.panel-heading span{
+    display:block;
+    color:#666;
+    font-size:11px;
+    margin-top:5px;
+}
+
+.indicator{
+    margin-bottom:23px;
+}
+
+.indicator:last-child{
+    margin-bottom:0;
+}
+
+.indicator-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:9px;
+    font-size:13px;
+}
+
+.indicator-bar{
+    height:8px;
+    background:#292929;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.indicator-bar div{
+    height:100%;
+    background:#35d05f;
+    border-radius:20px;
+}
+
+.indicator-bar.gold-bar div{
+    background:#f5b400;
+}
+
+.analysis-highlight{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    padding:15px;
+    background:#121212;
+    border:1px solid #252525;
+    border-radius:11px;
+    margin-bottom:17px;
+}
+
+.analysis-icon{
+    width:38px;
+    height:38px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#19150a;
+    border:1px solid #443500;
+    border-radius:9px;
+    color:#f5b400;
+}
+
+.analysis-highlight strong{
+    font-size:13px;
+}
+
+.analysis-highlight p{
+    color:#777;
+    font-size:11px;
+    line-height:1.5;
+    margin-top:4px;
+}
+
+.analysis-line{
+    display:flex;
+    justify-content:space-between;
+    padding:13px 0;
+    border-bottom:1px solid #222;
+    font-size:12px;
+}
+
+.analysis-line:last-child{
+    border-bottom:0;
+}
+
+.analysis-line span{
+    color:#777;
+}
+
+.ranking-panel{
+    margin-bottom:20px;
+}
+
+.analysis-product{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid #222;
+}
+
+.analysis-product:last-child{
+    border-bottom:0;
+}
+
+.analysis-product-info{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.analysis-product-icon{
+    width:44px;
+    height:44px;
+    background:#1a1a1a;
+    border:1px solid #292929;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:21px;
+}
+
+.analysis-product-info strong{
+    display:block;
+    font-size:13px;
+}
+
+.analysis-product-info span{
+    display:block;
+    color:#666;
+    font-size:11px;
+    margin-top:4px;
+}
+
+.analysis-product-score{
+    text-align:right;
+}
+
+.analysis-product-score span{
+    display:block;
+    color:#666;
+    font-size:10px;
+}
+
+.analysis-product-score strong{
+    display:block;
+    color:#35d05f;
+    font-size:19px;
+    margin-top:3px;
+}
+
+@media(max-width:900px){
+
+    .analytics-stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .analytics-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .analytics-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .analytics-header h2{
+        font-size:23px;
+    }
+
+    .analytics-stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .analytics-stat{
+        padding:15px;
+    }
+
+    .analytics-stat strong{
+        font-size:22px;
+    }
+
+}
 </style>
 </head>
 
@@ -1546,163 +1838,104 @@ if (secao === "descobrir") {
 
     if (secao === "analises") {
 
-       titulo.textContent = "📊 Análises";
+    titulo.textContent = "Análises";
 
-        resultados.innerHTML = `
-            <div style="
-                display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-                gap:18px;
-                margin-bottom:25px;
-            ">
+    resultados.innerHTML = `
+        <div class="analytics-header">
 
-                <div class="card">
-                    <span style="color:#888;font-size:12px;">
-                        PRODUTOS ANALISADOS
-                    </span>
-
-                    <h2 style="font-size:32px;margin-top:10px;">
-                        128
-                    </h2>
-
-                    <p style="color:#35d05f;margin-top:5px;">
-                        ↑ 18% este mês
-                    </p>
-                </div>
-
-                <div class="card">
-                    <span style="color:#888;font-size:12px;">
-                        MARGEM MÉDIA
-                    </span>
-
-                    <h2 style="font-size:32px;margin-top:10px;">
-                        57%
-                    </h2>
-
-                    <p style="color:#35d05f;margin-top:5px;">
-                        ↑ 8% este mês
-                    </p>
-                </div>
-
-                <div class="card">
-                    <span style="color:#888;font-size:12px;">
-                        MAIOR SCORE
-                    </span>
-
-                    <h2 style="font-size:32px;margin-top:10px;">
-                        94/100
-                    </h2>
-
-                    <p style="color:#f5b400;margin-top:5px;">
-                        🔥 Alto potencial
-                    </p>
-                </div>
-
-                <div class="card">
-                    <span style="color:#888;font-size:12px;">
-                        POTENCIAL DE LUCRO
-                    </span>
-
-                    <h2 style="font-size:32px;margin-top:10px;">
-                        R$ 4,8K
-                    </h2>
-
-                    <p style="color:#35d05f;margin-top:5px;">
-                        Estimativa
-                    </p>
-                </div>
-
+            <div>
+                <span class="analytics-kicker">NORYVA INTELLIGENCE</span>
+                <h2>Visão geral do seu mercado</h2>
+                <p>
+                    Transforme dados de produtos em decisões mais inteligentes.
+                </p>
             </div>
 
+            <div class="analytics-period">
+                Últimos 30 dias
+            </div>
 
-            <div class="card" style="margin-bottom:20px;">
+        </div>
 
-                <h3 style="margin-bottom:20px;">
-                    📈 Indicadores do mercado
-                </h3>
 
-                <div style="margin-bottom:22px;">
+        <div class="analytics-stats">
 
-                    <div style="
-                        display:flex;
-                        justify-content:space-between;
-                        margin-bottom:8px;
-                    ">
+            <div class="analytics-stat">
+                <span>PRODUTOS ANALISADOS</span>
+                <strong>128</strong>
+                <small class="positive">↑ 18% este mês</small>
+            </div>
+
+            <div class="analytics-stat">
+                <span>MARGEM MÉDIA</span>
+                <strong>57%</strong>
+                <small class="positive">↑ 8% este mês</small>
+            </div>
+
+            <div class="analytics-stat">
+                <span>MAIOR SCORE</span>
+                <strong class="gold">94</strong>
+                <small>🔥 Alto potencial</small>
+            </div>
+
+            <div class="analytics-stat">
+                <span>POTENCIAL ANALISADO</span>
+                <strong>R$ 4,8K</strong>
+                <small class="positive">Estimativa</small>
+            </div>
+
+        </div>
+
+
+        <div class="analytics-grid">
+
+            <div class="analytics-panel">
+
+                <div class="panel-heading">
+                    <div>
+                        <h3>Indicadores do mercado</h3>
+                        <span>Leitura geral das oportunidades encontradas</span>
+                    </div>
+                </div>
+
+
+                <div class="indicator">
+
+                    <div class="indicator-top">
                         <span>Demanda</span>
-                        <strong style="color:#35d05f;">
-                            Alta
-                        </strong>
+                        <strong class="positive">Alta</strong>
                     </div>
 
-                    <div style="
-                        height:9px;
-                        background:#292929;
-                        border-radius:10px;
-                    ">
-                        <div style="
-                            width:84%;
-                            height:100%;
-                            background:#35d05f;
-                            border-radius:10px;
-                        "></div>
+                    <div class="indicator-bar">
+                        <div style="width:84%;"></div>
                     </div>
 
                 </div>
 
 
-                <div style="margin-bottom:22px;">
+                <div class="indicator">
 
-                    <div style="
-                        display:flex;
-                        justify-content:space-between;
-                        margin-bottom:8px;
-                    ">
+                    <div class="indicator-top">
                         <span>Potencial de lucro</span>
-                        <strong style="color:#f5b400;">
-                            Muito alto
-                        </strong>
+                        <strong class="gold">Muito alto</strong>
                     </div>
 
-                    <div style="
-                        height:9px;
-                        background:#292929;
-                        border-radius:10px;
-                    ">
-                        <div style="
-                            width:91%;
-                            height:100%;
-                            background:#f5b400;
-                            border-radius:10px;
-                        "></div>
+                    <div class="indicator-bar gold-bar">
+                        <div style="width:91%;"></div>
                     </div>
 
                 </div>
 
 
-                <div>
+                <div class="indicator">
 
-                    <div style="
-                        display:flex;
-                        justify-content:space-between;
-                        margin-bottom:8px;
-                    ">
+                    <div class="indicator-top">
                         <span>Concorrência</span>
-                        <strong style="color:#f5b400;">
-                            Média
-                        </strong>
+                        <strong class="gold">Média</strong>
                     </div>
 
-                    <div style="
-                        height:9px;
-                        background:#292929;
-                        border-radius:10px;
-                    ">
-                        <div style="
-                            width:56%;
-                            height:100%;
-                            background:#f5b400;
-                            border-radius:10px;
-                        "></div>
+                    <div class="indicator-bar gold-bar">
+                        <div style="width:56%;"></div>
                     </div>
 
                 </div>
@@ -1710,74 +1943,118 @@ if (secao === "descobrir") {
             </div>
 
 
-            <div class="card">
+            <div class="analytics-panel">
 
-                <h3 style="margin-bottom:18px;">
-                    🏆 Produtos com maior potencial
-                </h3>
-
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:center;
-                    padding:15px 0;
-                    border-bottom:1px solid #252525;
-                ">
+                <div class="panel-heading">
                     <div>
-                        <strong>🧹 Produto Exemplo #01</strong>
-                        <p style="color:#777;font-size:12px;margin-top:4px;">
-                            Casa
-                        </p>
+                        <h3>Resumo da análise</h3>
+                        <span>Seu desempenho dentro da plataforma</span>
                     </div>
-
-                    <strong style="color:#35d05f;">
-                        94/100
-                    </strong>
                 </div>
 
+                <div class="analysis-highlight">
 
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:center;
-                    padding:15px 0;
-                    border-bottom:1px solid #252525;
-                ">
+                    <div class="analysis-icon">✦</div>
+
                     <div>
-                        <strong>💡 Produto Exemplo #02</strong>
-                        <p style="color:#777;font-size:12px;margin-top:4px;">
-                            Tecnologia
+                        <strong>Boa oportunidade de exploração</strong>
+                        <p>
+                            Os produtos analisados apresentam sinais
+                            interessantes de demanda e margem.
                         </p>
                     </div>
 
-                    <strong style="color:#35d05f;">
-                        89/100
-                    </strong>
                 </div>
 
+                <div class="analysis-line">
+                    <span>Oportunidades encontradas</span>
+                    <strong>37</strong>
+                </div>
 
-                <div style="
-                    display:flex;
-                    justify-content:space-between;
-                    align-items:center;
-                    padding:15px 0;
-                ">
-                    <div>
-                        <strong>🐶 Produto Exemplo #03</strong>
-                        <p style="color:#777;font-size:12px;margin-top:4px;">
-                            Pet
-                        </p>
-                    </div>
+                <div class="analysis-line">
+                    <span>Produtos salvos</span>
+                    <strong>12</strong>
+                </div>
 
-                    <strong style="color:#35d05f;">
-                        86/100
-                    </strong>
+                <div class="analysis-line">
+                    <span>Score médio</span>
+                    <strong class="gold">81/100</strong>
                 </div>
 
             </div>
-        `;
-    }
 
+        </div>
+
+
+        <div class="analytics-panel ranking-panel">
+
+            <div class="panel-heading">
+                <div>
+                    <h3>Produtos com maior potencial</h3>
+                    <span>Baseado nos dados analisados</span>
+                </div>
+            </div>
+
+
+            <div class="analysis-product">
+
+                <div class="analysis-product-info">
+                    <div class="analysis-product-icon">🎧</div>
+
+                    <div>
+                        <strong>Fone Bluetooth</strong>
+                        <span>Eletrônicos</span>
+                    </div>
+                </div>
+
+                <div class="analysis-product-score">
+                    <span>Score</span>
+                    <strong>94</strong>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-product">
+
+                <div class="analysis-product-info">
+                    <div class="analysis-product-icon">⌚</div>
+
+                    <div>
+                        <strong>Smartwatch</strong>
+                        <span>Tecnologia</span>
+                    </div>
+                </div>
+
+                <div class="analysis-product-score">
+                    <span>Score</span>
+                    <strong>89</strong>
+                </div>
+
+            </div>
+
+
+            <div class="analysis-product">
+
+                <div class="analysis-product-info">
+                    <div class="analysis-product-icon">💡</div>
+
+                    <div>
+                        <strong>Luz LED</strong>
+                        <span>Casa</span>
+                    </div>
+                </div>
+
+                <div class="analysis-product-score">
+                    <span>Score</span>
+                    <strong>86</strong>
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
     if (secao === "fornecedores") {
 
        titulo.textContent = "🏭 Fornecedores";
