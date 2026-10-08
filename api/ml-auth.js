@@ -2,7 +2,8 @@ export default async function handler(req, res) {
   const clientId = process.env.ML_CLIENT_ID;
   const clientSecret = process.env.ML_CLIENT_SECRET;
 
-  const redirectUri = "https://mineradora-phi.vercel.app/api/ml-auth";
+  const redirectUri =
+    "https://mineradora-phi.vercel.app/api/ml-auth";
 
   if (!clientId || !clientSecret) {
     return res.status(500).json({
@@ -48,6 +49,11 @@ export default async function handler(req, res) {
         details: data
       });
     }
+
+    res.setHeader(
+      "Set-Cookie",
+      `ml_access_token=${data.access_token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=21600`
+    );
 
     return res.status(200).json({
       success: true,
