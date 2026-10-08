@@ -1124,6 +1124,215 @@ body{
     }
 
 }
+ /* ===== FORNECEDORES ===== */
+
+.suppliers-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    margin-bottom:22px;
+}
+
+.suppliers-kicker{
+    color:#f5b400;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.suppliers-header h2{
+    font-size:28px;
+    margin-top:7px;
+}
+
+.suppliers-header p{
+    color:#777;
+    margin-top:8px;
+    font-size:14px;
+}
+
+.supplier-filter{
+    background:#111;
+    color:#aaa;
+    border:1px solid #292929;
+    padding:11px 15px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.supplier-search{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#111;
+    border:1px solid #292929;
+    border-radius:12px;
+    padding:7px;
+    margin-bottom:25px;
+}
+
+.supplier-search span{
+    color:#666;
+    font-size:20px;
+    padding-left:8px;
+}
+
+.supplier-search input{
+    flex:1;
+    background:transparent;
+    border:0;
+    outline:0;
+    color:#fff;
+    padding:11px 4px;
+    font-size:13px;
+}
+
+.supplier-search input::placeholder{
+    color:#555;
+}
+
+.supplier-search button{
+    background:#f5b400;
+    color:#000;
+    border:0;
+    border-radius:8px;
+    padding:11px 18px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.supplier-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.supplier-card{
+    background:linear-gradient(135deg,#151515,#0f0f0f);
+    border:1px solid #292929;
+    border-radius:16px;
+    padding:20px;
+    transition:.2s ease;
+}
+
+.supplier-card:hover{
+    transform:translateY(-2px);
+    border-color:#3b3b3b;
+}
+
+.supplier-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.supplier-icon{
+    width:52px;
+    height:52px;
+    background:#19150a;
+    border:1px solid #443500;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.verified{
+    color:#35d05f;
+    background:#102718;
+    border:1px solid #1e4d2b;
+    padding:6px 9px;
+    border-radius:20px;
+    font-size:9px;
+    font-weight:bold;
+}
+
+.supplier-card h3{
+    font-size:18px;
+    margin-top:8px;
+}
+
+.supplier-card > p{
+    color:#777;
+    font-size:12px;
+    line-height:1.5;
+    margin-top:7px;
+    min-height:36px;
+}
+
+.supplier-rating{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:17px;
+}
+
+.supplier-rating strong{
+    color:#f5b400;
+    font-size:13px;
+}
+
+.supplier-rating span{
+    color:#666;
+    font-size:11px;
+}
+
+.supplier-info{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:7px;
+    margin:20px 0;
+}
+
+.supplier-info div{
+    background:#111;
+    border:1px solid #242424;
+    padding:10px 8px;
+    border-radius:8px;
+}
+
+.supplier-info span{
+    display:block;
+    color:#666;
+    font-size:9px;
+    margin-bottom:5px;
+}
+
+.supplier-info strong{
+    font-size:11px;
+}
+
+@media(max-width:1000px){
+
+    .supplier-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px){
+
+    .suppliers-header{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .suppliers-header h2{
+        font-size:23px;
+    }
+
+    .supplier-grid{
+        grid-template-columns:1fr;
+    }
+
+    .supplier-search button{
+        padding:11px 13px;
+    }
+
+}
 </style>
 </head>
 
@@ -2055,273 +2264,195 @@ if (secao === "descobrir") {
         </div>
     `;
 }
-    if (secao === "fornecedores") {
+   if (secao === "fornecedores") {
 
-       titulo.textContent = "🏭 Fornecedores";
+    titulo.textContent = "Fornecedores";
 
-        resultados.innerHTML = `
-            <div style="margin-bottom:25px;">
-                <h2 style="font-size:22px;margin-bottom:8px;">
-                    Encontre seus fornecedores
-                </h2>
+    resultados.innerHTML = `
+        <div class="suppliers-header">
 
-                <p style="color:#888;">
-                    Fornecedores relacionados aos produtos encontrados pela Noryva.
+            <div>
+                <span class="suppliers-kicker">NORYVA SUPPLIERS</span>
+                <h2>Encontre fornecedores para seus produtos</h2>
+                <p>
+                    Descubra parceiros para transformar oportunidades em vendas.
                 </p>
             </div>
 
-            <div style="
-                display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-                gap:20px;
-            ">
+            <button class="supplier-filter">
+                ⚙ Filtros
+            </button>
 
-                <div class="card">
+        </div>
 
-                    <div style="
-                        display:flex;
-                        justify-content:space-between;
-                        align-items:center;
-                        margin-bottom:18px;
-                    ">
 
-                        <div style="
-                            width:55px;
-                            height:55px;
-                            background:#19150a;
-                            border-radius:12px;
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;
-                            font-size:28px;
-                        ">
-                            🏭
-                        </div>
+        <div class="supplier-search">
+            <span>⌕</span>
+            <input
+                type="text"
+                placeholder="Buscar fornecedor, produto ou categoria..."
+            >
+            <button>Buscar</button>
+        </div>
 
-                        <span style="
-                            background:#102718;
-                            color:#35d05f;
-                            padding:7px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            ✓ VERIFICADO
-                        </span>
 
-                    </div>
+        <div class="supplier-grid">
 
-                    <h3>Fornecedor Exemplo</h3>
+            <div class="supplier-card">
 
-                    <p style="
-                        color:#888;
-                        margin-top:6px;
-                    ">
-                        Eletrônicos e acessórios
-                    </p>
+                <div class="supplier-top">
 
-                    <div style="
-                        display:flex;
-                        gap:6px;
-                        align-items:center;
-                        margin-top:15px;
-                    ">
-                        <span style="color:#f5b400;">★★★★★</span>
-                        <strong>4,8</strong>
-                        <span style="color:#777;">(328 avaliações)</span>
-                    </div>
+                    <div class="supplier-icon">🏭</div>
 
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Produtos</span>
-                            <b>1.240+</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Pedido mínimo</span>
-                            <b>R$ 100</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Envio</span>
-                            <b style="color:#35d05f;">Disponível</b>
-                        </div>
-
-                    </div>
-
-                   <button class="opportunity" onclick="abrirFornecedor('Fornecedor Exemplo')">
-                        Ver fornecedor →
-                    </button>
+                    <span class="verified">
+                        ✓ VERIFICADO
+                    </span>
 
                 </div>
 
+                <span class="category">ELETRÔNICOS</span>
 
-                <div class="card">
+                <h3>Fornecedor Exemplo</h3>
 
-                    <div style="
-                        display:flex;
-                        justify-content:space-between;
-                        align-items:center;
-                        margin-bottom:18px;
-                    ">
+                <p>
+                    Eletrônicos, acessórios e produtos para celular.
+                </p>
 
-                        <div style="
-                            width:55px;
-                            height:55px;
-                            background:#19150a;
-                            border-radius:12px;
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;
-                            font-size:28px;
-                        ">
-                            📦
-                        </div>
+                <div class="supplier-rating">
+                    <strong>★ 4,8</strong>
+                    <span>328 avaliações</span>
+                </div>
 
-                        <span style="
-                            background:#102718;
-                            color:#35d05f;
-                            padding:7px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            ✓ VERIFICADO
-                        </span>
+                <div class="supplier-info">
 
+                    <div>
+                        <span>Produtos</span>
+                        <strong>1.240+</strong>
                     </div>
 
-                    <h3>Fornecedor Exemplo 2</h3>
-
-                    <p style="
-                        color:#888;
-                        margin-top:6px;
-                    ">
-                        Casa, beleza e acessórios
-                    </p>
-
-                    <div style="
-                        display:flex;
-                        gap:6px;
-                        align-items:center;
-                        margin-top:15px;
-                    ">
-                        <span style="color:#f5b400;">★★★★★</span>
-                        <strong>4,7</strong>
-                        <span style="color:#777;">(214 avaliações)</span>
+                    <div>
+                        <span>Pedido mínimo</span>
+                        <strong>R$ 100</strong>
                     </div>
 
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Produtos</span>
-                            <b>860+</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Pedido mínimo</span>
-                            <b>R$ 80</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Envio</span>
-                            <b style="color:#35d05f;">Disponível</b>
-                        </div>
-
+                    <div>
+                        <span>Envio</span>
+                        <strong class="positive">Disponível</strong>
                     </div>
-
-                    <button class="opportunity">
-                        Ver fornecedor →
-                    </button>
 
                 </div>
 
-
-                <div class="card">
-
-                    <div style="
-                        display:flex;
-                        justify-content:space-between;
-                        align-items:center;
-                        margin-bottom:18px;
-                    ">
-
-                        <div style="
-                            width:55px;
-                            height:55px;
-                            background:#19150a;
-                            border-radius:12px;
-                            display:flex;
-                            align-items:center;
-                            justify-content:center;
-                            font-size:28px;
-                        ">
-                            🚚
-                        </div>
-
-                        <span style="
-                            background:#102718;
-                            color:#35d05f;
-                            padding:7px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            ✓ VERIFICADO
-                        </span>
-
-                    </div>
-
-                    <h3>Fornecedor Exemplo 3</h3>
-
-                    <p style="
-                        color:#888;
-                        margin-top:6px;
-                    ">
-                        Casa, utilidades e ferramentas
-                    </p>
-
-                    <div style="
-                        display:flex;
-                        gap:6px;
-                        align-items:center;
-                        margin-top:15px;
-                    ">
-                        <span style="color:#f5b400;">★★★★★</span>
-                        <strong>4,6</strong>
-                        <span style="color:#777;">(187 avaliações)</span>
-                    </div>
-
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Produtos</span>
-                            <b>640+</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Pedido mínimo</span>
-                            <b>R$ 120</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Envio</span>
-                            <b style="color:#35d05f;">Disponível</b>
-                        </div>
-
-                    </div>
-
-                    <button class="produto exemplo #02">
-                        Ver fornecedor →
-                    </button>
-
-                </div>
+                <button class="opportunity">
+                    Ver fornecedor →
+                </button>
 
             </div>
-        `;
-    }
 
+
+            <div class="supplier-card">
+
+                <div class="supplier-top">
+
+                    <div class="supplier-icon">📦</div>
+
+                    <span class="verified">
+                        ✓ VERIFICADO
+                    </span>
+
+                </div>
+
+                <span class="category">VARIEDADES</span>
+
+                <h3>Fornecedor Exemplo 2</h3>
+
+                <p>
+                    Casa, beleza, acessórios e utilidades.
+                </p>
+
+                <div class="supplier-rating">
+                    <strong>★ 4,7</strong>
+                    <span>214 avaliações</span>
+                </div>
+
+                <div class="supplier-info">
+
+                    <div>
+                        <span>Produtos</span>
+                        <strong>860+</strong>
+                    </div>
+
+                    <div>
+                        <span>Pedido mínimo</span>
+                        <strong>R$ 80</strong>
+                    </div>
+
+                    <div>
+                        <span>Envio</span>
+                        <strong class="positive">Disponível</strong>
+                    </div>
+
+                </div>
+
+                <button class="opportunity">
+                    Ver fornecedor →
+                </button>
+
+            </div>
+
+
+            <div class="supplier-card">
+
+                <div class="supplier-top">
+
+                    <div class="supplier-icon">🚚</div>
+
+                    <span class="verified">
+                        ✓ VERIFICADO
+                    </span>
+
+                </div>
+
+                <span class="category">CASA</span>
+
+                <h3>Fornecedor Exemplo 3</h3>
+
+                <p>
+                    Utilidades, ferramentas e produtos para casa.
+                </p>
+
+                <div class="supplier-rating">
+                    <strong>★ 4,6</strong>
+                    <span>187 avaliações</span>
+                </div>
+
+                <div class="supplier-info">
+
+                    <div>
+                        <span>Produtos</span>
+                        <strong>640+</strong>
+                    </div>
+
+                    <div>
+                        <span>Pedido mínimo</span>
+                        <strong>R$ 120</strong>
+                    </div>
+
+                    <div>
+                        <span>Envio</span>
+                        <strong class="positive">Disponível</strong>
+                    </div>
+
+                </div>
+
+                <button class="opportunity">
+                    Ver fornecedor →
+                </button>
+
+            </div>
+
+        </div>
+    `;
+}
     if (secao === "criativos") {
 
         titulo.textContent = "🎥 Criativos";
