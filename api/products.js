@@ -2,9 +2,8 @@ import crypto from "crypto";
 
 export default async function handler(req, res) {
   try {
-    const cookie = req.headers.cookie || "";
-
-    const match = cookie.match(/ml_session=([^;]+)/);
+    const cookies = req.headers.cookie || "";
+    const match = cookies.match(/ml_session=([^;]+)/);
 
     if (!match) {
       return res.status(401).json({
@@ -31,22 +30,21 @@ export default async function handler(req, res) {
       Buffer.from(session.tag, "base64")
     );
 
-    let token = decipher.update(
+    let decrypted = decipher.update(
       session.data,
       "base64",
       "utf8"
     );
 
-    token += decipher.final("utf8");
+    decrypted += decipher.final("utf8");
 
-    const tokenData = JSON.parse(token);
+    const tokenData = JSON.parse(decrypted);
 
     const response = await fetch(
-      "https://api.mercadolibre.com/trends/MLB",
+      "https://api.mercadolibre.com/sites/MLB/search?q=iphone&limit=20",
       {
         headers: {
-          Authorization:
-            `Bearer ${tokenData.access_token}`
+          Authorization: `Bearer ${tokenData.access_token}`
         }
       }
     );
@@ -55,21 +53,27 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       return res.status(response.status).json({
-        error: "Erro ao consultar Mercado Livre",
+        error: "Mercado Livre recusou a busca",
         details: data
       });
     }
 
     return res.status(200).json({
       success: true,
-      trends: data
+      produtos: data.results.map(item => ({
+        id: item.id,
+        titulo: item.title,
+        preco: item.price,
+        imagem: item.thumbnail,
+        link: item.permalink
+      }))
     });
 
   } catch (error) {
     console.error(error);
 
     return res.status(500).json({
-      error: "Erro ao buscar tendências"
+      error: "Erro interno ao buscar produtos"
     });
   }
 }
