@@ -408,21 +408,54 @@ body{
 
     <div class="menu">
 
-      <a href="#" onclick="mostrarSecao('descobrir'); return false;" class="active">🔎 Descobrir</a>
+        <a href="#" onclick="mostrarSecao('descobrir'); return false;" class="active">
+            <span>⌕</span>
+            <span>Descobrir</span>
+        </a>
 
-<a href="#" onclick="mostrarSecao('alta'); return false;">🔥 Em alta</a>
+        <a href="#" onclick="mostrarSecao('alta'); return false;">
+            <span>↗</span>
+            <span>Em alta</span>
+        </a>
 
-<a href="#" onclick="mostrarSecao('favoritos'); return false;">⭐ Favoritos</a>
+        <a href="#" onclick="mostrarSecao('favoritos'); return false;">
+            <span>☆</span>
+            <span>Favoritos</span>
+        </a>
 
-<a href="#" onclick="mostrarSecao('analises'); return false;">📊 Análises</a>
+        <a href="#" onclick="mostrarSecao('analises'); return false;">
+            <span>◈</span>
+            <span>Análises</span>
+        </a>
 
-<a href="#" onclick="mostrarSecao('fornecedores'); return false;">🏭 Fornecedores</a>
+        <a href="#" onclick="mostrarSecao('fornecedores'); return false;">
+            <span>▣</span>
+            <span>Fornecedores</span>
+        </a>
 
-<a href="#" onclick="mostrarSecao('criativos'); return false;">🎥 Criativos</a>
+        <a href="#" onclick="mostrarSecao('criativos'); return false;">
+            <span>▷</span>
+            <span>Criativos</span>
+        </a>
+
+    </div>
+
+    <div class="sidebar-bottom">
+
+        <button type="button" class="sidebar-account" onclick="abrirConta()">
+            <span class="account-avatar">N</span>
+
+            <span class="account-info">
+                <strong>Minha conta</strong>
+                <small>Plano PRO</small>
+            </span>
+
+            <span class="account-dots">⋮</span>
+        </button>
+
     </div>
 
 </aside>
-
 <main class="main">
 
 
