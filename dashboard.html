@@ -674,6 +674,164 @@ body{
     }
 
 }
+ /* ===== FAVORITOS ===== */
+
+.favorites-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:28px;
+    gap:20px;
+}
+
+.favorites-kicker{
+    color:#f5b400;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.favorites-header h2{
+    font-size:28px;
+    margin-top:7px;
+}
+
+.favorites-header p{
+    color:#777;
+    margin-top:8px;
+    font-size:14px;
+}
+
+.favorites-count{
+    min-width:90px;
+    padding:14px 18px;
+    background:#111;
+    border:1px solid #292929;
+    border-radius:12px;
+    text-align:center;
+}
+
+.favorites-count strong{
+    display:block;
+    color:#f5b400;
+    font-size:24px;
+}
+
+.favorites-count span{
+    color:#666;
+    font-size:11px;
+}
+
+.favorites-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.favorite-card{
+    background:linear-gradient(135deg,#151515,#0f0f0f);
+    border:1px solid #292929;
+    border-radius:16px;
+    overflow:hidden;
+    transition:.2s ease;
+}
+
+.favorite-card:hover{
+    transform:translateY(-2px);
+    border-color:#3b3b3b;
+}
+
+.favorite-image{
+    height:210px;
+    background:#191919;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.favorite-icon{
+    font-size:85px;
+}
+
+.favorite-star{
+    position:absolute;
+    top:14px;
+    right:14px;
+    color:#f5b400;
+    background:#19150a;
+    border:1px solid #443500;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.favorite-content{
+    padding:20px;
+}
+
+.favorite-content h3{
+    font-size:20px;
+    margin-top:8px;
+}
+
+.favorite-trend{
+    color:#35d05f;
+    font-size:12px;
+    margin-top:7px;
+}
+
+.favorite-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+    margin:20px 0;
+}
+
+.favorite-stats div{
+    background:#111;
+    border:1px solid #242424;
+    padding:11px;
+    border-radius:9px;
+}
+
+.favorite-stats span{
+    display:block;
+    color:#666;
+    font-size:10px;
+    margin-bottom:5px;
+}
+
+.favorite-stats strong{
+    font-size:13px;
+}
+
+.favorite-score{
+    color:#f5b400;
+}
+
+@media(max-width:700px){
+
+    .favorites-header{
+        align-items:flex-start;
+    }
+
+    .favorites-header h2{
+        font-size:23px;
+    }
+
+    .favorites-count{
+        min-width:65px;
+    }
+
+    .favorites-grid{
+        grid-template-columns:1fr;
+    }
+
+}
 </style>
 </head>
 
@@ -1267,144 +1425,64 @@ if (secao === "descobrir") {
         </div>
     `;
 }
-    if (secao === "favoritos") {
+   if (secao === "favoritos") {
 
-        titulo.textContent = "⭐ Meus favoritos";
+    titulo.textContent = "Favoritos";
 
-        resultados.innerHTML = `
-            <div style="margin-bottom:25px;">
-                <h2 style="font-size:22px;margin-bottom:8px;">
-                    Seus produtos salvos
-                </h2>
+    resultados.innerHTML = `
+        <div class="favorites-header">
 
-                <p style="color:#888;">
-                    Produtos que você marcou para acompanhar depois.
+            <div>
+                <span class="favorites-kicker">NORYVA SAVED</span>
+
+                <h2>Seus produtos favoritos</h2>
+
+                <p>
+                    Acompanhe as oportunidades que você decidiu guardar.
                 </p>
             </div>
 
-            <div style="
-                display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-                gap:20px;
-            ">
+            <div class="favorites-count">
+                <strong>2</strong>
+                <span>salvos</span>
+            </div>
 
-                <div class="card">
+        </div>
 
-                    <div class="product-image" style="
-                        height:180px;
-                        font-size:70px;
-                        position:relative;
-                    ">
-                        🎧
+        <div class="favorites-grid">
 
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            right:12px;
-                            background:#19150a;
-                            color:#f5b400;
-                            padding:7px 10px;
-                            border-radius:20px;
-                            font-size:16px;
-                        ">
-                            ⭐
-                        </span>
-                    </div>
+            <div class="favorite-card">
+
+                <div class="favorite-image">
+                    <span class="favorite-star">★</span>
+                    <span class="favorite-icon">🎧</span>
+                </div>
+
+                <div class="favorite-content">
 
                     <span class="category">ELETRÔNICOS</span>
 
-                    <h3 style="margin-top:8px;">
-                        Fone Bluetooth
-                    </h3>
+                    <h3>Fone Bluetooth</h3>
 
-                    <p style="color:#888;margin-top:6px;">
-                        Tendência crescente
+                    <p class="favorite-trend">
+                        ↗ Tendência crescente
                     </p>
 
-                    <div class="info">
+                    <div class="favorite-stats">
 
-                        <div class="row">
-                            <span>Custo</span>
-                            <b>R$ 24,90</b>
+                        <div>
+                            <span>Preço</span>
+                            <strong>R$ 69,90</strong>
                         </div>
 
-                        <div class="row">
-                            <span>Venda sugerida</span>
-                            <b>R$ 69,90</b>
-                        </div>
-
-                        <div class="row">
+                        <div>
                             <span>Margem</span>
-                            <b>64%</b>
+                            <strong>64%</strong>
                         </div>
 
-                        <div class="row">
-                            <span>Score Noryva</span>
-                            <b style="color:#35d05f;">82/100</b>
-                        </div>
-
-                    </div>
-
-                    <button class="opportunity">
-                        Ver oportunidade →
-                    </button>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="product-image" style="
-                        height:180px;
-                        font-size:70px;
-                        position:relative;
-                    ">
-                        ⌚
-
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            right:12px;
-                            background:#19150a;
-                            color:#f5b400;
-                            padding:7px 10px;
-                            border-radius:20px;
-                            font-size:16px;
-                        ">
-                            ⭐
-                        </span>
-                    </div>
-
-                    <span class="category">TECNOLOGIA</span>
-
-                    <h3 style="margin-top:8px;">
-                        Smartwatch
-                    </h3>
-
-                    <p style="color:#888;margin-top:6px;">
-                        Demanda em crescimento
-                    </p>
-
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Custo</span>
-                            <b>R$ 49,90</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Venda sugerida</span>
-                            <b>R$ 119,90</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Margem</span>
-                            <b>58%</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Score Noryva</span>
-                            <b style="color:#35d05f;">79/100</b>
+                        <div>
+                            <span>Score</span>
+                            <strong class="favorite-score">82</strong>
                         </div>
 
                     </div>
@@ -1416,8 +1494,55 @@ if (secao === "descobrir") {
                 </div>
 
             </div>
-        `;
-    }
+
+
+            <div class="favorite-card">
+
+                <div class="favorite-image">
+                    <span class="favorite-star">★</span>
+                    <span class="favorite-icon">⌚</span>
+                </div>
+
+                <div class="favorite-content">
+
+                    <span class="category">TECNOLOGIA</span>
+
+                    <h3>Smartwatch</h3>
+
+                    <p class="favorite-trend">
+                        ↗ Demanda em crescimento
+                    </p>
+
+                    <div class="favorite-stats">
+
+                        <div>
+                            <span>Preço</span>
+                            <strong>R$ 119,90</strong>
+                        </div>
+
+                        <div>
+                            <span>Margem</span>
+                            <strong>58%</strong>
+                        </div>
+
+                        <div>
+                            <span>Score</span>
+                            <strong class="favorite-score">79</strong>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver oportunidade →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
+}
 
     if (secao === "analises") {
 
