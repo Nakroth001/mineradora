@@ -1750,12 +1750,12 @@ function mostrarSecao(secao) {
  const buscaArea = document.querySelector(".search-box");
 const tituloOportunidades = document.querySelector(".section-title");
 
-if (secao === "fornecedores") {
-    buscaArea.style.display = "none";
-    tituloOportunidades.style.display = "none";
-} else {
+if (secao === "descobrir") {
     buscaArea.style.display = "";
     tituloOportunidades.style.display = "";
+} else {
+    buscaArea.style.display = "none";
+    tituloOportunidades.style.display = "none";
 }
 
     resultados.innerHTML = "";
