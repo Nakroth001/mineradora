@@ -1980,6 +1980,83 @@ verificarLogin();
     document.getElementById("mobileMenu").classList.toggle("active");
 }
 </script>
+<script>
+async function carregarProdutos() {
+    const container = document.getElementById("produtos");
 
+    if (!container) return;
+
+    container.innerHTML = "<p>🔎 Buscando produtos...</p>";
+
+    try {
+        const resposta = await fetch("/api/products?q=fone%20bluetooth");
+
+        if (!resposta.ok) {
+            throw new Error("Erro na busca");
+        }
+
+        const dados = await resposta.json();
+
+        const produtos = dados.shopping || [];
+
+        if (!produtos.length) {
+            container.innerHTML = "<p>Nenhum produto encontrado.</p>";
+            return;
+        }
+
+        container.innerHTML = produtos.map(produto => `
+            <div class="card">
+
+                <div class="product-image">
+                    <img
+                        src="${produto.thumbnail || ""}"
+                        alt="${produto.title || "Produto"}"
+                        style="width:100%;height:100%;object-fit:contain;"
+                    >
+                </div>
+
+                <span class="category">
+                    PRODUTO
+                </span>
+
+                <h3>
+                    ${produto.title || "Produto sem nome"}
+                </h3>
+
+                <div class="score">
+                    <span>Loja</span>
+                    <strong>${produto.merchant || "Não informado"}</strong>
+                </div>
+
+                <div class="info">
+
+                    <div class="row">
+                        <span>Preço</span>
+                        <b>${produto.price || "Não informado"}</b>
+                    </div>
+
+                </div>
+
+                <a
+                    href="${produto.link || "#"}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn"
+                >
+                    Ver produto
+                </a>
+
+            </div>
+        `).join("");
+
+    } catch (erro) {
+        console.error(erro);
+        container.innerHTML =
+            "<p>Não foi possível carregar os produtos.</p>";
+    }
+}
+
+carregarProdutos();
+</script>
 </body>
 </html>
