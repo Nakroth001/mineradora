@@ -1747,6 +1747,16 @@ function mostrarSecao(secao) {
     const titulo = document.querySelector(".top h1");
     const produtos = document.getElementById("produtos");
     const resultados = document.getElementById("resultados");
+ const buscaArea = document.querySelector(".search-box");
+const tituloOportunidades = document.querySelector(".section-title");
+
+if (secao === "fornecedores") {
+    buscaArea.style.display = "none";
+    tituloOportunidades.style.display = "none";
+} else {
+    buscaArea.style.display = "";
+    tituloOportunidades.style.display = "";
+}
 
     resultados.innerHTML = "";
 if (secao === "descobrir") {
