@@ -317,6 +317,36 @@ body{
         display: block;
     }
 }
+ .noryva-loading{
+    text-align:center;
+    padding:30px 20px;
+}
+
+.fox-run{
+    font-size:48px;
+    display:inline-block;
+    animation:foxRun 0.8s infinite alternate ease-in-out;
+}
+
+.loading-title{
+    margin-top:12px;
+    font-weight:bold;
+}
+
+.loading-sub{
+    color:#888;
+    margin-top:7px;
+    font-size:13px;
+}
+
+@keyframes foxRun{
+    from{
+        transform:translateX(-35px);
+    }
+    to{
+        transform:translateX(35px);
+    }
+}
 </style>
 </head>
 
@@ -572,13 +602,20 @@ async function minerar() {
     }
 
     const resultados = document.getElementById("resultados");
+resultados.innerHTML = `
+    <div class="card noryva-loading">
+        <div class="fox-run">🦊</div>
 
-    resultados.innerHTML = `
-        <div class="card">
-            🔎 Buscando resultados para: <strong>${busca}</strong>...
+        <div class="loading-title">
+            A Noryva está minerando oportunidades...
         </div>
-    `;
 
+        <div class="loading-sub">
+            Analisando ofertas, preços e concorrência para:
+            <strong>${busca}</strong>
+        </div>
+    </div>
+`;
     try {
         const resposta = await fetch(
             "/api/products?q=" + encodeURIComponent(busca)
