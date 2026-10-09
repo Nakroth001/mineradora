@@ -2167,192 +2167,68 @@ if (secao === "descobrir") {
         </div>
     `;
 }
-   if (secao === "fornecedores") {
-
+  if (secao === "fornecedores") {
     titulo.textContent = "Fornecedores";
+
+    const produtos = window.noryvaProdutosPesquisados || [];
 
     resultados.innerHTML = `
         <div class="suppliers-header">
-
             <div>
                 <span class="suppliers-kicker">NORYVA SUPPLIERS</span>
-                <h2>Encontre fornecedores para seus produtos</h2>
-                <p>
-                    Descubra parceiros para transformar oportunidades em vendas.
-                </p>
+                <h2>Encontre ofertas para seus produtos</h2>
+                <p>Consulte os vendedores encontrados nas pesquisas da Noryva.</p>
             </div>
-
-            <button class="supplier-filter">
-                ⚙ Filtros
-            </button>
-
         </div>
-
 
         <div class="supplier-search">
             <span>⌕</span>
             <input
+                id="supplierSearch"
                 type="text"
-                placeholder="Buscar fornecedor, produto ou categoria..."
+                placeholder="Pesquisar produto ou vendedor..."
             >
-            <button>Buscar</button>
+            <button type="button" onclick="buscarFornecedores()">Buscar</button>
         </div>
 
+        <div id="supplierResults" class="supplier-grid">
+            ${
+                produtos.length
+                ? produtos.map(produto => `
+                    <div class="supplier-card">
+                        <div class="supplier-top">
+                            <div class="supplier-icon">📦</div>
+                            <span class="category">OFERTA ENCONTRADA</span>
+                        </div>
 
-        <div class="supplier-grid">
+                        <h3>${produto.title || "Produto sem nome"}</h3>
 
-            <div class="supplier-card">
+                        <p>Vendedor: ${produto.merchant || "Não informado pela fonte"}</p>
 
-                <div class="supplier-top">
+                        <div class="supplier-info">
+                            <div>
+                                <span>Preço anunciado</span>
+                                <strong>${produto.price || "Não informado"}</strong>
+                            </div>
+                        </div>
 
-                    <div class="supplier-icon">🏭</div>
-
-                    <span class="verified">
-                        ✓ VERIFICADO
-                    </span>
-
-                </div>
-
-                <span class="category">ELETRÔNICOS</span>
-
-                <h3>Fornecedor Exemplo</h3>
-
-                <p>
-                    Eletrônicos, acessórios e produtos para celular.
-                </p>
-
-                <div class="supplier-rating">
-                    <strong>★ 4,8</strong>
-                    <span>328 avaliações</span>
-                </div>
-
-                <div class="supplier-info">
-
-                    <div>
-                        <span>Produtos</span>
-                        <strong>1.240+</strong>
+                        ${
+                            produto.link
+                            ? `<a class="opportunity"
+                                href="${produto.link}"
+                                target="_blank"
+                                rel="noopener noreferrer">
+                                Ver oferta original →
+                               </a>`
+                            : `<p>Link da oferta não disponível.</p>`
+                        }
                     </div>
-
-                    <div>
-                        <span>Pedido mínimo</span>
-                        <strong>R$ 100</strong>
-                    </div>
-
-                    <div>
-                        <span>Envio</span>
-                        <strong class="positive">Disponível</strong>
-                    </div>
-
-                </div>
-
-                <button class="opportunity">
-                    Ver fornecedor →
-                </button>
-
-            </div>
-
-
-            <div class="supplier-card">
-
-                <div class="supplier-top">
-
-                    <div class="supplier-icon">📦</div>
-
-                    <span class="verified">
-                        ✓ VERIFICADO
-                    </span>
-
-                </div>
-
-                <span class="category">VARIEDADES</span>
-
-                <h3>Fornecedor Exemplo 2</h3>
-
-                <p>
-                    Casa, beleza, acessórios e utilidades.
-                </p>
-
-                <div class="supplier-rating">
-                    <strong>★ 4,7</strong>
-                    <span>214 avaliações</span>
-                </div>
-
-                <div class="supplier-info">
-
-                    <div>
-                        <span>Produtos</span>
-                        <strong>860+</strong>
-                    </div>
-
-                    <div>
-                        <span>Pedido mínimo</span>
-                        <strong>R$ 80</strong>
-                    </div>
-
-                    <div>
-                        <span>Envio</span>
-                        <strong class="positive">Disponível</strong>
-                    </div>
-
-                </div>
-
-                <button class="opportunity">
-                    Ver fornecedor →
-                </button>
-
-            </div>
-
-
-            <div class="supplier-card">
-
-                <div class="supplier-top">
-
-                    <div class="supplier-icon">🚚</div>
-
-                    <span class="verified">
-                        ✓ VERIFICADO
-                    </span>
-
-                </div>
-
-                <span class="category">CASA</span>
-
-                <h3>Fornecedor Exemplo 3</h3>
-
-                <p>
-                    Utilidades, ferramentas e produtos para casa.
-                </p>
-
-                <div class="supplier-rating">
-                    <strong>★ 4,6</strong>
-                    <span>187 avaliações</span>
-                </div>
-
-                <div class="supplier-info">
-
-                    <div>
-                        <span>Produtos</span>
-                        <strong>640+</strong>
-                    </div>
-
-                    <div>
-                        <span>Pedido mínimo</span>
-                        <strong>R$ 120</strong>
-                    </div>
-
-                    <div>
-                        <span>Envio</span>
-                        <strong class="positive">Disponível</strong>
-                    </div>
-
-                </div>
-
-                <button class="opportunity">
-                    Ver fornecedor →
-                </button>
-
-            </div>
-
+                `).join("")
+                : `<div class="card">
+                    <h3>Nenhuma oferta disponível ainda</h3>
+                    <p>Pesquise um produto na seção Descobrir e volte aqui.</p>
+                   </div>`
+            }
         </div>
     `;
 }
