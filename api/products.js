@@ -25,7 +25,26 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    return res.status(response.status).json(data);
+    if (!response.ok) {
+      return res.status(response.status).json(data);
+    }
+
+    const produtos = data.shopping || data.results || [];
+
+    const corrigidos = produtos.map(produto => ({
+      ...produto,
+      link:
+        produto.link ||
+        produto.product_link ||
+        produto.url ||
+        produto.offer_link ||
+        ""
+    }));
+
+    return res.status(200).json({
+      ...data,
+      shopping: corrigidos
+    });
 
   } catch (error) {
     return res.status(500).json({
