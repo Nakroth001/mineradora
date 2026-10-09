@@ -2265,7 +2265,12 @@ if (secao === "descobrir") {
 
             <div id="resultadoCriativo" style="margin-top:18px;"></div>
         </div>
+<h3 style="margin:28px 0 14px;">🖼️ Meus criativos salvos</h3>
 
+<div id="bibliotecaCriativos"
+     style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+    <p style="color:#888;">Suas imagens salvas aparecerão aqui.</p>
+</div>
         <h3 style="margin-bottom:14px;">📚 Biblioteca de modelos</h3>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
@@ -2612,6 +2617,51 @@ verificarLogin();
  function toggleMobileMenu() {
     document.getElementById("mobileMenu").classList.toggle("active");
 }
+ async function carregarBibliotecaCriativos() {
+    const lista = document.getElementById("bibliotecaCriativos");
+
+    if (!lista) {
+        alert("Não encontrei a área da biblioteca no HTML.");
+        return;
+    }
+
+    lista.innerHTML = "<p style='color:#aaa'>Carregando imagens...</p>";
+
+    const { data: { user }, error: erroUsuario } =
+        await supabaseClient.auth.getUser();
+
+    if (erroUsuario || !user) {
+        lista.innerHTML = "<p>Faça login para ver sua biblioteca.</p>";
+        return;
+    }
+
+    const { data, error } = await supabaseClient
+        .from("noryva_criativos")
+        .select("*")
+        .eq("user_id", user.id)
+        .order("criado_em", { ascending: false });
+
+    if (error) {
+        console.error(error);
+        lista.innerHTML = "<p>Erro ao carregar a biblioteca.</p>";
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        lista.innerHTML = "<p style='color:#aaa'>Nenhuma imagem salva ainda.</p>";
+        return;
+    }
+
+    lista.innerHTML = "";
+
+    for (const item of data) {
+        const { data: arquivo } = await supabaseClient.storage
+            .from("noryva-criativos")
+            .createSignedUrl(item.arquivo_path, 3600);
+
+        const card = document.createElement("div");
+        card.style.cssText =
+            "background:#
 </script>
 
 </body>
