@@ -2233,262 +2233,142 @@ if (secao === "descobrir") {
     `;
 }
     if (secao === "criativos") {
+    titulo.textContent = "🎨 Criativos";
 
-        titulo.textContent = "🎥 Criativos";
+    resultados.innerHTML = `
+        <div style="margin-bottom:24px;">
+            <h2>Central de Criativos Noryva</h2>
+            <p style="color:#888;">Modelos de anúncios e ideias personalizadas para vender mais.</p>
+        </div>
 
-        resultados.innerHTML = `
-            <div style="margin-bottom:25px;">
-                <h2 style="font-size:22px;margin-bottom:8px;">
-                    Biblioteca de criativos
-                </h2>
+        <div class="card" style="margin-bottom:20px;">
+            <h3>🚀 Criar anúncio com IA</h3>
+            <p style="color:#888;margin:8px 0 16px;">
+                Informe o produto para gerar textos, ganchos e roteiros.
+            </p>
 
-                <p style="color:#888;">
-                    Encontre ideias de anúncios e conteúdos para divulgar seus produtos.
-                </p>
+            <input id="criativoProduto"
+                placeholder="Ex.: fone Bluetooth, garrafa térmica..."
+                style="width:100%;padding:13px;background:#111;color:#fff;border:1px solid #333;border-radius:8px;margin-bottom:12px;">
+
+            <select id="criativoFormato"
+                style="width:100%;padding:13px;background:#111;color:#fff;border:1px solid #333;border-radius:8px;margin-bottom:12px;">
+                <option value="video">Roteiro para vídeo curto</option>
+                <option value="imagem">Anúncio para imagem</option>
+                <option value="ugc">Roteiro estilo UGC</option>
+                <option value="copy">Texto de anúncio</option>
+            </select>
+
+            <button class="opportunity" onclick="gerarCriativoNoryva()">
+                Gerar ideias de anúncio →
+            </button>
+
+            <div id="resultadoCriativo" style="margin-top:18px;"></div>
+        </div>
+
+        <h3 style="margin-bottom:14px;">📚 Biblioteca de modelos</h3>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+
+            <div class="card">
+                <div style="font-size:42px;margin-bottom:12px;">📱</div>
+                <span class="category">VÍDEO DEMONSTRATIVO</span>
+                <h3 style="margin:10px 0;">Mostre como funciona</h3>
+                <p style="color:#888;">Apresente o produto, demonstre seu uso e destaque um benefício real.</p>
+                <button class="opportunity" onclick="usarModeloNoryva('video')">Usar modelo →</button>
             </div>
 
-            <div style="
-                display:grid;
-                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-                gap:20px;
-            ">
-
-                <div class="card">
-
-                    <div style="
-                        height:180px;
-                        background:linear-gradient(135deg,#171717,#252525);
-                        border-radius:12px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:65px;
-                        position:relative;
-                        margin-bottom:16px;
-                    ">
-                        📱
-
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            left:12px;
-                            background:#f5b400;
-                            color:#000;
-                            padding:6px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            VÍDEO
-                        </span>
-
-                        <span style="
-                            position:absolute;
-                            bottom:12px;
-                            right:12px;
-                            background:#000;
-                            padding:6px 9px;
-                            border-radius:8px;
-                            font-size:12px;
-                        ">
-                            ▶ 0:24
-                        </span>
-                    </div>
-
-                    <span class="category">TECNOLOGIA</span>
-
-                    <h3 style="margin-top:8px;">
-                        Demonstração do produto
-                    </h3>
-
-                    <p style="color:#888;margin-top:6px;">
-                        Criativo para anúncio em vídeo
-                    </p>
-
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Formato</span>
-                            <b>9:16</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Plataforma</span>
-                            <b>Instagram / TikTok</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Potencial</span>
-                            <b style="color:#35d05f;">Alto</b>
-                        </div>
-
-                    </div>
-
-                    <button class="produto exemplo #02">
-                        Ver criativo →
-                    </button>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div style="
-                        height:180px;
-                        background:linear-gradient(135deg,#171717,#252525);
-                        border-radius:12px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:65px;
-                        position:relative;
-                        margin-bottom:16px;
-                    ">
-                        🎧
-
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            left:12px;
-                            background:#f5b400;
-                            color:#000;
-                            padding:6px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            UGC
-                        </span>
-
-                        <span style="
-                            position:absolute;
-                            bottom:12px;
-                            right:12px;
-                            background:#000;
-                            padding:6px 9px;
-                            border-radius:8px;
-                            font-size:12px;
-                        ">
-                            ▶ 0:18
-                        </span>
-                    </div>
-
-                    <span class="category">ELETRÔNICOS</span>
-
-                    <h3 style="margin-top:8px;">
-                        Review do produto
-                    </h3>
-
-                    <p style="color:#888;margin-top:6px;">
-                        Estilo conteúdo de usuário
-                    </p>
-
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Formato</span>
-                            <b>9:16</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Plataforma</span>
-                            <b>TikTok / Reels</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Potencial</span>
-                            <b style="color:#35d05f;">Muito alto</b>
-                        </div>
-
-                    </div>
-
-                    <button class="produto exemplo #02">
-                        Ver criativo →
-                    </button>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div style="
-                        height:180px;
-                        background:linear-gradient(135deg,#171717,#252525);
-                        border-radius:12px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:65px;
-                        position:relative;
-                        margin-bottom:16px;
-                    ">
-                        ⌚
-
-                        <span style="
-                            position:absolute;
-                            top:12px;
-                            left:12px;
-                            background:#f5b400;
-                            color:#000;
-                            padding:6px 10px;
-                            border-radius:20px;
-                            font-size:11px;
-                            font-weight:bold;
-                        ">
-                            OFERTA
-                        </span>
-
-                        <span style="
-                            position:absolute;
-                            bottom:12px;
-                            right:12px;
-                            background:#000;
-                            padding:6px 9px;
-                            border-radius:8px;
-                            font-size:12px;
-                        ">
-                            ▶ 0:31
-                        </span>
-                    </div>
-
-                    <span class="category">TECNOLOGIA</span>
-
-                    <h3 style="margin-top:8px;">
-                        Oferta irresistível
-                    </h3>
-
-                    <p style="color:#888;margin-top:6px;">
-                        Criativo focado em conversão
-                    </p>
-
-                    <div class="info">
-
-                        <div class="row">
-                            <span>Formato</span>
-                            <b>9:16</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Plataforma</span>
-                            <b>Meta Ads</b>
-                        </div>
-
-                        <div class="row">
-                            <span>Potencial</span>
-                            <b style="color:#35d05f;">Alto</b>
-                        </div>
-
-                    </div>
-
-                    <button class="opportunity">
-                        Ver criativo →
-                    </button>
-
-                </div>
-
+            <div class="card">
+                <div style="font-size:42px;margin-bottom:12px;">🎧</div>
+                <span class="category">UGC</span>
+                <h3 style="margin:10px 0;">Experiência do cliente</h3>
+                <p style="color:#888;">Crie um roteiro natural mostrando o problema, a experiência e os benefícios.</p>
+                <button class="opportunity" onclick="usarModeloNoryva('ugc')">Usar modelo →</button>
             </div>
-        `;
+
+            <div class="card">
+                <div style="font-size:42px;margin-bottom:12px;">🏷️</div>
+                <span class="category">OFERTA</span>
+                <h3 style="margin:10px 0;">Destaque o valor</h3>
+                <p style="color:#888;">Apresente benefícios, preço verdadeiro e uma chamada para ação.</p>
+                <button class="opportunity" onclick="usarModeloNoryva('oferta')">Usar modelo →</button>
+            </div>
+        </div>
+    `;
+}
+
+function usarModeloNoryva(tipo) {
+    const formato = document.getElementById("criativoFormato");
+    const produto = document.getElementById("criativoProduto");
+
+    if (tipo === "video") formato.value = "video";
+    if (tipo === "ugc") formato.value = "ugc";
+    if (tipo === "oferta") formato.value = "imagem";
+
+    produto.focus();
+    document.getElementById("resultadoCriativo").innerHTML =
+        '<p style="color:#f5b400;">Modelo selecionado! Digite o produto acima e gere suas ideias.</p>';
+
+    document.getElementById("criativoProduto").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+function gerarCriativoNoryva() {
+    const produto = document.getElementById("criativoProduto").value.trim();
+    const formato = document.getElementById("criativoFormato").value;
+    const saida = document.getElementById("resultadoCriativo");
+
+    if (!produto) {
+        alert("Digite o nome do produto primeiro.");
+        return;
     }
+
+    const modelos = {
+        video: {
+            titulo: "Roteiro para vídeo curto",
+            gancho: `Você já conhece ${produto}? Veja esta demonstração.`,
+            roteiro: `1. Mostre ${produto} em uso.\n2. Destaque um benefício verificável.\n3. Demonstre como utilizar.\n4. Convide a pessoa a conhecer a oferta.`,
+            chamada: "Confira os detalhes e veja se ele é ideal para você."
+        },
+        ugc: {
+            titulo: "Roteiro estilo UGC",
+            gancho: `Olha o que vale a pena observar neste produto: ${produto}.`,
+            roteiro: `1. Apresente ${produto} de forma natural.\n2. Mostre como funciona.\n3. Explique para quem pode ser útil.\n4. Termine com sua opinião honesta.`,
+            chamada: "Conheça mais sobre o produto."
+        },
+        imagem: {
+            titulo: "Anúncio para imagem",
+            gancho: `${produto}: conheça uma nova opção para sua rotina.`,
+            roteiro: `Título: Conheça ${produto}.\nDestaque: apresente o principal benefício comprovável.\nVisual: mostre o produto com boa iluminação e fundo limpo.`,
+            chamada: "Veja os detalhes da oferta."
+        },
+        copy: {
+            titulo: "Texto para anúncio",
+            gancho: `Procurando uma opção como ${produto}?`,
+            roteiro: `Conheça ${produto} e descubra suas características, funcionalidades e possíveis benefícios. Consulte os detalhes antes de comprar.`,
+            chamada: "Saiba mais."
+        }
+    };
+
+    const c = modelos[formato];
+
+    saida.innerHTML = `
+        <div style="background:#111;border:1px solid #333;border-radius:12px;padding:16px;">
+            <span class="category">RASCUNHO DE CRIATIVO</span>
+            <h3 style="margin:12px 0;">${c.titulo}</h3>
+            <p><b>Gancho:</b></p>
+            <p style="margin:6px 0 14px;">${c.gancho}</p>
+            <p><b>Roteiro / texto:</b></p>
+            <pre style="white-space:pre-wrap;font-family:inherit;color:#ccc;margin:6px 0 14px;">${c.roteiro}</pre>
+            <p><b>Chamada:</b> ${c.chamada}</p>
+            <button class="opportunity" style="margin-top:14px;"
+                onclick="navigator.clipboard.writeText(document.getElementById('resultadoCriativo').innerText).then(()=>alert('Texto copiado!')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione e copie o texto.'))">
+                Copiar criativo
+            </button>
+        </div>
+    `;
 }
     function abrirOportunidade(produto) {
 
