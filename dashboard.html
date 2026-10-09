@@ -2044,221 +2044,126 @@ if (secao === "descobrir") {
 }
 
     if (secao === "analises") {
-
     titulo.textContent = "Análises";
+
+    let favoritos = [];
+    try {
+        favoritos = JSON.parse(
+            localStorage.getItem("noryva_favoritos") || "[]"
+        );
+    } catch (e) {}
+
+    const produtos = window.noryvaProdutosPesquisados || [];
+
+    const parsePreco = valor => {
+        if (typeof valor === "number") return valor;
+
+        if (!valor) return null;
+
+        const numero = Number(
+            String(valor)
+                .replace(/[^\d,.-]/g, "")
+                .replace(/\.(?=\d{3}(?:\D|$))/g, "")
+                .replace(",", ".")
+        );
+
+        return Number.isFinite(numero) && numero > 0 ? numero : null;
+    };
+
+    const precos = produtos
+        .map(p => parsePreco(p.price))
+        .filter(p => p !== null);
+
+    const media = precos.length
+        ? precos.reduce((soma, preco) => soma + preco, 0) / precos.length
+        : null;
+
+    const moeda = valor => valor === null
+        ? "—"
+        : valor.toLocaleString("pt-BR", {
+            style: "currency",
+            currency: "BRL"
+        });
 
     resultados.innerHTML = `
         <div class="analytics-header">
-
             <div>
                 <span class="analytics-kicker">NORYVA INTELLIGENCE</span>
-                <h2>Visão geral do seu mercado</h2>
-                <p>
-                    Transforme dados de produtos em decisões mais inteligentes.
-                </p>
+                <h2>Análise dos seus produtos</h2>
+                <p>Indicadores calculados a partir da última pesquisa.</p>
             </div>
-
-            <div class="analytics-period">
-                Últimos 30 dias
-            </div>
-
+            <div class="analytics-period">Última pesquisa</div>
         </div>
-
 
         <div class="analytics-stats">
-
             <div class="analytics-stat">
-                <span>PRODUTOS ANALISADOS</span>
-                <strong>128</strong>
-                <small class="positive">↑ 18% este mês</small>
+                <span>PRODUTOS ENCONTRADOS</span>
+                <strong>${produtos.length}</strong>
+                <small>Na última pesquisa</small>
             </div>
 
             <div class="analytics-stat">
-                <span>MARGEM MÉDIA</span>
-                <strong>57%</strong>
-                <small class="positive">↑ 8% este mês</small>
+                <span>PREÇO MÉDIO</span>
+                <strong>${moeda(media)}</strong>
+                <small>${precos.length} preços válidos</small>
             </div>
 
             <div class="analytics-stat">
-                <span>MAIOR SCORE</span>
-                <strong class="gold">94</strong>
-                <small>🔥 Alto potencial</small>
+                <span>PRODUTOS FAVORITOS</span>
+                <strong>${favoritos.length}</strong>
+                <small>Salvos neste navegador</small>
             </div>
 
             <div class="analytics-stat">
-                <span>POTENCIAL ANALISADO</span>
-                <strong>R$ 4,8K</strong>
-                <small class="positive">Estimativa</small>
+                <span>MARGEM DE LUCRO</span>
+                <strong>—</strong>
+                <small>Falta custo real do fornecedor e taxas</small>
             </div>
-
         </div>
-
-
-        <div class="analytics-grid">
-
-            <div class="analytics-panel">
-
-                <div class="panel-heading">
-                    <div>
-                        <h3>Indicadores do mercado</h3>
-                        <span>Leitura geral das oportunidades encontradas</span>
-                    </div>
-                </div>
-
-
-                <div class="indicator">
-
-                    <div class="indicator-top">
-                        <span>Demanda</span>
-                        <strong class="positive">Alta</strong>
-                    </div>
-
-                    <div class="indicator-bar">
-                        <div style="width:84%;"></div>
-                    </div>
-
-                </div>
-
-
-                <div class="indicator">
-
-                    <div class="indicator-top">
-                        <span>Potencial de lucro</span>
-                        <strong class="gold">Muito alto</strong>
-                    </div>
-
-                    <div class="indicator-bar gold-bar">
-                        <div style="width:91%;"></div>
-                    </div>
-
-                </div>
-
-
-                <div class="indicator">
-
-                    <div class="indicator-top">
-                        <span>Concorrência</span>
-                        <strong class="gold">Média</strong>
-                    </div>
-
-                    <div class="indicator-bar gold-bar">
-                        <div style="width:56%;"></div>
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="analytics-panel">
-
-                <div class="panel-heading">
-                    <div>
-                        <h3>Resumo da análise</h3>
-                        <span>Seu desempenho dentro da plataforma</span>
-                    </div>
-                </div>
-
-                <div class="analysis-highlight">
-
-                    <div class="analysis-icon">✦</div>
-
-                    <div>
-                        <strong>Boa oportunidade de exploração</strong>
-                        <p>
-                            Os produtos analisados apresentam sinais
-                            interessantes de demanda e margem.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="analysis-line">
-                    <span>Oportunidades encontradas</span>
-                    <strong>37</strong>
-                </div>
-
-                <div class="analysis-line">
-                    <span>Produtos salvos</span>
-                    <strong>12</strong>
-                </div>
-
-                <div class="analysis-line">
-                    <span>Score médio</span>
-                    <strong class="gold">81/100</strong>
-                </div>
-
-            </div>
-
-        </div>
-
 
         <div class="analytics-panel ranking-panel">
-
             <div class="panel-heading">
                 <div>
-                    <h3>Produtos com maior potencial</h3>
-                    <span>Baseado nos dados analisados</span>
+                    <h3>Produtos da última pesquisa</h3>
+                    <span>Preços fornecidos pela fonte de pesquisa; não são estimativas de lucro.</span>
                 </div>
             </div>
 
-
-            <div class="analysis-product">
-
-                <div class="analysis-product-info">
-                    <div class="analysis-product-icon">🎧</div>
-
-                    <div>
-                        <strong>Fone Bluetooth</strong>
-                        <span>Eletrônicos</span>
+            ${
+                produtos.length
+                ? produtos.map(produto => `
+                    <div class="analysis-product">
+                        <div class="analysis-product-info">
+                            ${
+                                produto.thumbnail
+                                ? `<img src="${produto.thumbnail}" alt=""
+                                    style="width:44px;height:44px;object-fit:contain;border-radius:9px;background:#1a1a1a;">`
+                                : `<div class="analysis-product-icon">📦</div>`
+                            }
+                            <div>
+                                <strong>${produto.title || "Produto sem nome"}</strong>
+                                <span>${produto.merchant || "Loja não informada"}</span>
+                            </div>
+                        </div>
+                        <div class="analysis-product-score">
+                            <span>Preço encontrado</span>
+                            <strong>${produto.price || "Não informado"}</strong>
+                        </div>
                     </div>
-                </div>
+                `).join("")
+                : `<p style="color:#888;padding:15px 0;">
+                    Pesquise um produto primeiro para visualizar os dados aqui.
+                   </p>`
+            }
+        </div>
 
-                <div class="analysis-product-score">
-                    <span>Score</span>
-                    <strong>94</strong>
-                </div>
-
-            </div>
-
-
-            <div class="analysis-product">
-
-                <div class="analysis-product-info">
-                    <div class="analysis-product-icon">⌚</div>
-
-                    <div>
-                        <strong>Smartwatch</strong>
-                        <span>Tecnologia</span>
-                    </div>
-                </div>
-
-                <div class="analysis-product-score">
-                    <span>Score</span>
-                    <strong>89</strong>
-                </div>
-
-            </div>
-
-
-            <div class="analysis-product">
-
-                <div class="analysis-product-info">
-                    <div class="analysis-product-icon">💡</div>
-
-                    <div>
-                        <strong>Luz LED</strong>
-                        <span>Casa</span>
-                    </div>
-                </div>
-
-                <div class="analysis-product-score">
-                    <span>Score</span>
-                    <strong>86</strong>
-                </div>
-
-            </div>
-
+        <div class="analytics-panel">
+            <h3>O que ainda falta para calcular o potencial de lucro?</h3>
+            <p style="color:#888;margin-top:10px;line-height:1.7;">
+                Precisamos do custo de compra no fornecedor, frete, taxas da plataforma
+                e outros custos. Sem esses dados, não é correto afirmar uma margem
+                de lucro ou classificar a demanda como alta.
+            </p>
         </div>
     `;
 }
