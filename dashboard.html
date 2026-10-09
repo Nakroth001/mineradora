@@ -2316,13 +2316,80 @@ function usarModeloNoryva(tipo) {
     });
 }
 
-function gerarCriativoNoryva() {
+async function gerarCriativoNoryva() {
     const produto = document.getElementById("criativoProduto").value.trim();
     const formato = document.getElementById("criativoFormato").value;
     const saida = document.getElementById("resultadoCriativo");
 
     if (!produto) {
         alert("Digite o nome do produto primeiro.");
+        return;
+    }
+
+    if (formato === "imagem") {
+        saida.innerHTML = `
+            <div class="card" style="padding:20px;">
+                <h3>🎨 Criando anúncio para ${produto}...</h3>
+                <p style="color:#aaa;margin-top:10px;">
+                    A Noryva está solicitando a imagem à inteligência artificial.
+                </p>
+            </div>
+        `;
+
+        try {
+            const resposta = await fetch(
+                "https://noryva-ai.bartolucas899.workers.dev",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        produto: produto
+                    })
+                }
+            );
+
+            if (!resposta.ok) {
+                const erro = await resposta.json().catch(() => ({}));
+                throw new Error(erro.erro || "Falha ao gerar a imagem.");
+            }
+
+            const imagemBlob = await resposta.blob();
+            const imagemURL = URL.createObjectURL(imagemBlob);
+
+            saida.innerHTML = `
+                <div class="card" style="padding:20px;">
+                    <h3>✨ Criativo gerado</h3>
+                    <img
+                        src="${imagemURL}"
+                        alt="Anúncio de ${produto}"
+                        style="width:100%;max-width:600px;border-radius:12px;margin:16px 0;"
+                    >
+                    <a
+                        href="${imagemURL}"
+                        download="noryva-criativo.png"
+                        class="opportunity"
+                        style="display:inline-block;text-decoration:none;padding:12px;"
+                    >
+                        Baixar imagem
+                    </a>
+                </div>
+            `;
+        } catch (erro) {
+            saida.innerHTML = `
+                <div class="card" style="padding:20px;">
+                    <h3>Não foi possível gerar a imagem</h3>
+                    <p style="color:#aaa;margin-top:10px;">
+                        ${erro.message}
+                    </p>
+                    <p style="color:#aaa;margin-top:10px;">
+                        Verifique a configuração do Worker e tente novamente.
+                    </p>
+                </div>
+            `;
+        }
+
         return;
     }
 
@@ -2356,128 +2423,17 @@ function gerarCriativoNoryva() {
     const c = modelos[formato];
 
     saida.innerHTML = `
-        <div style="background:#111;border:1px solid #333;border-radius:12px;padding:16px;">
-            <span class="category">RASCUNHO DE CRIATIVO</span>
-            <h3 style="margin:12px 0;">${c.titulo}</h3>
-            <p><b>Gancho:</b></p>
-            <p style="margin:6px 0 14px;">${c.gancho}</p>
-            <p><b>Roteiro / texto:</b></p>
-            <pre style="white-space:pre-wrap;font-family:inherit;color:#ccc;margin:6px 0 14px;">${c.roteiro}</pre>
+        <div class="card" style="padding:16px;">
+            <h3>${c.titulo}</h3>
+            <p><b>Gancho:</b> ${c.gancho}</p>
+            <pre style="white-space:pre-wrap;font-family:inherit;color:#ccc;">${c.roteiro}</pre>
             <p><b>Chamada:</b> ${c.chamada}</p>
-            <button class="opportunity" style="margin-top:14px;"
-                onclick="navigator.clipboard.writeText(document.getElementById('resultadoCriativo').innerText).then(()=>alert('Texto copiado!')).catch(()=>alert('Não foi possível copiar automaticamente. Selecione e copie o texto.'))">
+            <button class="opportunity" onclick="navigator.clipboard.writeText(document.getElementById('resultadoCriativo').innerText)">
                 Copiar criativo
             </button>
         </div>
     `;
-}
-    function abrirOportunidade(produto) {
-
-    const resultados = document.getElementById("resultados");
-    const produtos = document.getElementById("produtos");
-    const titulo = document.querySelector(".top h1");
-
-    produtos.style.display = "none";
-    titulo.textContent = "💎 Oportunidade";
-
-    resultados.innerHTML = `
-        <div style="margin-bottom:25px;">
-            <button onclick="mostrarSecao('descobrir')" style="
-                background:none;
-                border:none;
-                color:#f5b400;
-                cursor:pointer;
-                font-size:14px;
-                margin-bottom:20px;
-            ">
-                ← Voltar
-            </button>
-
-            <h2 style="font-size:28px;">
-                ${produto}
-            </h2>
-
-            <p style="color:#888;margin-top:8px;">
-                Análise completa da oportunidade encontrada pela Noryva.
-            </p>
-        </div>
-
-        <div style="
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-            gap:18px;
-            margin-bottom:20px;
-        ">
-
-            <div class="card">
-                <span style="color:#888;font-size:12px;">CUSTO</span>
-                <h2 style="margin-top:10px;">R$ 39,90</h2>
-            </div>
-
-            <div class="card">
-                <span style="color:#888;font-size:12px;">VENDA SUGERIDA</span>
-                <h2 style="margin-top:10px;">R$ 89,90</h2>
-            </div>
-
-            <div class="card">
-                <span style="color:#888;font-size:12px;">MARGEM</span>
-                <h2 style="margin-top:10px;color:#35d05f;">55%</h2>
-            </div>
-
-            <div class="card">
-                <span style="color:#888;font-size:12px;">SCORE NORYVA</span>
-                <h2 style="margin-top:10px;color:#35d05f;">87/100</h2>
-            </div>
-
-        </div>
-
-        <div class="card" style="margin-bottom:20px;">
-
-            <h3 style="margin-bottom:20px;">
-                📊 Análise do produto
-            </h3>
-
-            <div class="row">
-                <span>🔥 Demanda</span>
-                <b style="color:#35d05f;">Alta</b>
-            </div>
-
-            <div class="row">
-                <span>📈 Tendência</span>
-                <b style="color:#35d05f;">Crescente</b>
-            </div>
-
-            <div class="row">
-                <span>⚔️ Concorrência</span>
-                <b>Média</b>
-            </div>
-
-            <div class="row">
-                <span>💰 Potencial de lucro</span>
-                <b style="color:#f5b400;">Alto</b>
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <h3 style="margin-bottom:15px;">
-                🚀 Próximos passos
-            </h3>
-
-            <p style="color:#888;line-height:1.6;">
-                Encontre fornecedores, analise concorrentes e consulte
-                criativos relacionados para validar este produto antes de vender.
-            </p>
-
-            <button class="opportunity" style="margin-top:20px;">
-                🔎 Encontrar fornecedores
-            </button>
-
-        </div>
-    `;
-}
-    function abrirFornecedor(nome) {
+}    function abrirFornecedor(nome) {
 
     const resultados = document.getElementById("resultados");
     const produtos = document.getElementById("produtos");
