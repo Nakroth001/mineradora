@@ -1621,20 +1621,15 @@ async function minerar() {
     }
 
     const resultados = document.getElementById("resultados");
-resultados.innerHTML = `
-    <div class="card noryva-loading">
-        <div class="fox-run">🦊</div>
 
-        <div class="loading-title">
-            A Noryva está minerando oportunidades...
+    resultados.innerHTML = `
+        <div class="card noryva-loading">
+            <div class="fox-run">🦊</div>
+            <div class="loading-title">A Noryva está minerando oportunidades...</div>
+            <div class="loading-sub">Buscando produtos para: <strong>${busca}</strong></div>
         </div>
+    `;
 
-        <div class="loading-sub">
-            Analisando ofertas, preços e concorrência para:
-            <strong>${busca}</strong>
-        </div>
-    </div>
-`;
     try {
         const resposta = await fetch(
             "/api/products?q=" + encodeURIComponent(busca)
@@ -1658,72 +1653,65 @@ resultados.innerHTML = `
             return;
         }
 
-        resultados.innerHTML = produtos.map(produto => `
-            <div class="card">
+        const favoritos = obterFavoritos();
 
-                <div class="product-image">
-                    ${
-                        produto.thumbnail
-                            ? `<img src="${produto.thumbnail}"
-                                alt="${produto.title || "Produto"}"
-                                style="width:100%;height:180px;object-fit:contain;">`
-                            : "📦"
-                    }
-                </div>
+        resultados.innerHTML = produtos.map((produto, indice) => {
+            const id = produto.link || produto.title || `produto-${indice}`;
+            const salvo = favoritos.some(p =>
+                (p.link || p.title) === id
+            );
 
-                <span class="category">
-                    PRODUTO ENCONTRADO
-                </span>
-
-                <h3>${produto.title || "Produto sem nome"}</h3>
-
-                <div class="info">
-
-                    <div class="row">
-                        <span>Preço</span>
-                        <b>${produto.price || "Não informado"}</b>
+            return `
+                <div class="card">
+                    <div style="display:flex;justify-content:flex-end;">
+                        <button
+                            type="button"
+                            onclick="alternarFavorito(${indice})"
+                            style="background:#191919;border:1px solid #333;border-radius:8px;padding:8px 12px;color:#f5b400;cursor:pointer;"
+                            aria-label="${salvo ? "Remover dos favoritos" : "Adicionar aos favoritos"}"
+                        >${salvo ? "♥ Salvo" : "♡ Favoritar"}</button>
                     </div>
 
-                    <div class="row">
-                        <span>Loja</span>
-                        <b>${produto.merchant || "Não informado"}</b>
+                    <div class="product-image">
+                        ${
+                            produto.thumbnail
+                                ? `<img src="${produto.thumbnail}" alt="${produto.title || "Produto"}" style="width:100%;height:180px;object-fit:contain;">`
+                                : "📦"
+                        }
+                    </div>
+
+                    <span class="category">PRODUTO ENCONTRADO</span>
+                    <h3>${produto.title || "Produto sem nome"}</h3>
+
+                    <div class="info">
+                        <div class="row">
+                            <span>Preço</span>
+                            <b>${produto.price || "Não informado"}</b>
+                        </div>
+                        <div class="row">
+                            <span>Loja</span>
+                            <b>${produto.merchant || "Não informado"}</b>
+                        </div>
+                        ${
+                            produto.rating
+                                ? `<div class="row"><span>Avaliação</span><b>⭐ ${produto.rating}</b></div>`
+                                : ""
+                        }
                     </div>
 
                     ${
-                        produto.rating
-                            ? `
-                            <div class="row">
-                                <span>Avaliação</span>
-                                <b>⭐ ${produto.rating}</b>
-                            </div>
-                            `
+                        produto.link
+                            ? `<a href="${produto.link}" target="_blank" rel="noopener noreferrer" class="opportunity">Ver produto →</a>`
                             : ""
                     }
-
                 </div>
+            `;
+        }).join("");
 
-                ${
-                    produto.link
-                        ? `
-                        <a
-                            href="${produto.link}"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="opportunity"
-                        >
-                            Ver produto →
-                        </a>
-                        `
-                        : ""
-                }
-
-            </div>
-        `).join("");
+        window.noryvaProdutosPesquisados = produtos;
 
     } catch (erro) {
-
         console.error(erro);
-
         resultados.innerHTML = `
             <div class="card">
                 <h3>❌ Erro ao buscar produtos</h3>
@@ -1733,6 +1721,51 @@ resultados.innerHTML = `
     }
 }
 
+function obterFavoritos() {
+    try {
+        return JSON.parse(localStorage.getItem("noryva_favoritos") || "[]");
+    } catch {
+        return [];
+    }
+}
+
+function alternarFavorito(indice) {
+    const produto = window.noryvaProdutosPesquisados?.[indice];
+
+    if (!produto) {
+        alert("Não foi possível identificar esse produto.");
+        return;
+    }
+
+    const favoritos = obterFavoritos();
+    const id = produto.link || produto.title;
+
+    const posicao = favoritos.findIndex(p =>
+        (p.link || p.title) === id
+    );
+
+    if (posicao >= 0) {
+        favoritos.splice(posicao, 1);
+    } else {
+        favoritos.push(produto);
+    }
+
+    localStorage.setItem("noryva_favoritos", JSON.stringify(favoritos));
+
+    minerar();
+}
+
+function removerFavorito(indice) {
+    const favoritos = obterFavoritos();
+    favoritos.splice(indice, 1);
+    localStorage.setItem("noryva_favoritos", JSON.stringify(favoritos));
+
+    if (typeof mostrarSecao === "function") {
+        mostrarSecao("favoritos");
+    } else {
+        location.reload();
+    }
+}
 function verOportunidade(produto) {
     alert(
         "Oportunidade encontrada!\n\n" +
@@ -1937,120 +1970,75 @@ if (secao === "descobrir") {
     `;
 }
    if (secao === "favoritos") {
-
     titulo.textContent = "Favoritos";
+
+    let favoritos = [];
+
+    try {
+        favoritos = JSON.parse(
+            localStorage.getItem("noryva_favoritos") || "[]"
+        );
+    } catch (e) {
+        favoritos = [];
+    }
 
     resultados.innerHTML = `
         <div class="favorites-header">
-
             <div>
                 <span class="favorites-kicker">NORYVA SAVED</span>
-
                 <h2>Seus produtos favoritos</h2>
-
-                <p>
-                    Acompanhe as oportunidades que você decidiu guardar.
-                </p>
+                <p>Acompanhe as oportunidades que você decidiu guardar.</p>
             </div>
-
             <div class="favorites-count">
-                <strong>2</strong>
+                <strong>${favoritos.length}</strong>
                 <span>salvos</span>
             </div>
-
         </div>
 
         <div class="favorites-grid">
-
-            <div class="favorite-card">
-
-                <div class="favorite-image">
-                    <span class="favorite-star">★</span>
-                    <span class="favorite-icon">🎧</span>
-                </div>
-
-                <div class="favorite-content">
-
-                    <span class="category">ELETRÔNICOS</span>
-
-                    <h3>Fone Bluetooth</h3>
-
-                    <p class="favorite-trend">
-                        ↗ Tendência crescente
-                    </p>
-
-                    <div class="favorite-stats">
-
-                        <div>
-                            <span>Preço</span>
-                            <strong>R$ 69,90</strong>
+            ${
+                favoritos.length
+                ? favoritos.map((produto, indice) => `
+                    <div class="favorite-card">
+                        <div class="favorite-image">
+                            ${
+                                produto.thumbnail
+                                ? `<img src="${produto.thumbnail}" alt=""
+                                    style="width:100%;height:100%;object-fit:contain;">`
+                                : `<span class="favorite-icon">📦</span>`
+                            }
+                            <button class="favorite-star"
+                                onclick="removerFavorito(${indice})"
+                                title="Remover dos favoritos">♥</button>
                         </div>
-
-                        <div>
-                            <span>Margem</span>
-                            <strong>64%</strong>
+                        <div class="favorite-content">
+                            <h3>${produto.title || "Produto sem nome"}</h3>
+                            <div class="favorite-stats">
+                                <div>
+                                    <span>Preço</span>
+                                    <strong>${produto.price || "Não informado"}</strong>
+                                </div>
+                                <div>
+                                    <span>Loja</span>
+                                    <strong>${produto.merchant || "Não informada"}</strong>
+                                </div>
+                            </div>
+                            ${
+                                produto.link
+                                ? `<a class="opportunity" href="${produto.link}"
+                                    target="_blank" rel="noopener noreferrer">
+                                    Ver produto →
+                                   </a>`
+                                : ""
+                            }
                         </div>
-
-                        <div>
-                            <span>Score</span>
-                            <strong class="favorite-score">82</strong>
-                        </div>
-
                     </div>
-
-                    <button class="opportunity">
-                        Ver oportunidade →
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="favorite-card">
-
-                <div class="favorite-image">
-                    <span class="favorite-star">★</span>
-                    <span class="favorite-icon">⌚</span>
-                </div>
-
-                <div class="favorite-content">
-
-                    <span class="category">TECNOLOGIA</span>
-
-                    <h3>Smartwatch</h3>
-
-                    <p class="favorite-trend">
-                        ↗ Demanda em crescimento
-                    </p>
-
-                    <div class="favorite-stats">
-
-                        <div>
-                            <span>Preço</span>
-                            <strong>R$ 119,90</strong>
-                        </div>
-
-                        <div>
-                            <span>Margem</span>
-                            <strong>58%</strong>
-                        </div>
-
-                        <div>
-                            <span>Score</span>
-                            <strong class="favorite-score">79</strong>
-                        </div>
-
-                    </div>
-
-                    <button class="opportunity">
-                        Ver oportunidade →
-                    </button>
-
-                </div>
-
-            </div>
-
+                `).join("")
+                : `<div class="card">
+                    <h3>♡ Nenhum favorito ainda</h3>
+                    <p>Pesquise um produto e salve-o pelo botão de coração.</p>
+                   </div>`
+            }
         </div>
     `;
 }
