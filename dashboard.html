@@ -2913,35 +2913,128 @@ if (secao === "descobrir") {
         </div>
     `;
 }
-  function abrirConta() {
+ function abrirConta() {
     document.getElementById("produtos").style.display = "none";
-    document.querySelector(".top h1").textContent = "👤 Minha conta";
+    document.querySelector(".top h1").textContent = "Minha conta";
 
-    document.getElementById("resultados").innerHTML = `
-        <div class="card">
-            <h2>👤 Minha conta</h2>
-            <p style="color:#888;margin-top:10px;">
-                Gerencie seu perfil e seu plano Noryva.
+    const resultados = document.getElementById("resultados");
+
+    resultados.innerHTML = `
+        <div class="card" style="max-width:850px;margin:auto;">
+            <span style="color:#f5b400;font-size:11px;font-weight:bold;letter-spacing:2px;">
+                CENTRAL DA CONTA
+            </span>
+
+            <h2 style="margin-top:10px;">Minha conta</h2>
+            <p style="color:#888;margin:8px 0 24px;">
+                Gerencie seu perfil e suas preferências na Noryva.
             </p>
 
-            <div class="info" style="margin-top:20px;">
-                <div class="row">
-                    <span>Plano atual</span>
-                    <b style="color:#f5b400;">PRO</b>
-                </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;">
 
-                <div class="row">
-                    <span>Valor</span>
-                    <b>R$ 85/mês</b>
-                </div>
+                <button type="button" onclick="abrirOpcaoConta('perfil')"
+                    style="text-align:left;padding:20px;background:#111;border:1px solid #292929;border-radius:12px;color:white;cursor:pointer;">
+                    <span style="font-size:24px;">👤</span>
+                    <h3 style="margin:12px 0 7px;">Gerenciar conta</h3>
+                    <p style="color:#888;font-size:13px;">Perfil, nome, e-mail e telefone.</p>
+                </button>
 
-                <div class="row">
-                    <span>Produtos analisados</span>
-                    <b>128</b>
-                </div>
+                <button type="button" onclick="abrirOpcaoConta('config')"
+                    style="text-align:left;padding:20px;background:#111;border:1px solid #292929;border-radius:12px;color:white;cursor:pointer;">
+                    <span style="font-size:24px;">⚙️</span>
+                    <h3 style="margin:12px 0 7px;">Configurações</h3>
+                    <p style="color:#888;font-size:13px;">Preferências, notificações e segurança.</p>
+                </button>
+
+                <button type="button" onclick="abrirOpcaoConta('plano')"
+                    style="text-align:left;padding:20px;background:#111;border:1px solid #292929;border-radius:12px;color:white;cursor:pointer;">
+                    <span style="font-size:24px;">💳</span>
+                    <h3 style="margin:12px 0 7px;">Assinatura</h3>
+                    <p style="color:#888;font-size:13px;">Plano, alteração e cancelamento.</p>
+                </button>
+
+                <button type="button" onclick="abrirOpcaoConta('sair')"
+                    style="text-align:left;padding:20px;background:#111;border:1px solid #292929;border-radius:12px;color:white;cursor:pointer;">
+                    <span style="font-size:24px;">🚪</span>
+                    <h3 style="margin:12px 0 7px;">Sair</h3>
+                    <p style="color:#888;font-size:13px;">Encerrar sua sessão.</p>
+                </button>
             </div>
+
+            <div id="contaDetalhe" style="margin-top:20px;"></div>
         </div>
     `;
+}
+
+function abrirOpcaoConta(opcao) {
+    const detalhe = document.getElementById("contaDetalhe");
+
+    if (opcao === "perfil") {
+        detalhe.innerHTML = `
+            <div style="padding:20px;background:#111;border:1px solid #292929;border-radius:12px;">
+                <h3>Gerenciar conta</h3>
+                <p style="color:#888;margin-top:8px;">Os dados serão exibidos quando a conta estiver conectada ao perfil autenticado.</p>
+                <p style="color:#888;margin-top:10px;">Não altere seus dados pessoais aqui ainda.</p>
+            </div>`;
+        return;
+    }
+
+    if (opcao === "config") {
+        detalhe.innerHTML = `
+            <div style="padding:20px;background:#111;border:1px solid #292929;border-radius:12px;">
+                <h3>Configurações</h3>
+                <p style="color:#888;margin-top:8px;">Preferências que poderemos ativar:</p>
+                <ul style="color:#bbb;line-height:2;margin:12px 0 0 20px;">
+                    <li>Notificações de novas oportunidades</li>
+                    <li>Idioma da plataforma</li>
+                    <li>Segurança e alteração de senha</li>
+                    <li>Preferências de exibição</li>
+                </ul>
+            </div>`;
+        return;
+    }
+
+    if (opcao === "plano") {
+        detalhe.innerHTML = `
+            <div style="padding:20px;background:#111;border:1px solid #292929;border-radius:12px;">
+                <h3>Assinatura</h3>
+                <p style="color:#888;margin-top:8px;">A troca de plano e o cancelamento precisam ser conectados ao sistema de pagamentos antes de serem ativados.</p>
+            </div>`;
+        return;
+    }
+
+    if (opcao === "sair") {
+        detalhe.innerHTML = `
+            <div style="padding:20px;background:#111;border:1px solid #292929;border-radius:12px;">
+                <h3>Sair da conta?</h3>
+                <p style="color:#888;margin:8px 0 16px;">O encerramento da sessão ainda precisa ser ligado à autenticação.</p>
+                <button type="button" onclick="confirmarSairNoryva()"
+                    style="padding:10px 16px;background:#f5b400;color:#111;border:0;border-radius:8px;font-weight:bold;cursor:pointer;">
+                    Confirmar saída
+                </button>
+            </div>`;
+    }
+}
+
+async function confirmarSairNoryva() {
+    try {
+        if (!window.supabase || !window.supabase.createClient) {
+            alert("A autenticação não está disponível nesta página.");
+            return;
+        }
+
+        const { error } = await supabaseClient.auth.signOut();
+
+        if (error) {
+            alert("Não foi possível encerrar a sessão. Tente novamente.");
+            return;
+        }
+
+        window.location.href = "auth.html";
+    } catch (e) {
+        alert("Não foi possível encerrar a sessão.");
+    }
+}
 }const SUPABASE_URL = "https://qprzyjyohpoygvijnpwm.supabase.co";
 const SUPABASE_KEY = "sb_publishable_sM_1BUVin0SWPvrOxZgH8g_IVaWKyXj";
 
