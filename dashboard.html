@@ -1333,7 +1333,6 @@ body{
     }
 
 }
-
 </style>
 </head>
 
@@ -2465,8 +2464,262 @@ if (secao === "descobrir") {
     `;
 }
     if (secao === "criativos") {
-    titulo.textContent = "Criativos";
-    resultados.innerHTML = "";
+
+        titulo.textContent = "🎥 Criativos";
+
+        resultados.innerHTML = `
+            <div style="margin-bottom:25px;">
+                <h2 style="font-size:22px;margin-bottom:8px;">
+                    Biblioteca de criativos
+                </h2>
+
+                <p style="color:#888;">
+                    Encontre ideias de anúncios e conteúdos para divulgar seus produtos.
+                </p>
+            </div>
+
+            <div style="
+                display:grid;
+                grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+                gap:20px;
+            ">
+
+                <div class="card">
+
+                    <div style="
+                        height:180px;
+                        background:linear-gradient(135deg,#171717,#252525);
+                        border-radius:12px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:65px;
+                        position:relative;
+                        margin-bottom:16px;
+                    ">
+                        📱
+
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            left:12px;
+                            background:#f5b400;
+                            color:#000;
+                            padding:6px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            VÍDEO
+                        </span>
+
+                        <span style="
+                            position:absolute;
+                            bottom:12px;
+                            right:12px;
+                            background:#000;
+                            padding:6px 9px;
+                            border-radius:8px;
+                            font-size:12px;
+                        ">
+                            ▶ 0:24
+                        </span>
+                    </div>
+
+                    <span class="category">TECNOLOGIA</span>
+
+                    <h3 style="margin-top:8px;">
+                        Demonstração do produto
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        Criativo para anúncio em vídeo
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Formato</span>
+                            <b>9:16</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Plataforma</span>
+                            <b>Instagram / TikTok</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Potencial</span>
+                            <b style="color:#35d05f;">Alto</b>
+                        </div>
+
+                    </div>
+
+                    <button class="produto exemplo #02">
+                        Ver criativo →
+                    </button>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div style="
+                        height:180px;
+                        background:linear-gradient(135deg,#171717,#252525);
+                        border-radius:12px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:65px;
+                        position:relative;
+                        margin-bottom:16px;
+                    ">
+                        🎧
+
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            left:12px;
+                            background:#f5b400;
+                            color:#000;
+                            padding:6px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            UGC
+                        </span>
+
+                        <span style="
+                            position:absolute;
+                            bottom:12px;
+                            right:12px;
+                            background:#000;
+                            padding:6px 9px;
+                            border-radius:8px;
+                            font-size:12px;
+                        ">
+                            ▶ 0:18
+                        </span>
+                    </div>
+
+                    <span class="category">ELETRÔNICOS</span>
+
+                    <h3 style="margin-top:8px;">
+                        Review do produto
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        Estilo conteúdo de usuário
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Formato</span>
+                            <b>9:16</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Plataforma</span>
+                            <b>TikTok / Reels</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Potencial</span>
+                            <b style="color:#35d05f;">Muito alto</b>
+                        </div>
+
+                    </div>
+
+                    <button class="produto exemplo #02">
+                        Ver criativo →
+                    </button>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div style="
+                        height:180px;
+                        background:linear-gradient(135deg,#171717,#252525);
+                        border-radius:12px;
+                        display:flex;
+                        align-items:center;
+                        justify-content:center;
+                        font-size:65px;
+                        position:relative;
+                        margin-bottom:16px;
+                    ">
+                        ⌚
+
+                        <span style="
+                            position:absolute;
+                            top:12px;
+                            left:12px;
+                            background:#f5b400;
+                            color:#000;
+                            padding:6px 10px;
+                            border-radius:20px;
+                            font-size:11px;
+                            font-weight:bold;
+                        ">
+                            OFERTA
+                        </span>
+
+                        <span style="
+                            position:absolute;
+                            bottom:12px;
+                            right:12px;
+                            background:#000;
+                            padding:6px 9px;
+                            border-radius:8px;
+                            font-size:12px;
+                        ">
+                            ▶ 0:31
+                        </span>
+                    </div>
+
+                    <span class="category">TECNOLOGIA</span>
+
+                    <h3 style="margin-top:8px;">
+                        Oferta irresistível
+                    </h3>
+
+                    <p style="color:#888;margin-top:6px;">
+                        Criativo focado em conversão
+                    </p>
+
+                    <div class="info">
+
+                        <div class="row">
+                            <span>Formato</span>
+                            <b>9:16</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Plataforma</span>
+                            <b>Meta Ads</b>
+                        </div>
+
+                        <div class="row">
+                            <span>Potencial</span>
+                            <b style="color:#35d05f;">Alto</b>
+                        </div>
+
+                    </div>
+
+                    <button class="opportunity">
+                        Ver criativo →
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+    }
 }
     function abrirOportunidade(produto) {
 
