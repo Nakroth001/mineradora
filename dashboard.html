@@ -2331,12 +2331,25 @@ async function gerarCriativoNoryva() {
             <div class="card" style="padding:20px;">
                 <h3>🎨 Criando anúncio para ${produto}...</h3>
                 <p style="color:#aaa;margin-top:10px;">
-                    A Noryva está solicitando a imagem à inteligência artificial.
+                    Aguarde enquanto a inteligência artificial gera a imagem.
                 </p>
             </div>
         `;
 
         try {
+            // Confirma que existe um usuário autenticado
+            const { data: sessaoData, error: sessaoErro } =
+                await supabaseClient.auth.getSession();
+
+            if (sessaoErro) throw sessaoErro;
+
+            const usuario = sessaoData.session?.user;
+
+            if (!usuario) {
+                throw new Error("Entre na sua conta para salvar seus criativos.");
+            }
+
+            // Gera a imagem
             const resposta = await fetch(
                 "https://noryva-ai.bartolucas899.workers.dev",
                 {
@@ -2344,9 +2357,7 @@ async function gerarCriativoNoryva() {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({
-                        produto: produto
-                    })
+                    body: JSON.stringify({ produto })
                 }
             );
 
@@ -2356,35 +2367,89 @@ async function gerarCriativoNoryva() {
             }
 
             const imagemBlob = await resposta.blob();
-            const imagemURL = URL.createObjectURL(imagemBlob);
+
+            if (!imagemBlob.type.startsWith("image/")) {
+                throw new Error("A IA não retornou um arquivo de imagem válido.");
+            }
+
+            // Cria um nome único para o arquivo
+            const idArquivo = crypto.randomUUID();
+            const caminho = `${usuario.id}/${idArquivo}.jpg`;
+
+            // Salva a imagem no Storage privado do Supabase
+            const { error: uploadErro } = await supabaseClient
+                .storage
+                .from("noryva-criativos")
+                .upload(caminho, imagemBlob, {
+                    contentType: imagemBlob.type,
+                    upsert: false
+                });
+
+            if (uploadErro) throw uploadErro;
+
+            // Salva os dados do criativo na tabela
+            const { data: registro, error: bancoErro } = await supabaseClient
+                .from("noryva_criativos")
+                .insert({
+                    user_id: usuario.id,
+                    nome: produto,
+                    arquivo_path: caminho
+                })
+                .select()
+                .single();
+
+            if (bancoErro) {
+                // Evita deixar um arquivo órfão se o registro falhar
+                await supabaseClient
+                    .storage
+                    .from("noryva-criativos")
+                    .remove([caminho]);
+
+                throw bancoErro;
+            }
+
+            // Gera um link temporário para visualizar e baixar
+            const { data: linkData, error: linkErro } = await supabaseClient
+                .storage
+                .from("noryva-criativos")
+                .createSignedUrl(caminho, 3600);
+
+            if (linkErro) throw linkErro;
 
             saida.innerHTML = `
                 <div class="card" style="padding:20px;">
-                    <h3>✨ Criativo gerado</h3>
+                    <h3>✨ Criativo gerado e salvo!</h3>
                     <img
-                        src="${imagemURL}"
+                        src="${linkData.signedUrl}"
                         alt="Anúncio de ${produto}"
                         style="width:100%;max-width:600px;border-radius:12px;margin:16px 0;"
                     >
+                    <p style="color:#aaa;">Salvo na sua conta Noryva.</p>
                     <a
-                        href="${imagemURL}"
-                        download="noryva-criativo.png"
+                        href="${linkData.signedUrl}"
+                        download="noryva-criativo.jpg"
+                        target="_blank"
+                        rel="noopener"
                         class="opportunity"
                         style="display:inline-block;text-decoration:none;padding:12px;"
-                    >
-                        Baixar imagem
-                    </a>
+                    >Baixar imagem</a>
                 </div>
             `;
+
         } catch (erro) {
+            console.error("Erro no criativo:", erro);
+
             saida.innerHTML = `
                 <div class="card" style="padding:20px;">
-                    <h3>Não foi possível gerar a imagem</h3>
+                    <h3>Não foi possível salvar o criativo</h3>
                     <p style="color:#aaa;margin-top:10px;">
-                        ${erro.message}
-                    </p>
-                    <p style="color:#aaa;margin-top:10px;">
-                        Verifique a configuração do Worker e tente novamente.
+                        ${String(erro.message || erro).replace(/[&<>"']/g, caractere => ({
+                            "&": "&amp;",
+                            "<": "&lt;",
+                            ">": "&gt;",
+                            '"': "&quot;",
+                            "'": "&#39;"
+                        })[caractere])}
                     </p>
                 </div>
             `;
@@ -2422,6 +2487,11 @@ async function gerarCriativoNoryva() {
 
     const c = modelos[formato];
 
+    if (!c) {
+        alert("Selecione um formato válido.");
+        return;
+    }
+
     saida.innerHTML = `
         <div class="card" style="padding:16px;">
             <h3>${c.titulo}</h3>
@@ -2433,6 +2503,7 @@ async function gerarCriativoNoryva() {
             </button>
         </div>
     `;
+}
 }    function abrirFornecedor(nome) {
 
     const resultados = document.getElementById("resultados");
