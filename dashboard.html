@@ -2496,7 +2496,14 @@ async function gerarCriativoNoryva() {
             throw new Error("A resposta da IA não é uma imagem válida.");
         }
 
-        const caminho = `${usuario.id}/${crypto.randomUUID()}.jpg`;
+       const { data: { user: usuarioAutenticado }, error: authErro } =
+    await supabaseClient.auth.getUser();
+
+if (authErro || !usuarioAutenticado) {
+    throw new Error("Sua sessão expirou. Entre novamente na Noryva.");
+}
+
+const caminho = `${usuarioAutenticado.id}/${crypto.randomUUID()}.jpg`;
 
         const { error: uploadErro } = await supabaseClient
             .storage
@@ -2511,7 +2518,7 @@ async function gerarCriativoNoryva() {
         const { error: bancoErro } = await supabaseClient
             .from("noryva_criativos")
             .insert({
-                user_id: usuario.id,
+               user_id: usuarioAutenticado.id,
                 nome: produto,
                 arquivo_path: caminho
             });
