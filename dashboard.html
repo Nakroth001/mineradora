@@ -2387,6 +2387,59 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
+ async function gerarCriativoNoryva() {
+    const botao = document.getElementById("botaoGerarCriativo");
+    const resultado = document.getElementById("resultadoCriativo");
+
+    if (!botao || !resultado) return;
+
+    botao.disabled = true;
+    botao.textContent = "Gerando...";
+    resultado.innerHTML = "<p>Preparando seu criativo...</p>";
+
+    try {
+        const resposta = await fetch(
+            "https://noryva-ai.bartolucas899.workers.dev",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    prompt: "Crie uma imagem publicitária profissional para um produto de e-commerce, com aparência realista e iluminação de estúdio."
+                })
+            }
+        );
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(dados.error || "Erro ao gerar imagem.");
+        }
+
+        if (dados.image) {
+            resultado.innerHTML = `
+                <img src="${dados.image}"
+                     alt="Criativo gerado pela Noryva"
+                     style="width:100%;max-width:600px;border-radius:12px;">
+            `;
+        } else if (dados.imageUrl) {
+            resultado.innerHTML = `
+                <img src="${dados.imageUrl}"
+                     alt="Criativo gerado pela Noryva"
+                     style="width:100%;max-width:600px;border-radius:12px;">
+            `;
+        } else {
+            resultado.textContent =
+                "O Worker respondeu, mas não retornou uma imagem no formato esperado.";
+        }
+    } catch (erro) {
+        resultado.textContent = "Erro: " + erro.message;
+    } finally {
+        botao.disabled = false;
+        botao.textContent = "✨ Gerar imagem";
+    }
+}
 
 async function verificarLogin() {
     const { data: { session } } = await supabaseClient.auth.getSession();
