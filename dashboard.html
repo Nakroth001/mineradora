@@ -2433,9 +2433,10 @@ const supabaseClient = window.supabase.createClient(
             resultado.textContent =
                 "O Worker respondeu, mas não retornou uma imagem no formato esperado.";
         }
-    } catch (erro) {
-        resultado.textContent = "Erro: " + erro.message;
-    } finally {
+   } catch (erro) {
+    resultado.textContent = "Erro: " + erro.message;
+    console.error("Erro na Noryva:", erro);
+} finally {
         botao.disabled = false;
         botao.textContent = "✨ Gerar imagem";
     }
