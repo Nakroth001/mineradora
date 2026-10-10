@@ -2441,7 +2441,133 @@ const supabaseClient = window.supabase.createClient(
         botao.textContent = "✨ Gerar imagem";
     }
 }
+async function gerarCriativoNoryva() {
+    const campo = document.getElementById("criativoProduto");
+    const saida = document.getElementById("resultadoCriativo");
+    const botao = document.getElementById("botaoGerarCriativo");
+    const produto = campo?.value.trim();
 
+    if (!produto) {
+        alert("Digite o nome do produto primeiro.");
+        return;
+    }
+
+    botao.disabled = true;
+    botao.textContent = "Gerando imagem...";
+
+    saida.innerHTML = `
+        <div class="card" style="padding:20px;">
+            <h3>🎨 Criando anúncio para ${produto}...</h3>
+            <p style="color:#aaa;margin-top:10px;">
+                Aguarde enquanto a IA gera a imagem.
+            </p>
+        </div>
+    `;
+
+    try {
+        const { data: sessaoData, error: sessaoErro } =
+            await supabaseClient.auth.getSession();
+
+        if (sessaoErro) throw sessaoErro;
+
+        const usuario = sessaoData.session?.user;
+
+        if (!usuario) {
+            throw new Error("Entre na sua conta para gerar e salvar criativos.");
+        }
+
+        const resposta = await fetch(
+            "https://noryva-ai.bartolucas899.workers.dev",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ produto })
+            }
+        );
+
+        if (!resposta.ok) {
+            const erro = await resposta.json().catch(() => ({}));
+            throw new Error(erro.erro || erro.error || `Erro HTTP ${resposta.status}`);
+        }
+
+        const imagemBlob = await resposta.blob();
+
+        if (!imagemBlob.type.startsWith("image/")) {
+            throw new Error("A resposta da IA não é uma imagem válida.");
+        }
+
+        const caminho = `${usuario.id}/${crypto.randomUUID()}.jpg`;
+
+        const { error: uploadErro } = await supabaseClient
+            .storage
+            .from("noryva-criativos")
+            .upload(caminho, imagemBlob, {
+                contentType: imagemBlob.type,
+                upsert: false
+            });
+
+        if (uploadErro) throw uploadErro;
+
+        const { error: bancoErro } = await supabaseClient
+            .from("noryva_criativos")
+            .insert({
+                user_id: usuario.id,
+                nome: produto,
+                arquivo_path: caminho
+            });
+
+        if (bancoErro) {
+            await supabaseClient.storage
+                .from("noryva-criativos")
+                .remove([caminho]);
+            throw bancoErro;
+        }
+
+        const { data: linkData, error: linkErro } =
+            await supabaseClient.storage
+                .from("noryva-criativos")
+                .createSignedUrl(caminho, 3600);
+
+        if (linkErro) throw linkErro;
+
+        const img = document.createElement("img");
+        img.src = linkData.signedUrl;
+        img.alt = "Criativo de " + produto;
+        img.style.cssText = "width:100%;max-width:600px;border-radius:12px;margin:16px 0;";
+
+        const titulo = document.createElement("h3");
+        titulo.textContent = "✨ Criativo gerado e salvo!";
+
+        const texto = document.createElement("p");
+        texto.textContent = "Salvo na sua conta Noryva.";
+        texto.style.color = "#aaa";
+
+        const link = document.createElement("a");
+        link.href = linkData.signedUrl;
+        link.download = "noryva-criativo.jpg";
+        link.target = "_blank";
+        link.rel = "noopener";
+        link.className = "opportunity";
+        link.style.cssText = "display:inline-block;text-decoration:none;padding:12px;";
+        link.textContent = "Baixar imagem";
+
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.padding = "20px";
+        card.append(titulo, img, texto, link);
+        saida.replaceChildren(card);
+
+    } catch (erro) {
+        console.error("Erro no criativo:", erro);
+        const mensagem = document.createElement("p");
+        mensagem.textContent = "Erro ao gerar imagem: " + (erro.message || erro);
+        mensagem.style.color = "#ff7777";
+        saida.replaceChildren(mensagem);
+    } finally {
+        botao.disabled = false;
+        botao.textContent = "✨ Gerar imagem";
+    }
+}
 async function verificarLogin() {
     const { data: { session } } = await supabaseClient.auth.getSession();
 
